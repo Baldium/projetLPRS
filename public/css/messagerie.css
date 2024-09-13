@@ -1,0 +1,204 @@
+:root {
+    --primary-color: #1e90ff; /* Bleu clair et frais */
+    --secondary-color: #ffffff; /* Blanc pour contraste et simplicité */
+    --background-color: #f5f6fa; /* Gris clair moderne */
+    --text-color: #333333; /* Texte gris foncé pour une meilleure lisibilité */
+    --sidebar-bg: #2d3e50; /* Bleu foncé pour la barre latérale */
+    --message-bg: #ffffff; /* Blanc pour les messages */
+    --border-color: #e0e0e0; /* Gris léger pour les bordures */
+    --shadow-color: rgba(0, 0, 0, 0.05); /* Ombre légère et subtile */
+    --message-sent-bg: #d1e7ff; /* Bleu très pâle pour les messages envoyés */
+    --message-received-bg: #f1f1f1; /* Gris très léger pour les messages reçus */
+    --button-color: #1e90ff; /* Bleu vif pour les boutons */
+    --button-hover: #1c7ed6; /* Bleu légèrement plus foncé pour le survol */
+  }
+
+  /* Base styles */
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    background-color: var(--background-color);
+  }
+
+  .container {
+    display: flex;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    box-shadow: 0 0 10px var(--shadow-color);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  /* Sidebar (contacts list) */
+  .sidebar {
+    background-color: var(--sidebar-bg);
+    width: 25%;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    color: white;
+  }
+
+  .sidebar-header {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+
+  .contact-item {
+    padding: 12px;
+    margin-bottom: 10px;
+    background-color: #1e3d5c; /* Couleur légèrement plus claire pour les contacts */
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .contact-item:hover {
+    background-color: #446a87;
+  }
+
+  .contact-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 12px;
+    color: white;
+  }
+
+  .contact-name {
+    font-size: 1.1em;
+    font-weight: bold;
+  }
+
+  .contact-last-message {
+    font-size: 0.85em;
+    color: #b0bec5;
+    margin-top: 5px;
+  }
+
+  /* Message panel (chat view) */
+  .message-panel {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secondary-color);
+  }
+
+  .message-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+
+  .message-header .contact-avatar {
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+  }
+
+  .message-content {
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .message {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+    max-width: 80%;
+  }
+
+  .message.sent {
+    justify-content: flex-end;
+    align-self: flex-end;
+  }
+
+  .message.sent .message-text {
+    background-color: var(--message-sent-bg);
+  }
+
+  .message.received .message-text {
+    background-color: var(--message-received-bg);
+  }
+
+  .message-text {
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px var(--shadow-color);
+    font-size: 1em;
+    line-height: 1.5em;
+    word-wrap: break-word;
+  }
+
+  .message-time {
+    font-size: 0.75em;
+    color: #95a5a6;
+    margin-top: 5px;
+    text-align: right;
+  }
+
+  /* Message input */
+  .message-input {
+    padding: 15px;
+    border-top: 1px solid var(--border-color);
+    background-color: white;
+    display: flex;
+    align-items: center;
+  }
+
+  .message-input textarea {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    resize: none;
+    font-size: 1em;
+    height: 45px;
+    outline: none;
+  }
+
+  .message-input button {
+    background-color: var(--button-color);
+    color: white;
+    padding: 10px 18px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+
+  .message-input button:hover {
+    background-color: var(--button-hover);
+  }
