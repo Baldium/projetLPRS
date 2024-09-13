@@ -1,0 +1,114 @@
+:root {
+    --primary-color: #1e90ff;
+    --secondary-color: #ffffff;
+    --background-color: #f5f6fa;
+    --text-color: #333;
+    --border-color: #e0e0e0;
+    --input-bg: #ffffff;
+    --button-color: #1e90ff;
+    --button-hover: #1c7ed6;
+    --label-color: #555555;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  .profile-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .profile-header h1 {
+    font-size: 2.5em;
+    color: var(--primary-color);
+  }
+
+  .profile-header p {
+    font-size: 1.1em;
+    color: var(--label-color);
+  }
+
+  .form-section {
+    background-color: var(--secondary-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .form-section h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    text-align: center;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 1.1em;
+    color: var(--label-color);
+    margin-bottom: 8px;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--input-bg);
+    font-size: 1em;
+    color: var(--text-color);
+  }
+
+  .form-group textarea {
+    height: 120px;
+    resize: none;
+  }
+
+  .form-group select {
+    appearance: none;
+  }
+
+  .form-actions {
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .form-actions button {
+    background-color: var(--button-color);
+    color: var(--secondary-color);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+  }
+
+  .form-actions button:hover {
+    background-color: var(--button-hover);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .form-group input,
+    .form-group textarea {
+      font-size: 0.9em;
+    }
+  }
