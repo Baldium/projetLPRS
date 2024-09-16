@@ -4,7 +4,7 @@ class Utilisateur
 {
     public function __construct()
     {
-        $this->table = "utilisateurs";
+        $this->table = "users";
         $this->getBdd();
     }
 
