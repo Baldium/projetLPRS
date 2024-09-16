@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../public/css/publication_offres.css">
+  <title>Publication d'Offres | SchumanConnect</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Publier une Offre</h1>
+    <div class="card">
+      <div class="card-header">
+        Détails de l'Offre
+      </div>
+
+      <form action="#" method="POST">
+        <!-- Titre de l'offre -->
+        <div class="form-group">
+          <label for="titre-offre">Titre de l'Offre </label>
+          <input type="text" id="titre-offre" name="titre-offre" placeholder="Entrez le titre de l'offre" required>
+        </div>
+
+        <!-- Description de l'offre -->
+        <div class="form-group">
+          <label for="description">Description de l'Offre</label>
+          <textarea id="description" name="description" rows="6" placeholder="Décrivez les missions et responsabilités" required></textarea>
+        </div>
+
+        <!-- Missions liées -->
+        <div class="form-group">
+          <label for="missions">Missions liées</label>
+          <textarea id="missions" name="missions" rows="4" placeholder="Détaillez les missions principales" required></textarea>
+        </div>
+
+        <!-- Salaire -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="salaire">Salaire (optionnel)</label>
+            <input type="text" id="salaire" name="salaire" placeholder="Entrez un montant ou laissez vide">
+          </div>
+
+          <!-- Type d'offre -->
+          <div class="form-group">
+            <label for="type-offre">Type d'Offre</label>
+            <select id="type-offre" name="type-offre" required>
+              <option value="stage">Stage</option>
+              <option value="alternance">Alternance</option>
+              <option value="cdd">CDD</option>
+              <option value="cdi">CDI</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="niveau-etudes">Niveau d'Études Requis</label>
+          <select id="niveau-etudes" name="niveau-etudes" required>
+            <option value="bac+2">Bac+1</option>
+            <option value="bac+2">Bac+2</option>
+            <option value="bac+3">Bac+3</option>
+            <option value="bac+4">Bac+4</option>
+            <option value="bac+5">Bac+5</option>
+          </select>
+        </div>
+
+        <!-- Spécialisation requise -->
+        <div class="form-group">
+          <label for="specialisation">Cette offre s'adresse aux étudiants des filières :</label>
+          <select id="specialisation" name="specialisation" required>
+            <option value="BTS CPRP">BTS CPRP</option>
+            <option value="BTS MSPC">BTS MSPC</option>
+            <option value="BTS SIO">BTS SIO</option>
+          </select>
+        </div>
+
+        <!-- Submit button -->
+        <div class="form-group">
+          <button type="submit" class="btn">Publier l'Offre</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>
