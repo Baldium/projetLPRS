@@ -14,15 +14,15 @@
             </div>
             <h1>Connexion</h1>
             <p>C'est un plaisir de vous voir aujourd'hui !</p>
-            <form>
+            <form action="../controller/LoginSocietyController.php" method="post">
                 <label for="email">Email</label>
-                <input type="email" id="email" placeholder="exemple_business@schumanconnect.com" required>
+                <input name="email_society" type="email" id="email" placeholder="exemple_business@schumanconnect.com" required>
                 <label for="password">Mot de passe</label>
-                <input type="password" id="password" required>
+                <input name="password_society" type="password" id="password" required>
                 <div class="forgot" onclick="window.location.href='mot-de-passe-oublie.html';" style="cursor: pointer;">
                     Mot de passe oublié ?
                 </div>
-                <button type="submit">Connexion</button>
+                <button name= "login_society" type="submit">Connexion</button>
             </form>
             <div class="login-link">
                 Vous n'avez pas de compte entreprise ? <a href="inscription_business.html">Devenir notre partenaire </a>
