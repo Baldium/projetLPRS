@@ -19,14 +19,14 @@ class Professeur
         return $this->requete("SELECT * FROM professeurs");
     }
 
-    public function addProfesseur($nom, $prenom, $email, $password,$matiere)
+    public function addProfesseur($nom, $prenom, $email, $password,$matiere,$classes)
     {
-        return $this->requete("INSERT INTO professeurs (nom, prenom, email, password,matiere) VALUES (?, ?, ?, ?,?)", [$nom, $prenom, $email, $password,$matiere]);
+        return $this->requete("INSERT INTO professeurs (nom, prenom, email, password,matiere,classes) VALUES (?, ?, ?, ?,?,?)", [$nom, $prenom, $email, $password,$matiere,$classes]);
     }
 
-    public function updateProfesseur($id, $nom, $prenom, $email, $password, $matiere)
+    public function updateProfesseur($id, $nom, $prenom, $email, $password, $matiere, $classes)
     {
-        return $this->requete("UPDATE professeurs SET nom = ?, prenom = ?, email = ?, password = ?, matiere = ? WHERE id = ?", [$nom, $prenom, $email, $password, $matiere, $id]);
+        return $this->requete("UPDATE professeurs SET nom = ?, prenom = ?, email = ?, password = ?, matiere = ?, classes = ? WHERE id = ?", [$nom, $prenom, $email, $password, $matiere, $classes, $id]);
     }
 
     public function deleteProfesseur($id)
