@@ -1,3 +1,6 @@
+<?php session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,7 +16,7 @@
                 <img src="../public/assets/image/Logo_Schuman_Connect.png" alt="SchumanLink Logo">
             </div>
             <h1>Connexion</h1>
-            <p>C'est un plaisir de vous voir aujourd'hui !</p>
+            <p>C'est un plaisir de vous voir aujourd'hui, <?php echo $_SESSION['prenom']; ?> !</p>
             <form action="../controller/LoginSocietyController.php" method="post">
                 <label for="email">Email</label>
                 <input name="email_society" type="email" id="email" placeholder="exemple_business@schumanconnect.com" required>

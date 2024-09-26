@@ -1,3 +1,6 @@
+<?php session_start(); 
+include '../repository/OffersRepository.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -17,11 +20,11 @@
         <nav>
           <div class="menu-item active">
             <i class="fas fa-tachometer-alt"></i>
-            <span><a href="accueil_business.html">Mon Tableau de Bord</a></span>
+            <span><a href="accueil_business.php">Mon Tableau de Bord</a></span>
           </div>
           <div class="menu-item">
             <i class="fas fa-building"></i>
-            <span><a href="profil_entreprise.html">Profil de Mon Entreprise</a></span>
+            <span><a href="profil_entreprise.php">Profil de Mon Entreprise</a></span>
           </div>
           <div class="menu-item">
             <i class="fas fa-briefcase"></i>
@@ -39,6 +42,10 @@
             <i class="fas fa-message"></i>
             <span><a href="messagerie.html">Mes Messages</a></span>
           </div>
+          <div class="menu-item ">
+            <i class="fas fa-sign-out-alt"></i>
+            <span><a href="../utils/logout.php">Deconnexion</a></span>
+          </div>
         </nav>
       </aside>
       
@@ -50,7 +57,7 @@
           </div>
           <div class="user-profile">
             <img src="https://i.pinimg.com/originals/c7/3d/50/c73d504939670c967d7e1018e120a301.jpg" alt="User profile picture">
-            <span>Clément ici tu mettra l'api de logo entreprise</span>
+            <span><?php echo $_SESSION['nom_society']; ?></span>
             <i class="fas fa-chevron-down"></i>
           </div>
         </header>
@@ -63,8 +70,18 @@
             </div>
           </div>
           <div class="dashboard-card">
-            <div class="card-title"><i class="fas fa-bullhorn"></i> Offres Publiées</div>
-            <div class="card-value">128</div>
+            <div class="card-title"><i class="fas fa-bullhorn"></i><?php 
+            $nb = OffersRepository::number_offers();
+            if($nb <= 0)
+            {
+              echo "Offre Publiée";
+            } 
+            else
+            {
+              echo "Offres Publiées";
+            }
+             ?> </div>
+            <div class="card-value"><?php echo OffersRepository::number_offers(); ?></div>
             <div class="card-chart">
               <!-- SVG chart or image here -->
             </div>
@@ -105,33 +122,8 @@
         
         <div class="dashboard-grid">
           <div class="dashboard-card">
-            <h3>Dernières Offres</h3>
-            <table class="appointments-table">
-              <thead>
-                <tr>
-                  <th>No.</th>
-                  <th>Entreprise</th>
-                  <th>Date</th>
-                  <th>Type</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>01</td>
-                  <td>Entreprise A</td>
-                  <td>01 Sep 2024</td>
-                  <td>Stage</td>
-                  <td><span class="appointment-status status-confirmed">Ouverte</span></td>
-                  <td class="action-icons">
-                    <a href="voir-offre.html"><i class="far fa-eye"></i></a>
-                    <a href="editer-offre.html"><i class="far fa-edit"></i></a>
-                  </td>
-                </tr>
-                <!-- Plus de lignes ici -->
-              </tbody>
-            </table>
+            <h3><a href="../view/mes_offres_business.php">Mes Offres d'Emplois</a></h3>
+            <?php OffersRepository::find_offers_by_desc(); ?>
           </div>
           <div class="dashboard-card">
             <h3>Historique des Événements</h3>

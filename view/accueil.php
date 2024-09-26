@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -29,7 +31,7 @@
       <div class="menu-item" onclick="window.location.href='favoris.html';" style="cursor: pointer;">Favoris</div>
       <div class="menu-item" onclick="window.location.href='actualites.html';" style="cursor: pointer;">Actualités</div>
       <div class="menu-item" onclick="window.location.href='evenements.html';" style="cursor: pointer;">Événements</div>
-      <div class="menu-item" onclick="window.location.href='connexion_business.html';" style="cursor: pointer;">Pour les entreprises</div>
+      <div class="menu-item" onclick="window.location.href='connexion_business.php';" style="cursor: pointer;">Pour les entreprises</div>
       <div class="menu-item" onclick="window.location.href='qui-sommes-nous.html';" style="cursor: pointer;">Qui sommes-nous ?</div>
       <div class="menu-item" onclick="window.location.href='deconnexion.html';" style="cursor: pointer;">Se Déconnecter</div>
 
@@ -41,7 +43,7 @@
         <div class="post-header">
           <img src="https://i.pinimg.com/originals/c7/3d/50/c73d504939670c967d7e1018e120a301.jpg" alt="Avatar utilisateur" class="post-avatar">
           <div>
-            <strong>Ray Hammond</strong>
+          <strong>Ray Hammond <?php echo "test"?></strong>
             <div>New York, États-Unis</div>
           </div>
         </div>
