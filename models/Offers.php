@@ -5,17 +5,18 @@ class Offers
     private $id;
     private $title_offers;
     private $describe_offers;
+    private $mission;
     private $type_offers;
     private $salary;
     private $degrees;
     private $target_offers;
     private $disponible;
 
-    public function __construct($id, $title_offers, $describe_offers, $type_offers, $salary, $degrees, $target_offers, $disponible)
+    public function __construct($title_offers, $describe_offers, $mission, $type_offers, $salary, $degrees, $target_offers, $disponible)
     {
-        $this->id = $id;
         $this->title_offers = $title_offers;
         $this->describe_offers = $describe_offers;
+        $this->mission = $mission;
         $this->type_offers = $type_offers;
         $this->salary = $salary;
         $this->degrees = $degrees;
@@ -101,5 +102,15 @@ class Offers
     public function set_disponible($new_disponible)
     {
         $this->disponible = $new_disponible;
+    }
+
+    public function get_mission()
+    {
+        return $this->mission;
+    }
+
+    public function set_mission($new_mission)
+    {
+        $this->mission = $new_mission;
     }
 }

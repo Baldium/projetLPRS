@@ -1,0 +1,123 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #eef2f5;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #0073b1;
+    font-size: 2.8em;
+    margin-bottom: 30px;
+}
+
+.offers-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.offer-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    width: calc(33.333% - 20px); /* 3 cartes par ligne sur PC */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    border-left: 4px solid #0073b1; /* Bleu LinkedIn */
+}
+
+.offer-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.offer-card h3 {
+    font-size: 1.8em;
+    color: #0073b1;
+    margin-bottom: 15px;
+}
+
+.offer-card p {
+    margin: 10px 0;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.offer-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.offer-actions a {
+    padding: 12px;
+    font-size: 1.3em;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.modify-btn {
+    background-color: #007bff;
+}
+
+.modify-btn:hover {
+    background-color: #0056b3;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+/* Icônes au-dessus des actions */
+.offer-actions a i {
+    margin: 0;
+}
+
+/* Statut de l'offre */
+.status {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 7px 15px;
+    border-radius: 30px;
+    font-size: 0.9em;
+    color: #fff;
+}
+
+.status.ouvert {
+    background-color: #28a745;
+}
+
+.status.ferme {
+    background-color: #dc3545;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .offer-card {
+        width: calc(50% - 20px); /* 2 cartes par ligne sur tablette */
+    }
+}
+
+@media (max-width: 768px) {
+    .offer-card {
+        width: 100%; /* 1 carte par ligne sur mobile */
+    }
+}

@@ -3,7 +3,6 @@ include '../error.php';
 
 include __DIR__ . '/../repository/SocietyRepository.php';
 include __DIR__ . '/../models/Society.php';
-include __DIR__ . '/../models/Bdd.php';
 
 session_start();
 

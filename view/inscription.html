@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../public/css/inscription_business.css">
+<title>Inscription | SchumanConnect</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <div class="logo">
+                <img src="../public/assets/image/Logo_Schuman_Connect.png" alt="SchumanLink Logo">
+            </div>
+            <h1>Inscription</h1>
+            <p>Rejoignez notre communauté et connectez-vous avec des opportunités professionnelles et académiques !</p>
+            <form id="registration-form" method="post" action="../controller/RegisterUserController.php">
+                
+                <!-- Email -->
+                <label for="email">Email</label>
+                <input name="email" type="email" id="email" placeholder="exemple@domaine.com" required>
+                
+                <!-- Mot de passe -->
+                <label for="password">Mot de passe</label>
+                <input name="password" type="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Mot de passe (8 caractères, 1 majuscule, 1 chiffre)" required>
+                
+                <!-- Confirmation du mot de passe -->
+                <label for="confirm-password">Confirmer le mot de passe</label>
+                <input name="confirm_password" type="password" id="confirm-password" placeholder="Confirmer le mot de passe" required>
+                
+                <!-- Nom -->
+                <label for="nom">Nom</label>
+                <input name="nom" type="text" id="nom" placeholder="Votre nom" required autocomplete="off">
+                
+                <!-- Prénom -->
+                <label for="prenom">Prénom</label>
+                <input name="prenom" type="text" id="prenom" placeholder="Votre prénom" required autocomplete="off">
+                
+                <!-- Vous êtes ? -->
+                <label for="role">Vous êtes ?</label>
+                <select name="role" id="role" required>
+                    <option value="etudiant">Étudiant actuel</option>
+                    <option value="alumni">Alumni</option>
+                    <option value="alumni">Professeur</option>
+                    <option value="alumni_entreprise">Alumni faisant partie d'une entreprise</option>
+                    <option value="rh_entreprise">RH d'Entreprise</option>
+                    <option value="pdg_entreprise">PDG d'Entreprise</option>
+                    <option value="salarie_entreprise">Salarié d'Entreprise</option>
+                    <option value="autre">Autre</option>
+                </select>
+                
+                <!-- Classe / Promo -->
+                <label for="promo">Formation et Classe</label>
+                <select name="promo" id="promo" required>
+                    <optgroup label="BTS CPRP">
+                        <option value="CPRP1">BTS CPRP 1ère année</option>
+                        <option value="CPRP2">BTS CPRP 2ème année</option>
+                    </optgroup>
+                    <optgroup label="BTS MSPC">
+                        <option value="MSPC1">BTS MSPC 1ère année</option>
+                        <option value="MSPC2">BTS MSPC 2ème année</option>
+                    </optgroup>
+                    <optgroup label="BTS SIO">
+                        <option value="SIO1_SISR">BTS SIO 1ère année (SISR)</option>
+                        <option value="SIO2_SISR">BTS SIO 2ème année (SISR)</option>
+                        <option value="SIO1_SLAM">BTS SIO 1ère année (SLAM)</option>
+                        <option value="SIO2_SLAM">BTS SIO 2ème année (SLAM)</option>
+                    </optgroup>
+                </select>
+
+                <!-- Photo de profil -->
+                <label for="profile_picture">Photo de profil (optionnel)</label>
+                <input name="profile_picture" type="file" id="profile_picture">
+                
+                <!-- CV -->
+                <label for="CV">Télécharger votre CV (optionnel)</label>
+                <input name="CV" type="file" id="CV">
+                
+                <!-- Bouton d'inscription -->
+                <button name="register_user" type="submit">S'inscrire</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

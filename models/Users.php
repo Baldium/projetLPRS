@@ -12,9 +12,8 @@ class Users
     private $cv;
     private $profil_picture;
 
-    public function __construct($id_users, $role, $promo, $last_name, $first_name, $mail, $password, $cv, $profil_picture)
+    public function __construct($role, $promo, $last_name, $first_name, $mail, $password, $cv, $profil_picture)
     {
-        $this->id = $id_users;
         $this->role = $role;
         $this->promo = $promo;
         $this->last_name = $last_name;
