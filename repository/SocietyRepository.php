@@ -13,10 +13,13 @@ class SocietyRepository
         $verif_society_mail->execute(['mail_society' => $the_society->get_mail()]);
         $response_data = $verif_society_mail->fetch(PDO::FETCH_ASSOC);
 
-        if (isset($response_data['mail'])) {
+        if (isset($response_data['mail'])) 
+        {
             echo "Mettre un flash : Ce compte est déjà relié à une adresse mail !";
             exit();
-        } else {
+        } 
+        else 
+        {
             try {
                 $mdp_hash = password_hash($the_society->get_password(), PASSWORD_DEFAULT);
 
