@@ -5,34 +5,24 @@ include '../utils/Bdd.php';
 
 class UserRepository
 {
-    // CHATGPTEY
     public static function connexion_users($email, $password)
     {
-        // Connexion à la base de données
-        $pdo = Bdd::my_bdd();
-        
-        // Préparer la requête pour trouver l'utilisateur par email
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE mail = :email");
-        $stmt->bindParam(':email', $email);
-        $stmt->execute();
+        $bdd = Bdd::my_bdd();
 
-        // Récupérer l'utilisateur
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        $req_conn = $bdd->query("SELECT * FROM users WHERE mail = '$email'");
+        $user_exist = $req_conn->fetch(PDO::FETCH_ASSOC);
 
-        // Vérification si l'utilisateur existe
-        if ($user) {
-            // Comparaison du mot de passe sans hachage
-            if ($user['password'] == $password) {
+        if ($user_exist) {
+            // Comparer le mot de passe
+            if ($user_exist['password'] == $password) {
                 session_start();
-                $_SESSION['id_users'] = $user['id_users'];
-                $_SESSION['prenom'] = $user['prenom'];
+                $_SESSION['id_users'] = $user_exist['id_users'];
+                $_SESSION['prenom'] = $user_exist['prenom'];
                 return true;
             } else {
-                // Mot de passe incorrect
                 return false;
             }
         } else {
-            // Utilisateur non trouvé
             return false;
         }
     }
@@ -41,7 +31,7 @@ class UserRepository
     public static function register_users()
     {
 
-
+        //En cours
     }
 
     // Fonction statique pour modifier un utilisateur
@@ -55,6 +45,4 @@ class UserRepository
     {
 
     }
-
-
 }
