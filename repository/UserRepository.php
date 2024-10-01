@@ -9,7 +9,7 @@ class UserRepository
     {
         $bdd = Bdd::my_bdd();
 
-        $req_conn = $bdd->query("SELECT * FROM users WHERE mail = '$email'");
+        $req_conn = $bdd->query("SELECT * FROM prof WHERE mail = '$email'");
         $user_exist = $req_conn->fetch(PDO::FETCH_ASSOC);
 
         if ($user_exist) {
