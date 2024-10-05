@@ -1,0 +1,265 @@
+/* profile.css */
+
+/* Reset and Box Sizing */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* Choix de police moderne */
+    background-color: #f4f4f4; /* Couleur de fond douce */
+    color: #333; /* Couleur du texte */
+    line-height: 1.6; /* Hauteur de ligne pour la lisibilité */
+}
+
+.container {
+    max-width: 1200px; /* Largeur maximum du conteneur */
+    margin: 0 auto; /* Centrage automatique */
+    padding: 20px; /* Padding général */
+}
+
+/* Header */
+header {
+    background: linear-gradient(90deg, #4543CC, #6C63FF); /* Dégradé pour le header */
+    color: white; /* Couleur blanche pour le texte */
+    padding: 20px 0; /* Padding en haut et en bas */
+    text-align: center; /* Alignement centré du texte */
+}
+
+header .logo img {
+    height: 80px; /* Hauteur du logo */
+}
+
+nav ul {
+    list-style: none; /* Supprime les puces de la liste */
+    padding: 0; /* Suppression du padding */
+}
+
+nav ul li {
+    display: inline; /* Affichage des éléments de navigation en ligne */
+    margin: 0 15px; /* Espacement entre les éléments */
+}
+
+nav ul li a {
+    color: white; /* Couleur blanche pour les liens */
+    text-decoration: none; /* Pas de soulignement */
+    font-weight: bold; /* Gras pour les liens */
+    transition: color 0.3s ease; /* Transition douce pour les changements de couleur */
+}
+
+nav ul li a:hover {
+    color: #FFD700; /* Changement de couleur au survol */
+}
+
+/* Titre Principal */
+h1 {
+    color: #4543CC; /* Couleur du titre */
+    margin-bottom: 20px; /* Marges sous le titre */
+}
+
+/* Détails du Profil */
+.profile-details {
+    background: white; /* Fond blanc pour le profil */
+    display: flex; /* Utilisation de flex pour aligner les sections */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Ombre douce autour du profil */
+    padding: 20px; /* Padding interne */
+    margin-top: 20px; /* Marges au-dessus */
+}
+
+/* Infos du Profil */
+.profile-info {
+    flex: 1; /* Prend tout l'espace restant */
+    margin-right: 20px; /* Espacement à droite */
+}
+
+.profile-info h1 {
+    margin-bottom: 20px; /* Marges sous le titre */
+}
+
+/* Photos d'Étudiant */
+.student-photo {
+    width: 150px; /* Largeur fixe pour la photo */
+    height: 150px; /* Hauteur fixe pour la photo */
+    overflow: hidden; /* Masque le débordement */
+    border-radius: 50%; /* Cercle pour la photo */
+    display: flex; /* Utilisation de flex pour le centrage */
+    align-items: center; /* Centre verticalement */
+    justify-content: center; /* Centre horizontalement */
+    margin-bottom: 20px; /* Espacement en bas */
+    border: 3px solid #6C63FF; /* Bordure colorée autour de la photo */
+}
+
+/* Image de la Photo de Profil */
+.student-photo img {
+    width: 100%; /* Largeur à 100% */
+    height: auto; /* Hauteur automatique pour garder les proportions */
+    object-fit: cover; /* Recouvre l'image sans déformer */
+}
+
+/* Boutons de Profil */
+.profile-button {
+    background-color: #4543CC; /* Couleur de fond du bouton */
+    color: white; /* Couleur du texte du bouton */
+    padding: 10px 20px; /* Padding interne */
+    border: none; /* Pas de bordure */
+    border-radius: 20px; /* Coins arrondis */
+    text-decoration: none; /* Pas de soulignement */
+    font-weight: bold; /* Gras pour le texte */
+    transition: background-color 0.3s ease; /* Transition pour le changement de couleur */
+    margin-top: 10px; /* Marges en haut */
+    display: inline-block; /* Affichage en bloc pour les marges */
+}
+
+.profile-button:hover {
+    background-color: #3333CC; /* Couleur au survol */
+}
+
+/* Boutons de Contact */
+.contact-button {
+    background-color: #28a745; /* Vert pour le bouton de contact */
+    color: white; /* Couleur blanche pour le texte */
+    padding: 10px 20px; /* Padding interne */
+    border: none; /* Pas de bordure */
+    border-radius: 20px; /* Coins arrondis */
+    font-weight: bold; /* Gras pour le texte */
+    transition: background-color 0.3s ease; /* Transition pour le changement de couleur */
+    cursor: pointer; /* Changement de curseur */
+    margin-top: 10px; /* Marges en haut */
+}
+
+.contact-button:hover {
+    background-color: #218838; /* Couleur au survol */
+}
+
+/* Section CV */
+.cv-container {
+    width: 300px; /* Largeur fixe pour le CV */
+    background: #f9f9f9; /* Couleur de fond douce pour le CV */
+    border: 1px solid #ddd; /* Bordure grise */
+    border-radius: 8px; /* Coins arrondis */
+    padding: 10px; /* Padding interne */
+    display: flex; /* Flex pour centrer le contenu */
+    flex-direction: column; /* Colonne pour l'alignement */
+    align-items: center; /* Centrage du contenu */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre douce */
+}
+
+.cv-container h2 {
+    color: #4543CC; /* Couleur du titre du CV */
+    margin-bottom: 10px; /* Marges sous le titre */
+}
+
+.cv-container img {
+    width: 100%; /* Largeur à 100% */
+    height: auto; /* Hauteur automatique pour garder les proportions */
+    margin-bottom: 10px; /* Espacement en bas */
+    cursor: pointer; /* Curseur pointeur pour l'image */
+}
+
+/* Bouton de Téléchargement du CV */
+.cv-button {
+    margin-top: 10px; /* Marges en haut */
+    background-color: #007bff; /* Couleur bleue pour le bouton */
+    color: white; /* Couleur blanche pour le texte */
+    padding: 10px 20px; /* Padding interne */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    text-decoration: none; /* Pas de soulignement */
+    font-weight: bold; /* Gras pour le texte */
+    transition: background-color 0.3s ease; /* Transition pour le changement de couleur */
+}
+
+.cv-button:hover {
+    background-color: #0056b3; /* Couleur au survol */
+}
+
+/* Modal */
+.modal {
+    display: none; /* Masqué par défaut */
+    position: fixed; /* Position fixe */
+    z-index: 1000; /* Au-dessus de tout */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largeur complète */
+    height: 100%; /* Hauteur complète */
+    overflow: auto; /* Ajoute un défilement si nécessaire */
+    background-color: rgba(0, 0, 0, 0.8); /* Fond semi-transparent */
+}
+
+.modal-content {
+    margin: 15% auto; /* Centrage du contenu du modal */
+    padding: 20px;
+    border: 1px solid #888; /* Bordure autour du contenu */
+    width: 80%; /* Largeur du contenu */
+    max-width: 700px; /* Largeur maximale */
+}
+
+.close {
+    color: #aaa; /* Couleur de la croix de fermeture */
+    float: right; /* À droite */
+    font-size: 28px; /* Taille de la croix */
+    font-weight: bold; /* Gras */
+}
+
+.close:hover,
+.close:focus {
+    color: white; /* Couleur au survol */
+    text-decoration: none; /* Pas de soulignement */
+    cursor: pointer; /* Curseur pointeur */
+}
+
+img.modal-img {
+    width: 100%; /* Largeur à 100% */
+    height: auto; /* Hauteur automatique pour garder les proportions */
+}
+
+/* Responsiveness */
+@media (max-width: 1200px) {
+    .profile-details {
+        flex-direction: column; /* Alignement en colonne sur petits écrans */
+    }
+
+    .profile-info {
+        margin-right: 0; /* Supprime l'espacement à droite */
+        margin-bottom: 20px; /* Ajoute de l'espacement en bas */
+    }
+
+    .cv-container {
+        width: 100%; /* Largeur à 100% sur petits écrans */
+    }
+}
+
+@media (max-width: 600px) {
+    header .logo img {
+        height: 60px; /* Réduction de la taille du logo sur mobile */
+    }
+
+    .student-photo {
+        width: 100px; /* Réduction de la photo sur mobile */
+        height: 100px; /* Réduction de la hauteur de la photo sur mobile */
+    }
+    
+    .cv-button {
+        width: 100%; /* Largeur à 100% pour le bouton */
+        text-align: center; /* Alignement du texte au centre */
+    }
+
+    .contact-button, .profile-button {
+        width: 100%; /* Largeur à 100% pour les boutons */
+        margin-top: 10px; /* Espacement en haut */
+    }
+}
+
+/* Ajouter un effet de transition pour le profil */
+.profile-info,
+.cv-container {
+    transition: transform 0.3s ease;
+}
+
+.profile-info:hover,
+.cv-container:hover {
+    transform: scale(1.02); /* Agrandit légèrement au survol */
+}

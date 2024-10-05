@@ -2,7 +2,7 @@
 
 session_start(); 
 session_destroy();
-header("Location: ../view/connexion.html");
+header('Location: ../view/view_etudiants/connexion.html');
 exit();
 
 /*function destroy_session($path)
