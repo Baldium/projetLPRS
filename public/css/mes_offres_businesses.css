@@ -1,0 +1,219 @@
+/* Reset des marges et des paddings */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Mise en forme générale */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9; /* Couleur de fond plus douce */
+    line-height: 1.6; /* Hauteur de ligne pour une meilleure lisibilité */
+}
+
+/* Titre Principal */
+h1 {
+    text-align: center;
+    color: #2c3e50; /* Couleur du titre */
+    font-size: 2.5em; /* Taille de police du titre */
+    margin: 40px 0; /* Marges autour du titre */
+    font-weight: bold; /* Texte en gras */
+}
+
+/* Conteneur principal des offres */
+.offers-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Grille responsive */
+    gap: 20px; /* Espacement entre les cartes */
+    padding: 0 20px; /* Espacement horizontal */
+}
+
+/* Style des cartes d'offres */
+.offer-card {
+    background-color: #ffffff; /* Couleur de fond des cartes */
+    border-radius: 12px; /* Coins arrondis */
+    padding: 20px; /* Espacement interne */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombre portée douce */
+    transition: transform 0.3s, box-shadow 0.3s; /* Transition pour les effets au survol */
+    display: flex;
+    flex-direction: column; /* Alignement vertical */
+    justify-content: space-between; /* Espacement égal */
+    position: relative; /* Positionnement relatif pour le statut */
+}
+
+/* Effet de survol sur les cartes */
+.offer-card:hover {
+    transform: translateY(-5px); /* Déplacement léger au survol */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée au survol */
+}
+
+/* Titre de l'offre */
+.offer-card h3 {
+    color: #2980b9; /* Couleur du titre */
+    font-size: 1.8em; /* Taille de police du titre */
+    margin-bottom: 15px; /* Espacement en dessous du titre */
+    font-weight: 600; /* Texte légèrement gras */
+}
+
+/* Description et informations de l'offre */
+.offer-card p {
+    margin: 10px 0; /* Marges autour des paragraphes */
+    color: #34495e; /* Couleur du texte */
+    font-size: 1.1em; /* Taille de police du texte */
+}
+
+.btn-return {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 20px 0;
+    background-color: #4f46e5; /* Couleur primaire */
+    color: white; /* Couleur du texte */
+    font-size: 16px; /* Taille de la police */
+    font-weight: bold; /* Gras */
+    text-align: center; /* Centrer le texte */
+    border-radius: 8px; /* Coins arrondis */
+    text-decoration: none; /* Pas de soulignement */
+    transition: background-color 0.3s ease; /* Transition douce */
+    position: absolute; /* Positionner le bouton */
+    right: 20px; /* Aligné à droite */
+    top: 20px; /* Aligné en haut */
+}
+
+.btn-return:hover {
+    background-color: #4338ca; /* Couleur au survol */
+}
+
+/* Style des actions de l'offre */
+.offer-actions {
+    display: flex;
+    justify-content: space-between; /* Espacement entre les boutons */
+    align-items: center; /* Alignement vertical */
+    margin-top: 20px; /* Marges au-dessus des actions */
+}
+
+/* Styles pour les boutons */
+.offer-actions .btn {
+    padding: 10px 15px; /* Espacement interne pour les boutons */
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 1em; /* Taille de police des boutons */
+    color: #fff; /* Couleur du texte des boutons */
+    text-decoration: none; /* Pas de soulignement */
+    transition: background-color 0.3s, transform 0.3s; /* Transition pour les effets */
+}
+
+.modify-btn {
+    background-color: #007bff; /* Couleur du bouton modifier */
+}
+
+.modify-btn:hover {
+    background-color: #0056b3; /* Couleur au survol */
+    transform: translateY(-2px); /* Déplacement léger au survol */
+}
+
+.delete-btn {
+    background-color: #dc3545; /* Couleur du bouton supprimer */
+}
+
+.delete-btn:hover {
+    background-color: #c82333; /* Couleur au survol */
+    transform: translateY(-2px); /* Déplacement léger au survol */
+}
+
+/* Statut de l'offre */
+.status {
+    position: absolute; /* Positionnement absolu */
+    top: 20px; /* Positionnement du statut */
+    right: 20px; /* Positionnement du statut */
+    padding: 5px 10px; /* Espacement interne */
+    border-radius: 20px; /* Coins arrondis */
+    font-size: 0.9em; /* Taille de police */
+    font-weight: bold; /* Texte en gras */
+    color: #fff; /* Couleur du texte */
+}
+
+/* Statut ouvert */
+.status.ouvert {
+    background-color: #28a745; /* Couleur verte */
+}
+
+/* Statut fermé */
+.status.ferme {
+    background-color: #dc3545; /* Couleur rouge */
+}
+
+/* Styles pour les petits écrans */
+@media (max-width: 768px) {
+    .offer-card {
+        padding: 15px; /* Réduction de l'espacement interne */
+    }
+
+    h1 {
+        font-size: 2em; /* Réduction de la taille du titre */
+    }
+
+    .offer-actions .btn {
+        font-size: 0.9em; /* Réduction de la taille des boutons */
+    }
+}
+
+/* Styles pour les écrans moyens */
+@media (max-width: 1024px) {
+    .offers-container {
+        padding: 0 10px; /* Réduction de l'espacement horizontal */
+    }
+
+    .offer-card {
+        padding: 20px; /* Réajustement de l'espacement interne */
+    }
+}
+
+/* Styles pour les écrans très larges */
+@media (min-width: 1200px) {
+    .offers-container {
+        max-width: 1200px; /* Largeur maximale pour les grands écrans */
+        margin: auto; /* Centrer le conteneur */
+    }
+}
+
+/* Amélioration de la lisibilité avec des espacements supplémentaires */
+.offer-card p + p {
+    margin-top: 15px; /* Espacement entre les paragraphes */
+}
+
+/* Ajout d'une couleur de fond douce pour le corps */
+body {
+    background-color: #f4f4f4; /* Une couleur de fond plus douce */
+}
+
+.offer-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition pour transformation */
+}
+
+/* Animation d'apparition des cartes */
+.offer-card {
+    opacity: 0; /* Opacité initiale */
+    transform: translateY(20px); /* Déplacement vers le bas */
+    animation: fadeIn 0.5s forwards; /* Animation */
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1; /* Opacité finale */
+        transform: translateY(0); /* Position finale */
+    }
+}
+
+/* Effets de texte au survol */
+.offer-card h3,
+.offer-card p {
+    transition: color 0.3s ease; /* Transition pour changement de couleur */
+}
+
+.offer-card:hover h3 {
+    color: #0056b3; /* Changement de couleur du titre au survol */
+}
+
+.offer-card:hover p {
+    color: #333; /* Changement de couleur du texte au survol */
+}

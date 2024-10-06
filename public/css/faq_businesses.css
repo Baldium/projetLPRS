@@ -1,0 +1,97 @@
+/* Simple reset & Demo styles */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* Police de caractère */
+    background-color: #f4f4f4; /* Couleur de fond douce */
+    color: #333; /* Couleur du texte */
+}
+
+/* Style du conteneur principal */
+.container {
+    max-width: 1200px; /* Largeur maximale */
+    margin: 100px auto; /* Centrer le conteneur */
+}
+
+/* Style de l'en-tête */
+header {
+    background-color: #6C63FF; /* Couleur de fond de l'en-tête */
+    color: white; /* Couleur du texte */
+    padding: 40px 0; /* Padding */
+    text-align: center; /* Alignement centré */
+    border-bottom: 5px solid #4543CC; /* Bordure pour séparer l'en-tête du contenu */
+}
+
+header h1 {
+    margin-bottom: 10px; /* Marge sous le titre */
+    font-size: 2.5rem; /* Taille de la police pour le titre */
+}
+
+header p {
+    font-size: 1.2rem; /* Taille de la police pour la description */
+}
+
+/* Accordéon styling */
+.accordéon {
+    background: white; /* Fond blanc */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Ombre douce */
+    margin-bottom: 20px; /* Marge en bas */
+}
+
+.accordéon label {
+    display: block;
+    padding: 1em;
+    font-weight: 700;
+    font-size: 1.5em;
+    background: #6C63FF; /* Couleur de fond des labels */
+    color: #f5f5f5; /* Couleur du texte */
+    cursor: pointer;
+    border-bottom: 1px solid #4543CC; /* Bordure pour séparer les sections */
+    transition: background 0.3s ease; /* Transition douce pour le changement de couleur */
+}
+
+.accordéon label:hover {
+    background: #4E4BC1; /* Couleur au survol */
+}
+
+.accordéon .panel {
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+    background: #F4F4F4; /* Fond doux pour les réponses */
+    color: #333; /* Couleur du texte */
+    padding: 0; /* Padding initial */
+    transition: height 0.5s ease, opacity 0.5s ease; /* Transition douce pour l'affichage */
+}
+
+/* Cacher les checkboxes */
+.accordéon input[type="radio"], .accordéon input[type="checkbox"] {
+    display: none;
+}
+
+/* Montrer .panel lorsque la case est cochée */
+.accordéon input[type="checkbox"]:checked + label + .panel {
+    height: auto;
+    visibility: visible;
+    opacity: 1;
+    padding: 1em; /* Padding pour les réponses */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem; /* Réduire la taille du titre sur les petits écrans */
+    }
+
+    header p {
+        font-size: 1rem; /* Réduire la taille de la description sur les petits écrans */
+    }
+
+    .accordéon label {
+        font-size: 1.2rem; /* Réduire la taille des labels sur les petits écrans */
+    }
+}

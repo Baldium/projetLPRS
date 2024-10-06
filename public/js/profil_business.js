@@ -7,5 +7,5 @@ const deleteBtn = document.getElementById('delete-btn');
     });
 
     confirmBtn.addEventListener('click', () => {
-      window.location.href = "http://localhost:8888/SchumanLink/projetLPRS/controller/DeleteProfilBusiness.php"; 
+      window.location.href = "../../controller/controllerBusiness/DeleteProfilBusiness.php";
     });

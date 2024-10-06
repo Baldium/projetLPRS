@@ -119,4 +119,5 @@ class Users
     {
         $this->profil_picture = $new_profil_picture;
     }
+    
 }
