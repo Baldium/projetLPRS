@@ -1,5 +1,6 @@
 <?php
-include 'models/Event.php';
+include_once '../../models/event.php';
+include_once '../../utils/Bdd.php';
 
 class EventRepository {
 
@@ -19,10 +20,8 @@ class EventRepository {
 
             $stmt->execute();
 
-            return $my_bdd->lastInsertId(); // Retourne l'ID du nouvel événement créé
         } catch (PDOException $e) {
             echo "Erreur PDO : " . $e->getMessage();
-            return false;
         }
     }
 }

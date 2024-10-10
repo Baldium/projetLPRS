@@ -20,30 +20,30 @@
       <h1>Créer un événement</h1>
       <p>Remplissez les informations ci-dessous pour créer un nouvel événement</p>
 
-      <form>
+      <form action="../../controller/controllerEvent/CreateEventController.php" method="post">
         <div class="form-group">
           <label for="type">Type d'événement</label>
-          <input type="text" id="type" placeholder="Type d'événement">
+          <input type="text" id="type" name="type" placeholder="Type d'événement">
         </div>
         <div class="form-group">
           <label for="titre">Titre</label>
-          <input type="text" id="titre" placeholder="Titre de l'événement">
+          <input type="text" id="titre" name="titre" placeholder="Titre de l'événement">
         </div>
         <div class="form-group">
           <label for="description">Description</label>
-          <textarea id="description" rows="4" placeholder="Description de l'événement"></textarea>
+          <textarea id="description" name="description" rows="4" placeholder="Description de l'événement"></textarea>
         </div>
         <div class="form-group">
           <label for="lieu">Lieu (adresse)</label>
-          <input type="text" id="lieu" placeholder="Adresse de l'événement">
+          <input type="text" id="lieu" name="lieu" placeholder="Adresse de l'événement">
         </div>
         <div class="form-group">
           <label for="elements-requis">Éléments requis (si nécessaire)</label>
-          <input type="text" id="elements-requis" placeholder="Éléments requis">
+          <input type="text" id="elements-requis" name="elements-requis" placeholder="Éléments requis">
         </div>
         <div class="form-group">
           <label for="nombre-place">Nombre de places</label>
-          <input type="number" id="nombre-place" placeholder="Nombre de places disponibles">
+          <input type="number" id="nombre-place" name="nombre-place" placeholder="Nombre de places disponibles">
         </div>
         <button type="submit" class="btn btn-primary">Créer l'événement</button>
       </form>
