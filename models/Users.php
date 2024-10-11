@@ -10,9 +10,12 @@ class Users
     private $mail;
     private $password;
     private $cv;
+    private $cover_letter;
     private $profil_picture;
+    private $level;
 
-    public function __construct($role, $promo, $last_name, $first_name, $mail, $password, $cv, $profil_picture)
+    // Constructor
+    public function __construct($role, $promo, $last_name, $first_name, $mail, $password, $cv, $profil_picture, $cover_letter, $level)
     {
         $this->role = $role;
         $this->promo = $promo;
@@ -22,8 +25,11 @@ class Users
         $this->password = $password;
         $this->cv = $cv;
         $this->profil_picture = $profil_picture;
+        $this->cover_letter = $cover_letter;
+        $this->level = $level;
     }
 
+    // Getters and setters for each attribute
     public function getId()
     {
         return $this->id;
@@ -33,7 +39,6 @@ class Users
     {
         $this->id = $new_id;
     }
-
 
     public function getRole()
     {
@@ -45,7 +50,6 @@ class Users
         $this->role = $new_role;
     }
 
-
     public function getPromo()
     {
         return $this->promo;
@@ -55,7 +59,6 @@ class Users
     {
         $this->promo = $new_promo;
     }
-
 
     public function getLastName()
     {
@@ -67,7 +70,6 @@ class Users
         $this->last_name = $new_last_name;
     }
 
-
     public function getFirstName()
     {
         return $this->first_name;
@@ -77,7 +79,6 @@ class Users
     {
         $this->first_name = $new_first_name;
     }
-
 
     public function getMail()
     {
@@ -109,6 +110,15 @@ class Users
         $this->cv = $new_cv;
     }
 
+    public function getCoverLetter()
+    {
+        return $this->cover_letter;
+    }
+
+    public function setCoverLetter($new_cover_letter)
+    {
+        $this->cover_letter = $new_cover_letter;
+    }
 
     public function getProfilPicture()
     {
@@ -119,5 +129,14 @@ class Users
     {
         $this->profil_picture = $new_profil_picture;
     }
-    
+
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    public function setLevel($new_level)
+    {
+        $this->level = $new_level;
+    }
 }

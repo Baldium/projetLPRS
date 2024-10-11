@@ -5,31 +5,109 @@ include '../../utils/Bdd.php';
 
 class UserRepository
 {
-    public static function connexion_users($email, $password)
+    public static function connexion_user($email, $password)
     {
-        // Connexion à la base de données
-        $pdo = Bdd::my_bdd();
+        $my_bdd = Bdd::my_bdd();
 
-        // Préparer la requête pour trouver l'utilisateur par email
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE mail = :email");
+        $stmt = $my_bdd->prepare("SELECT * FROM users WHERE mail = :email");
         $stmt->bindParam(':email', $email);
         $stmt->execute();
 
-        // Récupérer l'utilisateur
         $user_exist = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($user_exist) {
-            // Comparer le mot de passe
-            if ($user_exist['password'] == $password) {
-                session_start();
+            if (password_verify($password, $user_exist['password'])) {
+                include_once '../../init.php';
                 $_SESSION['id_users'] = $user_exist['id_users'];
                 $_SESSION['prenom'] = $user_exist['prenom'];
+                $_SESSION['nom'] = $user_exist['nom'];
+                $_SESSION['mail'] = $user_exist['mail'];
+                $_SESSION['role'] = $user_exist['role'];
+                $_SESSION['promo'] = $user_exist['promo'];
+                $_SESSION['profile_picture'] = $user_exist['profile_picture'];
+                $_SESSION['CV'] = $user_exist['CV'];
+                $_SESSION['cover_letter'] = $user_exist['cover_letter'];
+                $_SESSION['level'] = $user_exist['level'];
                 return true;
             } else {
                 return false;
             }
         } else {
             return false;
+        }
+    }
+
+
+    // Fonction statique pour inserer un utilisateur
+    public static function register_user(Users $user)
+    {
+        $my_bdd = Bdd::my_bdd();
+
+        $verif_user_mail = $my_bdd->prepare('SELECT mail FROM users WHERE mail = :mail');
+        $verif_user_mail->execute(['mail' => $user->getMail()]);
+        $response_data = $verif_user_mail->fetch(PDO::FETCH_ASSOC);
+
+        if (isset($response_data['mail'])) 
+        {
+            // Flash message en cas d'erreur d'email
+            set_flash_message("Ce compte est déjà relié à une adresse mail !", "error");
+            header('Location: ../../view/inscription.php');
+            exit();
+        } 
+        else 
+        {
+            try {
+                $mdp_hash = password_hash($user->getPassword(), PASSWORD_DEFAULT);
+
+                // Préparation des fichiers pour le stockage en base de données
+                $cv_blob = file_get_contents($user->getCv()['tmp_name']);
+                $cover_letter_blob = file_get_contents($user->getCoverLetter()['tmp_name']);
+                $profile_picture_blob = file_get_contents($user->getProfilPicture()['tmp_name']);
+
+                $insert_society = $my_bdd->prepare('INSERT INTO `users`(
+                    `role`, 
+                    `promo`, 
+                    `nom`, 
+                    `prenom`, 
+                    `mail`, 
+                    `password`, 
+                    `CV`, 
+                    `cover_letter`, 
+                    `profile_picture`, 
+                    `level`
+                ) VALUES (
+                    :roles, 
+                    :promo, 
+                    :nom, 
+                    :prenom, 
+                    :mail, 
+                    :passworde, 
+                    :CV, 
+                    :cover_letter, 
+                    :profile_picture, 
+                    :levele
+                )');
+
+                $insert_society->execute([
+                    'roles' => $user->getRole(),
+                    'promo' => $user->getPromo(),
+                    'nom' => $user->getLastName(),
+                    'prenom' => $user->getFirstName(),
+                    'mail' => $user->getMail(),
+                    'passworde' => $mdp_hash,
+                    'CV' => $cv_blob,
+                    'cover_letter' => $cover_letter_blob,
+                    'profile_picture' => $profile_picture_blob,
+                    'levele' => $user->getLevel(),
+                ]);
+
+                // Flash message en cas de succès
+                set_flash_message("Votre compte a été créé avec succès !", "success");
+                header('Location: ../../view/view_etudiants/accueil.php');
+                exit();
+            } catch (PDOException $e) {
+                echo "Erreur : " . $e->getMessage();
+            }
         }
     }
 
