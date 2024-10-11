@@ -555,6 +555,18 @@ class OffersRepository
         return $my_req_favorite->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function removeOfferFromFavorites($userId, $offerId)
+    {
+        $my_bdd = Bdd::my_bdd();
+        $my_req_favorite = $my_bdd->prepare('
+            DELETE FROM favorites WHERE ref_users = :user_id AND ref_offers = :offer_id
+        ');
+        $my_req_favorite->execute([
+            'user_id' => $userId,
+            'offer_id' => $offerId
+        ]);
+    }
+
     public static function viewAddOffers($id_offer)
     {
         $my_bdd = Bdd::my_bdd();
