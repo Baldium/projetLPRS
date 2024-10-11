@@ -511,4 +511,19 @@ class OffersRepository
         return $result ? $result['ref_users'] : null; // Ternaire pour le resultat
     }
 
+    public static function viewAddOffers($id_offer)
+    {
+        $my_bdd = Bdd::my_bdd();
+
+        $select_view_now = $my_bdd->prepare("SELECT view from offers where id_offers = :id_offers");
+        $select_view_now->execute(array("id_offers" => $id_offer));
+        $data = $select_view_now->fetch(PDO::FETCH_ASSOC);
+
+        $nb_after_view = $data['view'] + 1;
+        $insert_view = $my_bdd->prepare("UPDATE offers SET view = :view_now WHERE id_offers = :id_offers");
+        $insert_view->execute(array(
+            "view_now" => $nb_after_view,
+            "id_offers" => $id_offer
+        ));
+    }
 }
