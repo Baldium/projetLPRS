@@ -582,4 +582,5 @@ class OffersRepository
             "id_offers" => $id_offer
         ));
     }
+    
 }
