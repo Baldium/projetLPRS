@@ -19,15 +19,15 @@
             <h2>Informations de Contact</h2>
             <p>Vous pouvez nous joindre par les moyens suivants :</p>
             <ul>
-                <li><strong>Email:</strong> support@example.com</li>
-                <li><strong>Téléphone:</strong> +33 1 23 45 67 89</li>
-                <li><strong>Adresse:</strong> 123 Rue de l'Aide, Paris, France</li>
+                <li><strong>Email:</strong> administration@lyceerobertschuman.com</li>
+                <li><strong>Téléphone:</strong> 01 48 37 74 26</li>
+                <li><strong>Adresse:</strong> 5 avenue du Général de Gaulle - 93440 Dugny, France</li>
             </ul>
         </section>
 
         <section class="contact-form">
             <h2>Formulaire de Contact</h2>
-            <form action="#" method="post">
+            <form action="../../controller/controllerAlumnis/contact_controller.php" method="post">
                 <div class="form-group">
                     <label for="name">Votre Nom :</label>
                     <input type="text" id="name" name="name" required>
@@ -42,11 +42,12 @@
                 </div>
                 <button type="submit" class="btn-submit">Envoyer</button>
             </form>
+
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Votre Entreprise. Tous droits réservés.</p>
+        <p>&copy; 2024 SchumanConnect. Tous droits réservés.</p>
     </footer>
 </body>
 </html>
