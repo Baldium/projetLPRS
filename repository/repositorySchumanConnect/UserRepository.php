@@ -111,6 +111,26 @@ class UserRepository
         }
     }
 
+    public function hasAlreadyApplied($userId, $offerId) 
+    {
+        $my_bdd = Bdd::my_bdd();
+        
+        $stmt = $my_bdd->prepare('
+            SELECT COUNT(*) as count 
+            FROM inscription_offers 
+            WHERE ref_users = :user_id AND ref_offers = :offer_id
+        ');
+        
+        $stmt->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        $stmt->bindParam(':offer_id', $offerId, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        return $result['count'] > 0; 
+    }
+
+
     public function applyToOffer($userId, $offerId, $societyId, $status, $dateInscription) 
     {
         $my_bdd = Bdd::my_bdd();
