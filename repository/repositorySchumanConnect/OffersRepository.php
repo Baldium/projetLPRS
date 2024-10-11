@@ -492,5 +492,23 @@ class OffersRepository
         return $req_by_id->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getSocietyUserIdByOfferId($offerId) 
+    {
+        $my_bdd = Bdd::my_bdd();
+        
+        $stmt = $my_bdd->prepare('
+            SELECT s.ref_users 
+            FROM offers o
+            INNER JOIN society s ON o.ref_society = s.id_society 
+            WHERE o.id_offers = :offer_id
+        ');
+        
+        $stmt->bindParam(':offer_id', $offerId, PDO::PARAM_INT);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        return $result ? $result['ref_users'] : null; // Ternaire pour le resultat
+    }
 
 }
