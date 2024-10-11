@@ -481,5 +481,16 @@ class OffersRepository
         return $req_website->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getOfferById($id)
+    {
+        $my_bdd = Bdd::my_bdd();
+
+        $req_by_id = $my_bdd->prepare('SELECT * FROM offers WHERE id_offers = :id_offers');
+        $req_by_id->execute(array(
+            'id_offers' => $id
+        ));
+        return $req_by_id->fetch(PDO::FETCH_ASSOC);
+    }
+
 
 }
