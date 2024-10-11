@@ -510,7 +510,7 @@ class OffersRepository
         
         return $result ? $result['ref_users'] : null; // Ternaire pour le resultat
     }
-    
+
     public static function addOfferToFavorites($userId, $offerId)
     {
         $my_bdd = Bdd::my_bdd();
@@ -539,6 +539,20 @@ class OffersRepository
 
         set_flash_message("L'offre a été ajoutée à vos favoris avec succès.", "success");
         return true;
+    }
+
+    public function getFavoritesByUserId($userId)
+    {
+        $my_bdd = Bdd::my_bdd();
+        $my_req_favorite = $my_bdd->prepare('
+            SELECT o.id_offers, o.title_offers, o.describe_offers, o.type_offers
+            FROM favorites f
+            INNER JOIN offers o ON f.ref_offers = o.id_offers
+            WHERE f.ref_users = :user_id
+        ');
+        $my_req_favorite->bindParam(':user_id', $userId, PDO::PARAM_INT);
+        $my_req_favorite->execute();
+        return $my_req_favorite->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public static function viewAddOffers($id_offer)
