@@ -18,7 +18,7 @@ display_flash_message();
         <div class="logo">
             <img src="../public/assets/image/Logo_Schuman_Connect.png" alt="SchumanLink Logo">
         </div>
-        <h1>Connexion | Etudiant</h1>
+        <h1>Connexion | Etudiants</h1>
         <p>C'est un plaisir de vous voir aujourd'hui !</p>
         <form method="post" action="../controller/controllerAlumnis/LoginUserController.php">
             <label for="email">Email</label>
