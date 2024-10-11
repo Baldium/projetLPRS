@@ -111,6 +111,22 @@ class UserRepository
         }
     }
 
+    public function applyToOffer($userId, $offerId, $societyId, $status, $dateInscription) 
+    {
+        $my_bdd = Bdd::my_bdd();
+        
+        $insert_inscription_offers = $my_bdd->prepare('INSERT INTO inscription_offers 
+        (ref_users, ref_offers, ref_society, statuts_candidat, date_inscriptions) 
+        VALUES (:user_id, :offer_id, :society_id, :status, :date_inscription)');
+        $insert_inscription_offers->execute(array(
+            ':user_id' => $userId,
+            ':offer_id' => $offerId,
+            ':society_id' => $societyId,
+            ':status' => $status,
+            ':date_inscription' => $dateInscription
+        ));   
+    }
+
     // Fonction statique pour inserer un utilisateurs
     public static function register_users()
     {
