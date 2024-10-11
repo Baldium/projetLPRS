@@ -583,4 +583,5 @@ class OffersRepository
         ));
     }
     
+
 }
