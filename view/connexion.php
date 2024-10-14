@@ -28,7 +28,6 @@ display_flash_message();
             <div class="forgot" onclick="window.location.href='mot-de-passe-oublie.html';" style="cursor: pointer;">
                 Mot de passe oublié ?
             </div>
-            
             <button name="login_user" type="submit">Connexion</button>
         </form>
         <div class="login-link">
