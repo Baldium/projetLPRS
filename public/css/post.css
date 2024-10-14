@@ -1,0 +1,26 @@
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+}
+
+article {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.post-meta {
+    font-size: 0.9em;
+    color: #777;
+}
