@@ -27,17 +27,21 @@ class ProfRepository
         }
     }
 
-    public static function inscriptionProf($last_name, $first_name, $mail, $password, $matiere)
-    {
-        $bdd = Bdd::my_bdd();
+    public function inscriptionProf($last_name, $first_name, $mail, $password, $matiere){
+        try {
+
+            $bdd = Bdd::my_bdd();
         $req = $bdd->prepare("INSERT INTO prof (last_name, first_name, mail, password, matiere) VALUES (:last_name, :first_name, :mail, :password, :matiere)");
-        $req->execute(array(
+        $req->execute([
             'last_name' => $last_name,
             'first_name' => $first_name,
             'mail' => $mail,
             'password' => $password,
             'matiere' => $matiere
-        ));
+        ]);
+
+    } catch (PDOException $e) {
+        echo "Erreur PDO : " . $e->getMessage();
     }
 
 

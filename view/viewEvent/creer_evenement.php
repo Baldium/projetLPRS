@@ -1,3 +1,6 @@
+<?php
+include_once 'init.php';
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
