@@ -28,7 +28,7 @@ include_once '../../init.php';
             <button type="submit">Connexion</button>
         </form>
         <div class="login-link">
-            Vous n'avez pas de compte professeur ? <a href="inscription_prof.html">S'inscrire en tant que prof </a>
+            Vous n'avez pas de compte professeur ? <a href="inscription_prof.php">S'inscrire en tant que prof </a>
         </div>
     </div>
     <div class="right-panel">
