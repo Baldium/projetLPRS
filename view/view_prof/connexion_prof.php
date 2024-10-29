@@ -17,11 +17,11 @@ include_once '../../init.php';
         </div>
         <h1>Connexion | Prof</h1>
         <p>C'est un plaisir de vous voir aujourd'hui !</p>
-        <form>
+        <form method="post" action="../../controller/controllerProf/loginProfController.php">
             <label for="email">Email</label>
-            <input type="email" id="email" placeholder="exemple_business@schumanconnect.com" required>
+            <input type="email" id="email" name="mail" placeholder="exemple_business@schumanconnect.com" required>
             <label for="password">Mot de passe</label>
-            <input type="password" id="password" required>
+            <input type="password" id="password" name="mdp" required>
             <div class="forgot" onclick="window.location.href='mot-de-passe-oublie.html';" style="cursor: pointer;">
                 Mot de passe oublié ?
             </div>

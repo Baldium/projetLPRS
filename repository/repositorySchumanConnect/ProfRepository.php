@@ -7,10 +7,23 @@ class ProfRepository
 {
     public static function connexionProf($mail, $password)
     {
+        // Vérification des champs vides
+        if (empty($mail) || empty($password))
+        {
+            // Flash message en cas d'erreur
+            set_flash_message("Email ou mot de passe incorrect.", "error");
+            header('Location: ../../view/view_business/connexion_business.php');
+            exit();
+        }
+
+        // Connexion à la base de données
         $bdd = Bdd::my_bdd();
 
-        $req_conn = $bdd->query("SELECT * FROM users WHERE mail = '$mail'");
-        $user_exist = $req_conn->fetch(PDO::FETCH_ASSOC);
+        $req = $bdd->prepare("SELECT * FROM prof WHERE mail = :mail");
+        $req->execute(array(
+            ':mail' => $mail));
+
+        $user_exist = $req->fetch(PDO::FETCH_ASSOC);
 
         if ($user_exist) {
             // Comparer le mot de passe
