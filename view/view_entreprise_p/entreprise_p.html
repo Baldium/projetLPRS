@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entreprises Partenaires</title>
+    <link rel="stylesheet" href="../public/css/entreprise_p.css">
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/entreprises">Entreprises Partenaires</a></li>
+
+    </ul>
+</nav>
+
+<div id="entreprises-container">
+    <h1>Entreprises Partenaires</h1>
+    <div id="entreprises-list">
+        <?php foreach ($entreprises as $entreprise): ?>
+        <div class="entreprise">
+            <h2><?php echo htmlspecialchars($entreprise->getNom()); ?></h2>
+            <p>Adresse : <?php echo htmlspecialchars($entreprise->getAdresse()); ?></p>
+            <p>Email : <?php echo htmlspecialchars($entreprise->getMail()); ?></p>
+            <a href="<?php echo htmlspecialchars($entreprise->getWebsite()); ?>" target="_blank">Visiter le site</a>
+        </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+</body>
+</html>

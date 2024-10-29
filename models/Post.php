@@ -1,5 +1,6 @@
 <?php
 
+
 require_once __DIR__ . '/../utils/Bdd.php';
 class Post {
 
@@ -83,8 +84,6 @@ class Post {
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
-
 
 }
 ?>
