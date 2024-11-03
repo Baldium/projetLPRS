@@ -7,14 +7,7 @@ class ProfRepository
 {
     public static function connexionProf($mail, $password)
     {
-        // Vérification des champs vides
-        if (empty($mail) || empty($password))
-        {
-            // Flash message en cas d'erreur
-            set_flash_message("Email ou mot de passe incorrect.", "error");
-            header('Location: ../../view/view_business/connexion_business.php');
-            exit();
-        }
+
 
         // Connexion à la base de données
         $bdd = Bdd::my_bdd();
