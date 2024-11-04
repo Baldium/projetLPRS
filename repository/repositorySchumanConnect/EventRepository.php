@@ -25,4 +25,13 @@ class EventRepository {
             echo "Erreur PDO : " . $e->getMessage();
         }
     }
+
+
+    public static function getEventsByUser($idProf)
+    {
+        $bdd = Bdd::my_bdd();
+        $req = $bdd->prepare("SELECT * FROM events WHERE id_prof = :id_prof");
+        $req->execute([':id_prof' => $idProf]);
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

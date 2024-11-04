@@ -7,36 +7,38 @@ class ProfRepository
 {
     public static function connexionProf($mail, $password)
     {
-        // Vérification des champs vides
-        if (empty($mail) || empty($password))
-        {
-            // Flash message en cas d'erreur
-            set_flash_message("Email ou mot de passe incorrect.", "error");
-            header('Location: ../../view/view_business/connexion_business.php');
-            exit();
-        }
+
 
         // Connexion à la base de données
         $bdd = Bdd::my_bdd();
 
+        // Préparer et exécuter la requête
         $req = $bdd->prepare("SELECT * FROM prof WHERE mail = :mail");
         $req->execute(array(
-            ':mail' => $mail));
+            ':mail' => $mail
+        ));
 
+
+        // Récupérer les données
         $user_exist = $req->fetch(PDO::FETCH_ASSOC);
 
-        if ($user_exist) {
-            // Comparer le mot de passe
-            if ($user_exist['password'] == $password) {
-                session_start();
-                $_SESSION['id_users'] = $user_exist['id_users'];
-                $_SESSION['prenom'] = $user_exist['prenom'];
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
+        // Vérification des données de connexion
+        if ($user_exist && password_verify($password, $user_exist['mdp'])) {
+
+            // Si la connexion est réussie, définir les sessions
+            $_SESSION['id_prof'] = $user_exist['id_prof'];
+            $_SESSION['nom'] = $user_exist['nom'];
+            $_SESSION['prenom'] = $user_exist['prenom'];
+            $_SESSION['mail'] = $user_exist['mail'];
+            $_SESSION['matiere'] = $user_exist['matiere'];
+            header('Location: ../../view/view_etudiants/accueil.php');
+            exit();
+        }
+        else {
+            // Flash message en cas d'erreur
+            set_flash_message("Email ou mot de passe incorrect.", "error");
+            header('Location: ../../view/view_prof/connexion_prof.php');
+            exit();
         }
     }
 
