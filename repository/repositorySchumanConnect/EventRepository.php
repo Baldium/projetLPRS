@@ -1,6 +1,8 @@
 <?php
 include_once '../../models/event.php';
 include_once '../../utils/Bdd.php';
+include '../../init.php';
+
 
 class EventRepository {
 
@@ -16,9 +18,13 @@ class EventRepository {
                 'description' => $description,
                 'lieu' => $lieu,
                 'nombre_place' => $nombre_place,
-                'disponible' => 1
+                'disponible' => 1,
             ]);
-
+            $req2 = $bdd->prepare('INSERT INTO createur_event (ref_event, ref_prof) VALUES (:ref_event, :ref_prof)');
+            $req2->execute([
+                'ref_event' => $bdd->lastInsertId(),
+                'ref_prof' => $_SESSION['id_prof'],
+            ]);
 
 
         } catch (PDOException $e) {
@@ -34,4 +40,13 @@ class EventRepository {
         $req->execute([':id_prof' => $idProf]);
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+    public static function getGestionnaires() {
+        $bdd = Bdd::my_bdd();
+        $req = $bdd->prepare("SELECT id, nom FROM createur_event inner join TABLE (  )");
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

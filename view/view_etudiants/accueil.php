@@ -80,7 +80,7 @@ $posts = $pp_req->fetchAll(PDO::FETCH_ASSOC);
       <div class="menu-item" onclick="window.location.href='./profil.php';" style="cursor: pointer;">Mon Profil (Ayoub)</div>
       <div class="menu-item" onclick="window.location.href='./mes_favoris.php';" style="cursor: pointer;">Mes Offres Favorites</div>
       <div class="menu-item" onclick="window.location.href='./actualites.php';" style="cursor: pointer;">Actualités (Ayoub)</div>
-      <div class="menu-item" onclick="window.location.href='../viewEvent/mes_evenement.php';" style="cursor: pointer;">Événements (Ayoub)</div>
+      <div class="menu-item" onclick="window.location.href='../viewEvent/creer_evenement.php';" style="cursor: pointer;">Événements (Ayoub)</div>
       <div class="menu-item" onclick="window.location.href='./post.php';" style="cursor: pointer;">Post</div>
       <div class="menu-item" onclick="window.location.href='../view_business/connexion_business.php';" style="cursor: pointer;">Pour Les Entreprises</div>
       <div class="menu-item" onclick="window.location.href='./entreprises_partenaire.php';" style="cursor: pointer;">Entreprises Partenaires (Ayoub)</div>
