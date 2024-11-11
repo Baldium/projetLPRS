@@ -42,9 +42,9 @@ class EventRepository {
     }
 
 
-    public static function getGestionnaires() {
+    public static function getAdmins() {
         $bdd = Bdd::my_bdd();
-        $req = $bdd->prepare("SELECT id, nom FROM createur_event inner join TABLE (  )");
+        $req = $bdd->prepare("SELECT nom FROM prof union SELECT nom FROM users");
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }

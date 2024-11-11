@@ -2,8 +2,8 @@
 include_once '../../init.php';
 include_once '../../repository/repositorySchumanConnect/EventRepository.php';
 
-// Récupérer les gestionnaires existants
-$gestionnaires = EventRepository::getGestionnaires();
+// Récupérer les admins existants
+$admins = EventRepository::getAdmins();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -49,11 +49,11 @@ $gestionnaires = EventRepository::getGestionnaires();
                     <input type="number" id="nombre-place" name="nombre_place" placeholder="Nombre de places disponibles">
                 </div>
                 <div class="form-group">
-                    <label for="gestionnaire">Gestionnaire de l'événement</label>
-                    <select id="gestionnaire" name="gestionnaire">
-                        <?php foreach ($gestionnaires as $gestionnaire): ?>
-                            <option value="<?php echo htmlspecialchars($gestionnaire['id']); ?>">
-                                <?php echo htmlspecialchars($gestionnaire['nom']); ?>
+                    <label for="admin">Ajouter des admin pour l'événement</label>
+                    <select id="admin" name="admin">
+                        <?php foreach ($admins as $admin): ?>
+                            <option value="<?php echo htmlspecialchars($admin['id']); ?>">
+                                <?php echo htmlspecialchars($admin['nom']); ?>
                             </option>
                         <?php endforeach; ?>
                     </select>

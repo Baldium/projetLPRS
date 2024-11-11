@@ -1,7 +1,7 @@
 <?php
-include '../../init.php';
-include '../../models/Prof.php';
-include '../../utils/Bdd.php';
+include_once '../../init.php';
+include_once '../../models/Prof.php';
+include_once '../../utils/Bdd.php';
 
 
 class ProfRepository

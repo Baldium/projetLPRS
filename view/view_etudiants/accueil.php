@@ -26,7 +26,6 @@ $pp_req = $my_bdd->prepare("
         p.date_created, 
         p.ref_users, 
         p.ref_society, 
-        p.ref_prof, 
         p.view_post, 
         p.like_post,
         u.profile_picture AS user_profile_picture,
@@ -38,7 +37,7 @@ $pp_req = $my_bdd->prepare("
     FROM post p
     LEFT JOIN users u ON p.ref_users = u.id_users
     LEFT JOIN society s ON p.ref_society = s.id_society
-    LEFT JOIN prof prof ON p.ref_prof = prof.id_prof
+    LEFT JOIN prof prof ON p.ref_users = prof.id_prof
     ORDER BY p.date_created DESC
 ");
 $pp_req->execute();
