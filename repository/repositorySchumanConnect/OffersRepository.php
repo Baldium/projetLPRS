@@ -545,14 +545,15 @@ class OffersRepository
     {
         $my_bdd = Bdd::my_bdd();
         $my_req_favorite = $my_bdd->prepare('
-            SELECT o.id_offers, o.title_offers, o.describe_offers, o.type_offers
+            SELECT o.id_offers, o.title_offers, o.describe_offers, o.type_offers, o.disponible
             FROM favorites f
             INNER JOIN offers o ON f.ref_offers = o.id_offers
-            WHERE f.ref_users = :user_id
+            WHERE f.ref_users = :user_id AND o.disponible = 1
         ');
         $my_req_favorite->bindParam(':user_id', $userId, PDO::PARAM_INT);
         $my_req_favorite->execute();
-        return $my_req_favorite->fetchAll(PDO::FETCH_ASSOC);
+        $data = $my_req_favorite->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
     }
 
     public function removeOfferFromFavorites($userId, $offerId)

@@ -1,5 +1,5 @@
 <?php
-include '../../init.php';
+include_once __DIR__ . '/../init.php';
 
 // Fonction pour définir un message flash
 function set_flash_message($message, $type) {

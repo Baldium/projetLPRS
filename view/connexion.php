@@ -20,7 +20,7 @@ display_flash_message();
         </div>
         <h1>Connexion | Etudiants</h1>
         <p>C'est un plaisir de vous voir aujourd'hui !</p>
-        <form method="post" action="../controller/controllerAlumnis/LoginUserController.php">
+        <form method="post" action='../controller/controllerAlumis/LoginUserController.php'>
             <label for="email">Email</label>
             <input name="email" type="email" id="email" placeholder="exemple_eleves@lprs.com" required>
             <label for="password">Mot de passe</label>
