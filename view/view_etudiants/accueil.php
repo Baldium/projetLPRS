@@ -61,7 +61,7 @@ $posts = $pp_req->fetchAll(PDO::FETCH_ASSOC);
       <img src="../../public/assets/image/Logo_Schuman_Connect.png" alt="SchumanLink Logo">
     </div>
       <div class="search-bar">
-      <input type="text" placeholder="Rechercher... (Ayoub doit le faire)">
+      <input type="text" placeholder="Rechercher... ()">
     </div>
     <div>
     <?php 
@@ -75,14 +75,14 @@ $posts = $pp_req->fetchAll(PDO::FETCH_ASSOC);
       <div class="menu-item" onclick="window.location.href='./accueil.php';" style="cursor: pointer;">Accueil</div>
       <div class="menu-item" onclick="window.location.href='./reseau.php';" style="cursor: pointer;">Réseau</div>
       <div class="menu-item" onclick="window.location.href='./offres_emplois.php';" style="cursor: pointer;">Offres d'Emploi</div>
-      <div class="menu-item" onclick="window.location.href='./forum.php';" style="cursor: pointer;">Forum (Ayoub)</div>
-      <div class="menu-item" onclick="window.location.href='./profil.php';" style="cursor: pointer;">Mon Profil (Ayoub)</div>
+      <div class="menu-item" onclick="window.location.href='./forum.php';" style="cursor: pointer;">Forum ()</div>
+      <div class="menu-item" onclick="window.location.href='./profil.php';" style="cursor: pointer;">Mon Profil ()</div>
       <div class="menu-item" onclick="window.location.href='./mes_favoris.php';" style="cursor: pointer;">Mes Offres Favorites</div>
-      <div class="menu-item" onclick="window.location.href='./actualites.php';" style="cursor: pointer;">Actualités (Ayoub)</div>
-      <div class="menu-item" onclick="window.location.href='../viewEvent/creer_evenement.php';" style="cursor: pointer;">Événements (Ayoub)</div>
+      <div class="menu-item" onclick="window.location.href='./actualites.php';" style="cursor: pointer;">Actualités ()</div>
+      <div class="menu-item" onclick="window.location.href='../viewEvent/creer_evenement.php';" style="cursor: pointer;">Événements ()</div>
       <div class="menu-item" onclick="window.location.href='./post.php';" style="cursor: pointer;">Post</div>
       <div class="menu-item" onclick="window.location.href='../view_business/connexion_business.php';" style="cursor: pointer;">Pour Les Entreprises</div>
-      <div class="menu-item" onclick="window.location.href='./entreprises_partenaire.php';" style="cursor: pointer;">Entreprises Partenaires (Ayoub)</div>
+      <div class="menu-item" onclick="window.location.href='./entreprises_partenaire.php';" style="cursor: pointer;">Entreprises Partenaires ()</div>
       <div class="menu-item" onclick="window.location.href='./qui-sommes-nous.html';" style="cursor: pointer;">Qui sommes-nous ?</div>
       <div class="menu-item" onclick="window.location.href='../connexion.php';" style="cursor: pointer;">Se Déconnecter</div>
 
@@ -137,7 +137,7 @@ $posts = $pp_req->fetchAll(PDO::FETCH_ASSOC);
                     <span><?php echo $post['like_post']; ?></span>
                 </button>
                     <button class="comment-button">
-                        <i class="fas fa-comment"></i> Commenter (Ayoub)
+                        <i class="fas fa-comment"></i> Commenter ()
                     </button>
                     <span><i class="fas fa-eye"></i> <?php echo $post['view_post']; ?></span>
                 </div>
@@ -168,51 +168,27 @@ $posts = $pp_req->fetchAll(PDO::FETCH_ASSOC);
 
     
     <div class="right-sidebar">
-      <h3>Nos dernieres actualités</h3>
-      <ul class="event-list">
-        <li class="event-item">
-          <div class="event-icon"></div>
-          <div>
-            <strong>Ayoub doit le Faire</strong>
-            <div>Ven, 3 août à 15:30</div>
-          </div>
-        </li>
-        <li class="event-item">
-          <div class="event-icon"></div>
-          <div>
-            <strong>Ayoub doit le Faire</strong>
-            <div>Sam, 4 août à 11:00</div>
-          </div>
-        </li>
-        <li class="event-item">
-          <div class="event-icon"></div>
-          <div>
-            <strong>Ayoub doit le Faire</strong>
-            <div>Dim, 5 août à 15:00</div>
-          </div>
-        </li>
-      </ul>
       
       <h3>Événements à venir</h3>
       <ul class="event-list">
         <li class="event-item">
           <div class="event-icon"></div>
           <div>
-            <strong>Ayoub doit le Faire</strong>
+            <strong>()</strong>
             <div>Ven, 3 août à 15:30</div>
           </div>
         </li>
         <li class="event-item">
           <div class="event-icon"></div>
           <div>
-            <strong>Ayoub doit le Faire</strong>
+            <strong>()</strong>
             <div>Sam, 4 août à 11:00</div>
           </div>
         </li>
         <li class="event-item">
           <div class="event-icon"></div>
           <div>
-            <strong>Ayoub doit le Faire</strong>
+            <strong>()</strong>
             <div>Dim, 5 août à 15:00</div>
           </div>
         </li>
