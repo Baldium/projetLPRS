@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>Liste des posts</title>
-    <link rel="stylesheet" href="/../../public/css/post_list.css"> </head>
+    <link rel="stylesheet" href="../../public/css/post_list.css"> </head>
 <body>
 <h1>Liste des posts</h1>
 
