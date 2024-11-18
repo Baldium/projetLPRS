@@ -10,9 +10,9 @@ $postId = isset($_GET['id']) ? intval($_GET['id']) : 0;
 if ($postId === 0) {
     die("ID de post invalide.");
 }
-
+$pdo = Bdd::my_bdd();
 // Récupérer le post depuis la base de données
-$postModel = new Post();
+$postModel = new Post($pdo);
 $post = $postModel->getById($postId);
 
 // Vérifier si le post existe
@@ -26,7 +26,7 @@ if (!$post) {
 <html>
 <head>
     <title><?= htmlspecialchars($post['title']) ?></title>
-    <link rel="stylesheet" href="../public/css/post.css">  </head>
+    <link rel="stylesheet" href="../../public/css/post.css">  </head>
 <body>
 
 <article>

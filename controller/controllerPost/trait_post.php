@@ -51,10 +51,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     }
+    $pdo = Bdd::my_bdd();
 
-    // enregistrer le post en base de données si 0 errors
+    // enregistrer le post en base de données si 0 erreurs
     if (empty($errors)) {
-        $postModel = new Post();
+        $postModel = new Post($pdo);
         $postId = $postModel->create($title, $description, $image_video, $ref_users, $ref_society, $ref_prof, date('Y-m-d'));
 
         if ($postId) {
