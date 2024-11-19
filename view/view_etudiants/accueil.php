@@ -42,6 +42,13 @@ $pp_req = $my_bdd->prepare(" SELECT
 $pp_req->execute();
 $posts = $pp_req->fetchAll(PDO::FETCH_ASSOC);
 
+$adm = $my_bdd->prepare(" SELECT `accepted`, `type` FROM `users` WHERE id_users = :id_user ");
+$adm->execute(array(
+  "id_user" => $_SESSION['id_users']
+));
+$data_adm = $adm->fetch(PDO::FETCH_ASSOC);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +62,10 @@ $posts = $pp_req->fetchAll(PDO::FETCH_ASSOC);
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+  <?php 
+  if($data_adm['accepted'] != 1)
+      header('Location: ./notAccepted.html');
+  ?>
   <header class="header">
     <div class="logo">
       <img src="../../public/assets/image/Logo_Schuman_Connect.png" alt="SchumanLink Logo">
@@ -81,6 +92,10 @@ $posts = $pp_req->fetchAll(PDO::FETCH_ASSOC);
       <div class="menu-item" onclick="window.location.href='../view_post/gestion.html';" style="cursor: pointer;">Post</div> 
       <div class="menu-item" onclick="window.location.href='../view_business/connexion_business.php';" style="cursor: pointer;">Pour Les Entreprises</div>
       <div class="menu-item" onclick="window.location.href='./entreprises_partenaire.php';" style="cursor: pointer;">Entreprises Partenaires ()</div>
+      <?php 
+      if ($data_adm['type'] == 1)
+        echo "<div class='menu-item' onclick='window.location.href=\"../view_admin\";' style='cursor: pointer;'>Panel Admin</div>";
+      ?>
       <div class="menu-item" onclick="window.location.href='./qui-sommes-nous.html';" style="cursor: pointer;">Qui sommes-nous ?</div>
       <div class="menu-item" onclick="window.location.href='../connexion.php';" style="cursor: pointer;">Se Déconnecter</div>
 
@@ -192,6 +207,7 @@ $posts = $pp_req->fetchAll(PDO::FETCH_ASSOC);
       </ul>
     </div>
   </div>
+
 
   <footer class="footer">
     <div class="footer-content">

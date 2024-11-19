@@ -20,7 +20,7 @@ display_flash_message();
             </div>
             <h1>Inscription</h1>
             <p>Rejoignez notre communauté et connectez-vous avec des opportunités professionnelles et académiques !</p>
-            <form id="registration-form" method="post" action="../controller/controllerAlumnis/RegisterUserController.php" enctype="multipart/form-data">
+            <form id="registration-form" method="post" action="../controller/controllerAlumis/RegisterUserController.php" enctype="multipart/form-data">
                 
                 <!-- Email -->
                 <label for="email">Email</label>

@@ -11,7 +11,7 @@ if (isset($_POST['login']))
     $password = $_POST['password'];
 
 
-    if (UserRepository::connexion_users($email, $password)) {
+    if (UserRepository::connexion_user($email, $password)) {
         header("Location: ../../view/view_etudiants/accueil.php");  
         exit();
     } else {

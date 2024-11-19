@@ -49,8 +49,6 @@ class UserRepository
 
         if (isset($response_data['mail'])) 
         {
-            // Flash message en cas d'erreur d'email
-            set_flash_message("Ce compte est déjà relié à une adresse mail !", "error");
             header('Location: ../../view/inscription.php');
             exit();
         } 
@@ -102,8 +100,7 @@ class UserRepository
                 ]);
 
                 // Flash message en cas de succès
-                set_flash_message("Votre compte a été créé avec succès !", "success");
-                header('Location: ../../view/view_etudiants/accueil.php');
+                header('Location: ../../view/connexion.php');
                 exit();
             } catch (PDOException $e) {
                 echo "Erreur : " . $e->getMessage();

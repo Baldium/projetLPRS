@@ -8,6 +8,17 @@ include_once '../../repository/repositoryAdmin/OffersRepository.php';
 require_once '../../utils/flash.php';
 display_flash_message();
 
+$my_bdd = Bdd::my_bdd();
+$adm = $my_bdd->prepare("SELECT `type` FROM `users` WHERE id_users = :id_user");
+$adm->execute(array(
+  "id_user" => $_SESSION['id_users']
+));
+$data_adm = $adm->fetch(PDO::FETCH_ASSOC);
+
+if($data_adm['type'] != 1)
+  header('Location: ../view_etudiants/notAccepted.html');
+
+
 $users = UsersRespository::getAllUsersNotAccepted();
 $offers = OffersRepository::getAllOffers();
 $nbOffres = OffersRepository::getCountOffers();
@@ -23,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       exit;
   }
 }
-
 ?>
 <html lang="en">
  <head>
