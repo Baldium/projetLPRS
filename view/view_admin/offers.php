@@ -3,9 +3,19 @@ include_once '../../init.php';
 include_once '../../utils/Bdd.php';
 
 $my_bdd = Bdd::my_bdd();
-$query = $my_bdd->query("SELECT * FROM offers ORDER BY id_offers DESC");
+
+$query = $my_bdd->query("
+    SELECT 
+        offers.*, 
+        society.nom_society 
+    FROM offers
+    INNER JOIN society ON offers.ref_society = society.id_society
+    ORDER BY offers.id_offers DESC
+");
+
 $offers = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,7 +27,7 @@ $offers = $query->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <header>
         <h1>Liste des Offres</h1>
-        <p>Découvrez toutes les opportunités disponibles</p>
+        <p>Les offres de toute les entreprises !</p>
     </header>
     
     <div class="offers-container">
@@ -32,6 +42,7 @@ $offers = $query->fetchAll(PDO::FETCH_ASSOC);
                         <p><strong>Type :</strong> <?= htmlspecialchars($offer['type_offers']); ?></p>
                         <p><strong>Mission :</strong> <?= htmlspecialchars($offer['mission']); ?></p>
                         <p><strong>Salaire :</strong> <?= $offer['salary'] ? number_format($offer['salary'], 2, ',', ' ') . ' €' : 'Non précisé'; ?></p>
+                        <p class="offer-company"><strong>Entreprise :</strong> <?= htmlspecialchars($offer['nom_society']); ?></p>
                     </div>
                     <div class="card-footer">
                         <a href="?id=<?= htmlspecialchars($offer['id_offers']); ?>" class="btn modify-btn">Modifier</a>
