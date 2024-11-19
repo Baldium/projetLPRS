@@ -2,6 +2,8 @@
 <?php
 include_once '../../init.php';
 include_once '../../utils/Bdd.php';
+require_once '../../utils/flash.php';
+display_flash_message();
 
 if (isset($_GET['id'])) {
     $offerId = intval($_GET['id']);
@@ -42,12 +44,12 @@ if (isset($_GET['id'])) {
             <p><strong>Type :</strong> <?= htmlspecialchars($offer['type_offers']); ?></p>
             <p><strong>Mission :</strong> <?= htmlspecialchars($offer['mission']); ?></p>
             <p><strong>Salaire :</strong> <?= $offer['salary'] ? number_format($offer['salary'], 2, ',', ' ') . ' €' : 'Non précisé'; ?></p>
-            <p><strong>Entreprise :</strong><?= htmlspecialchars($offer['nom_society']); ?></p>
+            <p><strong>Entreprise : </strong><?= htmlspecialchars($offer['nom_society']); ?></p>
 
         </div>
         <div class="card-footer">
-            <a href="?id=<?= htmlspecialchars($offerId); ?>" class="btn modify-btn">Modifier</a>
-            <a href="?id=<?= htmlspecialchars($offerId); ?>" class="btn delete-btn">Supprimer</a>
+            <a href="./modifier_offre.php?id=<?= htmlspecialchars($offerId); ?>" class="btn modify-btn">Modifier</a>
+            <a href="./supprimer_offre.php?id=<?= htmlspecialchars($offerId); ?>" class="btn delete-btn">Supprimer</a>
         </div>
     </div>
 

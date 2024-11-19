@@ -1,6 +1,8 @@
 <?php
 include_once '../../init.php';
 include_once '../../utils/Bdd.php';
+require_once '../../utils/flash.php';
+display_flash_message();
 
 $my_bdd = Bdd::my_bdd();
 
@@ -28,7 +30,11 @@ $offers = $query->fetchAll(PDO::FETCH_ASSOC);
     <header>
         <h1>Liste des Offres</h1>
         <p>Les offres de toute les entreprises !</p>
+        <a href="./index.php"  style="text-decoration: none;
+        color: gold;">Accueil</a>
+
     </header>
+
     
     <div class="offers-container">
         <?php if (!empty($offers)): ?>
@@ -45,8 +51,8 @@ $offers = $query->fetchAll(PDO::FETCH_ASSOC);
                         <p class="offer-company"><strong>Entreprise :</strong> <?= htmlspecialchars($offer['nom_society']); ?></p>
                     </div>
                     <div class="card-footer">
-                        <a href="?id=<?= htmlspecialchars($offer['id_offers']); ?>" class="btn modify-btn">Modifier</a>
-                        <a href="?id=<?= htmlspecialchars($offer['id_offers']); ?>" class="btn delete-btn">Supprimer</a>
+                        <a href="./modifier_offre.php?id=<?= htmlspecialchars($offer['id_offers']); ?>" class="btn modify-btn">Modifier</a>
+                        <a href="./supprimer_offre.php?id=<?= htmlspecialchars($offer['id_offers']); ?>" class="btn delete-btn">Supprimer</a>
                     </div>
                 </div>
             <?php endforeach; ?>
