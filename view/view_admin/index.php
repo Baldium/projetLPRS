@@ -179,17 +179,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                <div class="collapse" id="sidebarLayouts">
                  <ul class="nav nav-collapse">
                    <li>
-                     <a href="sidebar-style-2.html">
+                     <a href="./offers.php">
                        <span class="sub-item">Voir toutes les offres</span>
                      </a>
                    </li>
                    <li>
-                     <a href="icon-menu.html">
+                     <a href="./offers.php">
                        <span class="sub-item">Modifier un offre</span>
                      </a>
                    </li>
                    <li>
-                     <a href="sidebar-style-2.html">
+                     <a href="./offers.php">
                        <span class="sub-item">Supprimer une offre</span>
                      </a>
                    </li>

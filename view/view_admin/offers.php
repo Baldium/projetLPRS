@@ -1,0 +1,47 @@
+<?php
+include_once '../../init.php';
+include_once '../../utils/Bdd.php';
+
+$my_bdd = Bdd::my_bdd();
+$query = $my_bdd->query("SELECT * FROM offers ORDER BY id_offers DESC");
+$offers = $query->fetchAll(PDO::FETCH_ASSOC);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toutes les Offres</title>
+    <link rel="stylesheet" href="../../public/css/get_offers.css">
+</head>
+<body>
+    <header>
+        <h1>Liste des Offres</h1>
+        <p>Découvrez toutes les opportunités disponibles</p>
+    </header>
+    
+    <div class="offers-container">
+        <?php if (!empty($offers)): ?>
+            <?php foreach ($offers as $offer): ?>
+                <div class="offer-card">
+                    <div class="card-header">
+                        <h2 class="offer-title"><?= htmlspecialchars($offer['title_offers']); ?></h2>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Description :</strong> <?= htmlspecialchars($offer['describe_offers']); ?></p>
+                        <p><strong>Type :</strong> <?= htmlspecialchars($offer['type_offers']); ?></p>
+                        <p><strong>Mission :</strong> <?= htmlspecialchars($offer['mission']); ?></p>
+                        <p><strong>Salaire :</strong> <?= $offer['salary'] ? number_format($offer['salary'], 2, ',', ' ') . ' €' : 'Non précisé'; ?></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="?id=<?= htmlspecialchars($offer['id_offers']); ?>" class="btn modify-btn">Modifier</a>
+                        <a href="?id=<?= htmlspecialchars($offer['id_offers']); ?>" class="btn delete-btn">Supprimer</a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class="no-offers">Aucune offre disponible pour le moment.</p>
+        <?php endif; ?>
+    </div>
+</body>
+</html>
