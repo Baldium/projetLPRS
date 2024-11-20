@@ -7,34 +7,49 @@ class StudentsRepository
      {
           $my_bdd = Bdd::my_bdd();
 
-          try 
-          {
-               $query = 'SELECT * FROM users WHERE (prenom LIKE :search OR nom LIKE :search)';
+          try {
+               $query = 'SELECT * FROM users WHERE (prenom LIKE :search OR nom LIKE :search) AND (`accepted` = 1 AND (`type` = 0 OR `type` IS NULL))';
 
-               // Options de filtrage (chatGPT)
-               if (!empty($filters['formation'])) 
-               {
-                    $query .= ' AND promo IN (' . implode(',', array_map(function ($f) { return '"' . $f . '"'; }, $filters['formation'])) . ')';
-               }
-               if (!empty($filters['role'])) 
-               {
-                    $query .= ' AND  `role` IN (' . implode(',', array_map(function ($s) { return '"' . $s . '"'; }, $filters['role'])) . ')';
-               }
-               if (!empty($filters['level'])) 
-               {
-                    $query .= ' AND  `level` IN (' . implode(',', array_map(function ($p) { return '"' . $p . '"'; }, $filters['level'])) . ')';
+                    // Options de filtrage (chatGPT)
+                    $params = ['search' => '%' . $search_term . '%'];
+
+               if (!empty($filters['formation'])) {
+                    $placeholders = [];
+                    foreach ($filters['formation'] as $key => $value) {
+                         $placeholder = ':formation_' . $key;
+                         $placeholders[] = $placeholder;
+                         $params[$placeholder] = $value;
+                    }
+                    $query .= ' AND promo IN (' . implode(',', $placeholders) . ')';
                }
 
-               $query .= ' ORDER BY id_users DESC'; 
+               if (!empty($filters['role'])) {
+                    $placeholders = [];
+                    foreach ($filters['role'] as $key => $value) {
+                         $placeholder = ':role_' . $key;
+                         $placeholders[] = $placeholder;
+                         $params[$placeholder] = $value;
+                    }
+                    $query .= ' AND `role` IN (' . implode(',', $placeholders) . ')';
+               }
+
+               if (!empty($filters['level'])) {
+                    $placeholders = [];
+                    foreach ($filters['level'] as $key => $value) {
+                         $placeholder = ':level_' . $key;
+                         $placeholders[] = $placeholder;
+                         $params[$placeholder] = $value;
+                    }
+                    $query .= ' AND `level` IN (' . implode(',', $placeholders) . ')';
+               }
+
+               $query .= ' ORDER BY id_users DESC';
 
                $req_select_students = $my_bdd->prepare($query);
-               $req_select_students->execute(['search' => '%' . $search_term . '%']);
-               $students = $req_select_students->fetchAll(PDO::FETCH_ASSOC);
+               $req_select_students->execute($params);
+               return $req_select_students->fetchAll(PDO::FETCH_ASSOC);
 
-               return $students;
-          } 
-          catch (PDOException $e) 
-          {
+          } catch (PDOException $e) {
                echo "Erreur PDO : " . $e->getMessage();
                return [];
           }
@@ -45,7 +60,7 @@ class StudentsRepository
           
           $my_bdd = Bdd::my_bdd();
 
-          $sql = $my_bdd->prepare("SELECT * FROM users");
+          $sql = $my_bdd->prepare("SELECT * FROM users WHERE accepted = 1 AND (`type` = 0 OR `type` IS NULL)");
           $sql->execute();
           return $sql->fetchAll(PDO::FETCH_ASSOC);
      }

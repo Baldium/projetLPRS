@@ -88,7 +88,7 @@ $data_adm = $adm->fetch(PDO::FETCH_ASSOC);
       <div class="menu-item" onclick="window.location.href='./forum.php';" style="cursor: pointer;">Forum ()</div>
       <div class="menu-item" onclick="window.location.href='./profil.php';" style="cursor: pointer;">Mon Profil ()</div>
       <div class="menu-item" onclick="window.location.href='./mes_favoris.php';" style="cursor: pointer;">Mes Offres Favorites</div>
-      <div class="menu-item" onclick="window.location.href='../viewEvent/creer_evenement.php';" style="cursor: pointer;">Événements (Ayoub)</div>
+      <div class="menu-item" onclick="window.location.href='../viewEvent/creer_evenement.php';" style="cursor: pointer;">Événements ()</div>
       <div class="menu-item" onclick="window.location.href='../view_post/gestion.html';" style="cursor: pointer;">Post</div> 
       <div class="menu-item" onclick="window.location.href='../view_business/connexion_business.php';" style="cursor: pointer;">Pour Les Entreprises</div>
       <div class="menu-item" onclick="window.location.href='./entreprises_partenaire.php';" style="cursor: pointer;">Entreprises Partenaires ()</div>
@@ -186,21 +186,21 @@ $data_adm = $adm->fetch(PDO::FETCH_ASSOC);
         <li class="event-item">
           <div class="event-icon"></div>
           <div>
-            <strong>Ayoub doit le Faire</strong>
+            <strong>()</strong>
             <div>Ven, 3 août à 15:30</div>
           </div>
         </li>
         <li class="event-item">
           <div class="event-icon"></div>
           <div>
-            <strong>Ayoub doit le Faire</strong>
+            <strong>()</strong>
             <div>Sam, 4 août à 11:00</div>
           </div>
         </li>
         <li class="event-item">
           <div class="event-icon"></div>
           <div>
-            <strong>Ayoub doit le Faire</strong>
+            <strong>()</strong>
             <div>Dim, 5 août à 15:00</div>
           </div>
         </li>

@@ -84,7 +84,7 @@
                             <h3>Status</h3>
                             <div class="checkbox-group">
                                 <label><input type="checkbox" name="role[]" value="Etudiant" <?= isset($_POST['role']) && in_array('Etudiant', $_POST['role']) ? 'checked' : '' ?>> Étudiants actuels</label>
-                                <label><input type="checkbox" name="role[]" value="Alumni" <?= isset($_POST['role']) && in_array('Alumnis', $_POST['role']) ? 'checked' : '' ?>> Diplômés</label>
+                                <label><input type="checkbox" name="role[]" value="Alumni" <?= isset($_POST['role']) && in_array('Alumni', $_POST['role']) ? 'checked' : '' ?>> Diplômés</label>
                             </div>
                         </div>
                         <div class="filter-group">

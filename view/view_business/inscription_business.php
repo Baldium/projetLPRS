@@ -11,7 +11,28 @@ display_flash_message();
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="../../public/css/inscription_business.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 <title>Inscription_Business | SchumanConnect</title>
+<style>
+        .password-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+            color: #007BFF;
+        }
+        .password-toggle:hover {
+            color: #0056b3;
+        }
+        input[type="password"], input[type="text"] {
+            flex: 1;
+            padding-right: 35px; /* Leave space for the icon */
+        }
+    </style>
 </head>
 
 <body>
@@ -26,7 +47,10 @@ display_flash_message();
                 <label for="email">Email</label>
                 <input name="email_society" type="email" id="email" placeholder="exemple@domaine.com" required>
                 <label for="password">Mot de passe</label>
-                <input name="password" type="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Mot de passe (8 caractères, 1 majuscule, 1 chiffre)" required>
+                <div class="password-container">
+                    <input name="password" type="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Mot de passe (8 caractères, 1 majuscule, 1 chiffre)" required>
+                    <i class="fas fa-eye password-toggle" onclick="togglePasswordVisibility()" id="toggleIcon"></i>
+                </div>
                 <label name="confirm_pasword" for="confirm-password">Confirmer le mot de passe</label>
                 <input name="confirm_password" type="password" id="confirm-password" placeholder="Confirmer le mot de passe" required>
                 <!--<label for="position">Poste dans l'entreprise</label>-->
@@ -53,5 +77,6 @@ display_flash_message();
         </div>
     </div>
 </body>
+<script src="../../public/js/view_mdp.js"></script>
 <script src="../../public/js/inscription_business.js"></script>
 </html>

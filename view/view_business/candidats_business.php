@@ -71,6 +71,17 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             {
                 echo '<p>Aucun CV disponible.</p>';
             }
+            echo '<br>';
+            echo '<h2>Lettre de motivation</h2>';
+            if (!empty($candidate['cover_letter'])) 
+            {
+                $cvSrc = "data:image/png;base64," . base64_encode($candidate['cover_letter']);
+                echo '<img src="' . $cvSrc . '" alt="CV de ' . htmlspecialchars($candidate['prenom']) . '" class="cv-img" onclick="openModal(\'' . $cvSrc . '\')">';
+                //echo '<a href="' . $cvSrc . '" download class="cv-button" >Télécharger la lettre de motivation</a>';
+            } else 
+            {
+                echo '<p>Aucune lettre de motivation disponible.</p>';
+            }
             echo '</div>'; 
             echo '</div>'; 
         }

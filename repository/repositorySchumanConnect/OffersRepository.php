@@ -490,7 +490,7 @@ class OffersRepository
           
           $my_bdd = Bdd::my_bdd();
 
-          $sql = $my_bdd->prepare("SELECT * FROM offers");
+          $sql = $my_bdd->prepare("SELECT * FROM offers WHERE disponible = 1");
           $sql->execute();
           return $sql->fetchAll(PDO::FETCH_ASSOC);
     }

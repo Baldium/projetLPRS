@@ -61,8 +61,4 @@ function send_email($to_email, $subject, $message)
     // Fermeture de la connexion cURL
     curl_close($ch);
 }
-
-
-// Test d'envoi de mail
-//send_email("soulaiboss@gmail.com", "Votre Candidature", "Merci pour votre candidature. Nous l'avons bien reçue.");
 ?>

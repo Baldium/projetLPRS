@@ -46,7 +46,7 @@ $logo_img = "https://logo.clearbit.com/" . $your_website;
           </div>
           <div class="menu-item">
             <i class="fas fa-calendar-alt"></i>
-            <span><a href="./publication_evenements.php">Publier un Événement <strong>(Ayoub doit le faire)</strong></a></span>
+            <span><a href="./publication_evenements.php">Publier un Événement <strong>()</strong></a></span>
           </div>
           <div class="menu-item ">
           <i class="fas fa-edit"></i>
@@ -187,14 +187,14 @@ $logo_img = "https://logo.clearbit.com/" . $your_website;
 
           <div class="dashboard-card">
             <div class="card-title"><i class="fas fa-calendar-check"></i> Événements Organisés</div>
-            <div class="card-value">Ayoub doit le faire</div>
+            <div class="card-value">()</div>
             <div class="card-chart">
             </div>
           </div>
 
           <div class="dashboard-card">
             <div class="card-title"><i class="fas fa-calendar-check"></i>Vues sur mes Événements </div>
-            <div class="card-value">Ayoub doit le faire</div>
+            <div class="card-value">()</div>
             <div class="card-chart">
             </div>
           </div>
@@ -208,8 +208,8 @@ $logo_img = "https://logo.clearbit.com/" . $your_website;
             <?php OffersRepository::find_offers_by_desc(); ?>
           </div>
           <div class="dashboard-card">
-            <h3>Historique des Événements</h3>
-            <div class="card-value">Ayoub doit le faire</div>
+            <h3>Mes Événements</h3>
+            <div class="card-value">()</div>
             <div class="card-chart">
             </div>
           </div>

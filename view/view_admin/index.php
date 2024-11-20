@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
          <div class="logo-header" data-background-color="dark">
            <a href="index.php" class="logo">
              <img
-               src="../../public/assets/image/Logo_Schuman_Connect.png"
+               src="https://lyceerobertschuman.fr/wp-content/uploads/2021/11/Logo-New-RS.png"
                alt="navbar brand"
                class="navbar-brand"
                height="20"
@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                  aria-expanded="false"
                >
                  <i class="fas fa-home"></i>
-                 <p>Bienvenue le nom de l admin</p>
+                 <p>Bienvenue <?= $_SESSION['prenom']; ?></p>
                </a>
              </li>
              <li class="nav-section">
@@ -282,7 +282,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                  </div>
                  <input
                    type="text"
-                   placeholder="Faire votre recherche ... le nom"
+                   placeholder="Faites votre recherche ... <?= $_SESSION['prenom']?> "
                    class="form-control"
                 />
                </div>
@@ -338,12 +338,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                  >
                    <div class="avatar-sm">
                      <img
-                       src="../../public/assets/image/Logo_Schuman_Connect.png"
+                       src="data:image/png;base64,<?= base64_encode($_SESSION['profile_picture']); ?>" 
                        class="avatar-img rounded-circle"
                     />
                    </div>
                    <span class="profile-username">
-                     <span class="fw-bold">Son nom</span>
+                     <span class="fw-bold"><?= $_SESSION['nom']; echo " ";  echo $_SESSION['prenom']; ?></span>
                    </span>
                  </a>
                  <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -352,14 +352,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                        <div class="user-box">
                          <div class="avatar-lg">
                            <img
-                             src="../../public/assets/image/Logo_Schuman_Connect.png"
+                             src="data:image/png;base64,<?= base64_encode($_SESSION['profile_picture']); ?>" 
                              alt="image profile"
                              class="avatar-img rounded"
                           />
                          </div>
                          <div class="u-text">
-                           <h4>Son nom</h4>
-                           <p class="text-muted">son@mail.com</p>
+                           <h4><?= $_SESSION['prenom'] ?></h4>
+                           <p class="text-muted"><?= $_SESSION['mail']; ?></p>
                            <a
                              href="profile.html"
                              class="btn btn-xs btn-secondary btn-sm"
@@ -370,7 +370,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                      </li>
                      <li>
                        <div class="dropdown-divider"></div>
-                       <a class="dropdown-item" href="#">Se déconnecter</a>
+                       <a class="dropdown-item" href="../../utils/logout.php">Se déconnecter</a>
                      </li>
                    </div>
                  </ul>

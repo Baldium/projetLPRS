@@ -31,7 +31,7 @@ $offers = $query->fetchAll(PDO::FETCH_ASSOC);
         <h1>Liste des Offres</h1>
         <p>Les offres de toute les entreprises !</p>
         <a href="./index.php"  style="text-decoration: none;
-        color: gold;">Accueil</a>
+        color: gold;">ACCUEIL</a>
 
     </header>
 

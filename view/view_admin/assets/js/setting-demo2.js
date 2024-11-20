@@ -72,9 +72,9 @@ $('.changeBackgroundColor').on('click', function(){
 function customCheckColor(){
 	var logoHeader = $('.logo-header').attr('data-background-color');
 	if (logoHeader !== "white") {
-		$('.logo-header .navbar-brand').attr('src', './Logo_Schuman_Connect.png');
+		$('.logo-header .navbar-brand').attr('src', 'https://lyceerobertschuman.fr/wp-content/uploads/2021/11/Logo-New-RS.png');
 	} else {
-		$('.logo-header .navbar-brand').attr('src', './Logo_Schuman_Connect.png');
+		$('.logo-header .navbar-brand').attr('src', 'https://lyceerobertschuman.fr/wp-content/uploads/2021/11/Logo-New-RS.png');
 	}
 }
 

@@ -27,7 +27,7 @@
 
         <section class="contact-form">
             <h2>Formulaire de Contact</h2>
-            <form action="../../controller/controllerAlumnis/contact_controller.php" method="post">
+            <form action="../../controller/controllerAlumis/support.php" method="post">
                 <div class="form-group">
                     <label for="name">Votre Nom :</label>
                     <input type="text" id="name" name="name" required>

@@ -30,7 +30,7 @@ class SocietyRepository
             try {
                 $mdp_hash = password_hash($the_society->get_password(), PASSWORD_DEFAULT);
 
-                $insert_society = $my_bdd->prepare('INSERT INTO `society`(`nom_society`, `adress_society`, `website`, `mail`, `password`, motif_register, ref_users) VALUES (:name_society, :adress_society, :website, :mail, :password, :motif_register, :ref_users)');
+                $insert_society = $my_bdd->prepare('INSERT INTO `society`(`nom_society`, `adress_society`, `website`, `mail`, `password`, motif_register, ref_users, nb_view_company) VALUES (:name_society, :adress_society, :website, :mail, :password, :motif_register, :ref_users, :nb)');
                 $insert_society->execute([
                     'name_society' => $the_society->get_name_society(),
                     'adress_society' => $the_society->get_adress_society(),
@@ -38,12 +38,13 @@ class SocietyRepository
                     'mail' => $the_society->get_mail(),
                     'password' => $mdp_hash,
                     'motif_register' => $_POST['motif_register'],
-                    'ref_users' => $_SESSION['id_users']
+                    'ref_users' => $_SESSION['id_users'],
+                    'nb' => 0
                 ]);
 
                 // Flash message en cas de succès
                 set_flash_message("Votre compte entreprise a été créé !", "success");
-                header('Location: ../../view/view_business/accueil_business.php');
+                header('Location: ../../view/view_business/connexion_business.php');
                 exit();
             } catch (PDOException $e) {
                 echo "Erreur : " . $e->getMessage();
@@ -201,7 +202,7 @@ class SocietyRepository
             {
                 session_destroy();
                 set_flash_message("Votre compte a été supprimé avec succès.", "success");
-                header('Location: ../../view/view_etudiants/connexion.html');
+                header('Location: ../../view/connexion.php');
                 exit();
             }
             else
