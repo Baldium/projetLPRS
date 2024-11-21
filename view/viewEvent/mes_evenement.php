@@ -3,7 +3,7 @@ include_once '../../init.php';
 include_once '../../repository/repositorySchumanConnect/EventRepository.php';
 
 // Récupérer les événements liés à l'utilisateur
-$events = EventRepository::getEventsByUser($_SESSION['id_prof']);
+$events = EventRepository::getEventsByUser($_SESSION['id_users']);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -34,7 +34,7 @@ $events = EventRepository::getEventsByUser($_SESSION['id_prof']);
                     <li class="event-item">
                         <h2><?php echo htmlspecialchars($event['title']); ?></h2>
                         <p><?php echo htmlspecialchars($event['description']); ?></p>
-                        <button class="btn btn-primary" onclick="location.href='modifier_evenement.php?id=<?php echo $event['id']; ?>'">Modifier</button>
+                        <button class="btn btn-primary" onclick="location.href='modifier_evenement.php?id=<?php echo $event['id_event']; ?>'">Modifier</button>
                     </li>
                 <?php endforeach; ?>
             </ul>

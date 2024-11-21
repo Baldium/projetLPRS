@@ -14,7 +14,7 @@ class ProfRepository
         $bdd = Bdd::my_bdd();
 
         // Préparer et exécuter la requête
-        $req = $bdd->prepare("SELECT * FROM prof WHERE mail = :mail");
+        $req = $bdd->prepare("SELECT * FROM users WHERE mail = :mail and role = 'prof'");
         $req->execute(array(
             ':mail' => $mail
         ));
@@ -24,10 +24,11 @@ class ProfRepository
         $user_exist = $req->fetch(PDO::FETCH_ASSOC);
 
         // Vérification des données de connexion
-        if ($user_exist && password_verify($password, $user_exist['mdp'])) {
+        if ($user_exist && password_verify($password, $user_exist['password'])) {
 
             // Si la connexion est réussie, définir les sessions
-            $_SESSION['id_prof'] = $user_exist['id_prof'];
+            $_SESSION['id_users'] = $user_exist['id_users'];
+            $_SESSION['role'] = $user_exist['role'];
             $_SESSION['nom'] = $user_exist['nom'];
             $_SESSION['prenom'] = $user_exist['prenom'];
             $_SESSION['mail'] = $user_exist['mail'];
@@ -49,7 +50,7 @@ class ProfRepository
         try {
 
             $bdd = Bdd::my_bdd();
-            $req = $bdd->prepare("INSERT INTO prof (nom, prenom, mail, mdp, matiere) VALUES (:last_name, :first_name, :mail, :password, :matiere)");
+            $req = $bdd->prepare("INSERT INTO users (role, nom, prenom, mail, password, matiere) VALUES ('prof',:last_name, :first_name, :mail, :password, :matiere)");
             $req->execute([
                 'last_name' => $last_name,
                 'first_name' => $first_name,

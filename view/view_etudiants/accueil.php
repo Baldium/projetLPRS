@@ -17,7 +17,8 @@ $requete_post->execute();
 $posts = $requete_post->fetchAll(PDO::FETCH_ASSOC);
 
 // POUR LA PP et les infos de du posteur
-$pp_req = $my_bdd->prepare(" SELECT 
+$pp_req = $my_bdd->prepare("
+    SELECT 
         p.id_post, 
         p.title, 
         p.description, 
@@ -29,14 +30,11 @@ $pp_req = $my_bdd->prepare(" SELECT
         p.like_post,
         u.profile_picture AS user_profile_picture,
         s.website AS society_website,
-        prof.id_prof AS prof_profile_picture,
         u.prenom AS user_name,
-        s.nom_society AS society_name,
-        prof.nom AS prof_name
+        s.nom_society AS society_name
     FROM post p
     LEFT JOIN users u ON p.ref_users = u.id_users
     LEFT JOIN society s ON p.ref_society = s.id_society
-    LEFT JOIN prof prof ON p.ref_users = prof.id_prof
     ORDER BY p.date_created DESC
 ");
 $pp_req->execute();
@@ -78,7 +76,7 @@ $posts = $pp_req->fetchAll(PDO::FETCH_ASSOC);
       <div class="menu-item" onclick="window.location.href='./profil.php';" style="cursor: pointer;">Mon Profil ()</div>
       <div class="menu-item" onclick="window.location.href='./mes_favoris.php';" style="cursor: pointer;">Mes Offres Favorites</div>
       <div class="menu-item" onclick="window.location.href='./actualites.php';" style="cursor: pointer;">Actualités ()</div>
-      <div class="menu-item" onclick="window.location.href='./evenements.php';" style="cursor: pointer;">Événements ()</div>
+      <div class="menu-item" onclick="window.location.href='../viewEvent/mes_evenement.php';" style="cursor: pointer;">Événements ()</div>
       <div class="menu-item" onclick="window.location.href='../../view/view_post/gestion.html';" style="cursor: pointer;">Post</div>
       <div class="menu-item" onclick="window.location.href='../view_business/connexion_business.php';" style="cursor: pointer;">Pour Les Entreprises</div>
       <div class="menu-item" onclick="window.location.href='./entreprises_partenaire.php';" style="cursor: pointer;">Entreprises Partenaires ()</div>
