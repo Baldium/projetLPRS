@@ -97,7 +97,7 @@
                                 <label><input type="checkbox" name="level[]" value="Bac+5" <?= isset($_POST['level']) && in_array('Bac+5', $_POST['level']) ? 'checked' : '' ?>> Bac+5</label>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Appliquer les filtres</button>
+                        <button type="submit" class="btn btn-primary" style="color: white; background: linear-gradient(45deg, #6a0dad, #8b00ff); border: 2px solid #6a0dad; border-radius: 1.8rem; padding: 7px 7px; font-weight: bold; font-size: 1rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); cursor: pointer; transition: all 0.3s ease;">Appliquer les filtres</button>
                     </div>
                 </form>
             </aside>
@@ -105,7 +105,7 @@
         <section class="content">
             <div class="student-listings">
             <?php
-                include '../../repository/repositorySchumanConnect/StudentsRepository.php'; 
+                include_once '../../repository/repositorySchumanConnect/StudentsRepository.php';
 
                 $students = [];
                 $search_term = '';
@@ -135,41 +135,60 @@
                 {
                     $students = $studentsRepo->getAllStudents(); 
                 }
-
-                if (!empty($students)) {
-                    echo '<p>Étudiants trouvés : ' . count($students) . '</p><br>';
+                
+                $student_accepted = 0;
+                if (!empty($students)) 
+                {
                     foreach ($students as $student) {
-                        echo '<div class="student-card">';
-                        echo '<div class="student-card-header">';
-                        echo '<h2 class="student-name">' . htmlspecialchars($student['prenom']) . ' ' . htmlspecialchars($student['nom']) . '</h2>';
-                        if (!empty($student['profile_picture'])) 
-                        {
-                            $imageSrc = "data:image/png;base64," . base64_encode($student['profile_picture']);
-                            echo '<div class="student-photo"><img src="' . $imageSrc . '" alt="Photo de ' . htmlspecialchars($student['prenom']) . '" class="student-photo-img" /></div>';
-                            
-                        } else 
-                        {
-                            echo '<div class="student-photo"><img src="../../public/assets/image/Logo_Schuman_Connect.png" alt="Photo par défaut" class="student-photo-img" /></div>';
+                        if ($student['accepted'] == 1 && ($student['role'] == "etudiant" || $student['role'] == "alumni")) {
+                            $student_accepted++;
                         }
-                        echo '<div class="view-profile">';
-                        echo '<a href="profile_etudiant.php?id=' . htmlspecialchars($student['id_users']) . '" class="profile-button">Voir le profil</a>';
-                        echo '</div>';
-                        echo '</div>';                       
-                        echo '<p class="student-school">' . htmlspecialchars($student['level']). '</p>';
-                        echo '<div class="student-details">';
-                        echo '</div>';
-                        echo '<div class="student-tags">';
-                        echo '<span class="student-tag">' . htmlspecialchars($student['role']). '</span>';
-                        echo '</div>';
-                        echo '<div class="student-meta">';
-                        echo '<span>⭐⭐⭐⭐⭐</span>';  
-                        echo '<span>Formation : ' . htmlspecialchars($student['promo']) . '</span>';
-                        echo '</div>';
-                        echo '</div>';
                     }
-                } else {
+                    echo '<p>Étudiants trouvés : ' . $student_accepted . '</p><br>';
+                    foreach ($students as $student) 
+                    {
+                        if ($student['role'] != "pdg_entreprise" && !empty($student['role']) && !empty($student['promo'])) 
+                        {
+                            echo '<div class="student-card">';
+                            echo '<div class="student-card-header">';
+                            echo '<h2 class="student-name">' . htmlspecialchars($student['prenom']) . ' ' . htmlspecialchars($student['nom']) . '</h2>';
+                            if (!empty($student['profile_picture'])) {
+                                $imageSrc = "data:image/png;base64," . base64_encode($student['profile_picture']);
+                                echo '<div class="student-photo"><img src="' . $imageSrc . '" alt="Photo de ' . htmlspecialchars($student['prenom']) . '" class="student-photo-img" /></div>';
+                            } else {
+                                echo '<div class="student-photo"><img src="../../public/assets/image/Logo_Schuman_Connect.png" alt="Photo par défaut" class="student-photo-img" /></div>';
+                            }
+                            echo '<div class="view-profile">';
+                            echo '<a href="./profile_etudiant.php?id=' . htmlspecialchars($student['id_users']) . '" class="profile-button">Voir le profil</a>';
+                            echo '<br>';
+                            echo '<br>';
+                            
+                            echo '<div class="view-profile">';
+                            echo '</div>';
+
+
+                            echo '</div>';
+                            echo '</div>';                       
+                            if (!empty($student['level'])) {
+                                echo '<p class="student-school">' . htmlspecialchars($student['level']) . '</p>';
+                            }
+                            echo '<div class="student-details">';
+                            echo '</div>';
+                            echo '<div class="student-tags">';
+                            echo '<span class="student-tag">' . htmlspecialchars($student['role']) . '</span>';
+                            echo '</div>';
+                            echo '<div class="student-meta">';
+                            echo '<span>⭐⭐⭐⭐⭐</span>';
+                            echo '<span>Formation : ' . htmlspecialchars($student['promo']) . '</span>';
+                            echo '</div>';
+                            echo '</div>';
+                        }
+                    }
+                } 
+                else {
                     echo '<p>Aucun étudiant trouvé.</p>';
                 }
+                
                 
             ?>
             </div>

@@ -61,4 +61,5 @@ function send_email($to_email, $subject, $message)
     // Fermeture de la connexion cURL
     curl_close($ch);
 }
+
 ?>

@@ -4,6 +4,12 @@ include_once '../../repository/repositorySchumanConnect/SocietyRepository.php';
 include_once '../../repository/repositorySchumanConnect/PostRepository.php';
 require_once '../../utils/flash.php';
 display_flash_message();
+
+if (!isset($_SESSION['id_users'])) {
+    header('Location: ../connexion.php');
+    exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -30,7 +36,7 @@ display_flash_message();
         }
         input[type="password"], input[type="text"] {
             flex: 1;
-            padding-right: 35px; /* Leave space for the icon */
+            padding-right: 35px; 
         }
     </style>
 </head>

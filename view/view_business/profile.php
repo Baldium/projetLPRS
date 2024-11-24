@@ -1,5 +1,15 @@
 <?php
 include '../../repository/repositorySchumanConnect/StudentsRepository.php';
+require_once '../../utils/flash.php';
+display_flash_message();
+
+
+
+if (!isset($_SESSION['id_society'])) {
+    set_flash_message("Ne jouez pas au hackeur svp !", "error");
+    header("Location: ../connexion.php");
+    exit;
+}
 
 $studentsRepo = new StudentsRepository();
 
@@ -20,6 +30,7 @@ else
     echo 'ID invalide.';
     exit; 
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -99,11 +110,15 @@ else
                         }
                         ?>
                     </div>
-                    <p><strong>Niveau d'études :</strong> <?= htmlspecialchars($student['level']) ?></p>
-                    <p><strong>Formation :</strong> <?= htmlspecialchars($student['promo']) ?></p>
+                    <?php if (!empty($student['level'])): ?>
+                        <p><strong>Niveau d'études :</strong> <?= htmlspecialchars($student['level']) ?></p>
+                    <?php endif; ?>
+
+                    <?php if (!empty($student['promo'])): ?>
+                        <p><strong>Formation :</strong> <?= htmlspecialchars($student['promo']) ?></p>
+                    <?php endif; ?>
                     <p><strong>Status :</strong> <?= htmlspecialchars($student['role']) ?></p>
                     <p><strong>Email :</strong> <?= htmlspecialchars($student['mail']) ?></p> 
-                    <button class="contact-button" onclick="window.location.href='messagerie.html'">Entrez en contact avec <?= htmlspecialchars($student['prenom']) ?></button>
                 </div>
                 <div class="cv-container">
                     <h2>CV</h2>

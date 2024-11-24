@@ -1,0 +1,111 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Logo Section */
+  .logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .logo {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Company Details Section */
+  .info-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .company-name {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #2c3e50;
+  }
+  
+  .company-address,
+  .company-website,
+  .company-email,
+  .company-description,
+  .company-motif {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    line-height: 1.6;
+  }
+  
+  .company-website a {
+    color: #3498db;
+    text-decoration: none;
+  }
+  
+  .company-website a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Actions Section */
+  .actions-container {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #2980b9;
+  }
+  
+  .contact-btn {
+    background-color: #2ecc71;
+  }
+  
+  .contact-btn:hover {
+    background-color: #27ae60;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .info-container {
+      padding: 10px;
+    }
+  
+    .company-name {
+      font-size: 1.5rem;
+    }
+  
+    .btn {
+      padding: 10px 15px;
+      font-size: 0.9rem;
+    }
+  }
+  

@@ -1,7 +1,7 @@
 <?php
 include_once '../../utils/Bdd.php';
 include_once '../../../projetLPRS/models/Society.php';
-include '../../init.php';
+include_once '../../init.php';
 include_once '../../utils/flash.php';
 
 //session_start();
@@ -55,56 +55,110 @@ class SocietyRepository
     // Fonction statique pour connecter une entreprise
     public static function login_society($mail, $password)
     {
-        // Vérification des champs vides
         if (empty($mail) || empty($password)) 
         {
-            // Flash message en cas d'erreur
             set_flash_message("Email ou mot de passe incorrect.", "error");
             header('Location: ../../view/view_business/connexion_business.php');
             exit();
         }
-
-        // Connexion à la base de données
         $my_bdd = Bdd::my_bdd();
-
-        // Préparer et exécuter la requête
-        $req_connect = $my_bdd->prepare("SELECT * FROM society WHERE mail = :email_society");
-        $req_connect->execute(array(
-            "email_society" => $mail,
-        ));
-        
-        // Récupérer les données
-        $data = $req_connect->fetch(PDO::FETCH_ASSOC);
-
-        // Vérification des données de connexion
-        if ($data && password_verify($password, $data['password']))
+    
+        $req_society = $my_bdd->prepare("SELECT * FROM society WHERE mail = :email_society");
+        $req_society->execute(array("email_society" => $mail));
+        $society_data = $req_society->fetch(PDO::FETCH_ASSOC);
+    
+        if ($society_data) 
         {
-            // Si la connexion est réussie, définir les sessions
-            $_SESSION['id_society'] = $data['id_society'];
-            $_SESSION['nom_society'] = $data['nom_society'];
-            $_SESSION['website'] = $data['website'];
-            $_SESSION['ref_users'] = $data['ref_users'];
-
-            // Gestion des cookies
-            if (isset($_POST['accept_cookies']) && $_POST['accept_cookies'] == 'yes') 
+            if (password_verify($password, $society_data['password'])) 
             {
-                setcookie('society_id', $data['id_society'], time() + (86400 * 30), "/");
-                setcookie('society_name', $data['nom_society'], time() + (86400 * 30), "/");
-            }
+                if ($_SESSION['id_users'] != $society_data['ref_users']) 
+                {
+                    set_flash_message("Pour se connecter à cette societé il vous faut le compte associé.", "error");
+                    header('Location: ../../view/view_business/connexion_business.php');
+                    exit();
+                }
 
-            // Flash message en cas de succès
-            set_flash_message("Connexion réussie !", "success");
-            header('Location: ../../view/view_business/accueil_business.php');
-            exit();
+                $_SESSION['id_society'] = $society_data['id_society'];
+                $_SESSION['nom_society'] = $society_data['nom_society'];
+                $_SESSION['website'] = $society_data['website'];
+                $_SESSION['ref_users'] = $society_data['ref_users'];
+
+    
+                if (isset($society_data['ref_users'])) 
+                {
+                    $_SESSION['ref_users'] = $society_data['ref_users'];
+                }
+    
+                // Gestion des cookies
+                if (isset($_POST['accept_cookies']) && $_POST['accept_cookies'] == 'yes') {
+                    setcookie('society_id', $society_data['id_society'], time() + (86400 * 30), "/");
+                    setcookie('society_name', $society_data['nom_society'], time() + (86400 * 30), "/");
+                }
+    
+                set_flash_message("Connexion réussie en tant que société !", "success");
+                header('Location: ../../view/view_business/accueil_business.php');
+                exit();
+            } else {
+                set_flash_message("Email ou mot de passe incorrect.", "error");
+                header('Location: ../../view/view_business/connexion_business.php');
+                exit();
+            }
         } 
         else 
-        {
-            // Flash message en cas d'erreur
-            set_flash_message("Email ou mot de passe incorrect.", "error");
-            header('Location: ../../view/view_business/connexion_business.php');
-            exit();
+        {    
+            $req_user = $my_bdd->prepare("SELECT * FROM users WHERE mail = :email_user");
+            $req_user->execute(array("email_user" => $mail));
+            $user_data = $req_user->fetch(PDO::FETCH_ASSOC);
+    
+            if ($user_data) 
+            {
+                if (password_verify($password, $user_data['password'])) 
+                {
+                    $society_id = $user_data['ref_society'];
+    
+                    $req_society_info = $my_bdd->prepare("SELECT * FROM society WHERE id_society = :society_id");
+                    $req_society_info->execute(array('society_id' => $society_id));
+                    $society_info = $req_society_info->fetch(PDO::FETCH_ASSOC);
+    
+                    $_SESSION['id_society'] = $user_data['id_society'];
+                    $_SESSION['id_users'] = $user_data['id_users'];
+                    $_SESSION['nom'] = $user_data['nom'];
+                    $_SESSION['prenom'] = $user_data['prenom'];
+                    $_SESSION['email'] = $user_data['mail'];
+                    $_SESSION['role'] = $user_data['role']; 
+                    $_SESSION['id_society'] = $society_info['id_society'];
+                    $_SESSION['nom_society'] = $society_info['nom_society'];
+                    $_SESSION['website'] = $society_info['website'];
+                    $_SESSION['ref_users'] = $society_info['ref_users'];
+
+    
+                    if (isset($user_data['ref_users'])) {
+                        $_SESSION['ref_users'] = $user_data['ref_users'];
+                    }
+    
+                    if (isset($_POST['accept_cookies']) && $_POST['accept_cookies'] == 'yes') {
+                        setcookie('society_id', $society_id, time() + (86400 * 30), "/");
+                        setcookie('society_name', $society_info['nom_society'], time() + (86400 * 30), "/");
+                    }
+    
+                    set_flash_message("Connexion réussie en tant qu'employé !", "success");
+                    header('Location: ../../view/view_business/accueil_business.php');
+                    exit();
+                } else {
+                    set_flash_message("Email ou mot de passe incorrect.", "error");
+                    header('Location: ../../view/view_business/connexion_business.php');
+                    exit();
+                }
+            } 
+            else 
+            {
+                set_flash_message("Email ou mot de passe incorrect.", "error");
+                header('Location: ../../view/view_business/connexion_business.php');
+                exit();
+            }
         }
     }
+    
 
 
     // Fonction statique pour modifier une entreprise
@@ -120,10 +174,10 @@ class SocietyRepository
         {
             $my_bdd = Bdd::my_bdd();
 
-            $req_findById = $my_bdd->prepare("SELECT `nom_society`, `adress_society`, `website`, `mail` FROM `society` WHERE ref_users = :ref_users_society");
+            $req_findById = $my_bdd->prepare("SELECT `nom_society`, `adress_society`, `website`, `mail` FROM `society` WHERE id_society = :id_society");
             $req_findById->execute(
                 array(
-                    'ref_users_society' => $_SESSION['ref_users']
+                    'id_society' => $_SESSION['id_society']
                 )
             );
             $data = $req_findById->fetch(PDO::FETCH_ASSOC);
@@ -190,10 +244,10 @@ class SocietyRepository
         {
             $my_bdd = Bdd::my_bdd();
 
-            $delete_society = $my_bdd->prepare("DELETE FROM `society` WHERE ref_users = :ref_users");
+            $delete_society = $my_bdd->prepare("DELETE FROM `society` WHERE id_society = :id");
             $delete_society->execute(
                 array(
-                    "ref_users" => $_SESSION['ref_users']
+                    "id" => $_SESSION['id_society']
                 )
             );
             $perfect_delete = $delete_society;
@@ -249,4 +303,112 @@ class SocietyRepository
             return "Une erreur est survenue";
         }
     }
+
+    public static function getUserRoleInSociety($userId, $bdd) 
+    {
+        $query = $bdd->prepare("
+            SELECT s.nom_society, sr.role_name 
+            FROM society_roles sr
+            JOIN society s ON sr.ref_society = s.id_society
+            WHERE sr.ref_user = :userId
+        ");
+        $query->execute(['userId' => $userId]);
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function joinStudentSociety($student_id)
+    {
+        $my_bdd = Bdd::my_bdd();
+        $req_join_student = $my_bdd->prepare("SELECT * FROM users WHERE id_users = :id");
+        $req_join_student->execute([':id' => $student_id]);
+        $student = $req_join_student->fetch(PDO::FETCH_ASSOC);
+    
+        if ($student) 
+        {
+            $id_society = $_SESSION['id_society'];
+            $req_join_student = $my_bdd->prepare("
+                INSERT INTO society_roles (ref_society, ref_user, role_name) 
+                VALUES (:ref_society, :ref_user, 'etudiant')
+            ");
+            $req_join_student->execute([
+            ':ref_society' => $id_society,
+            ':ref_user' => $student_id
+            ]);
+
+            $req_update_join_student = $my_bdd->prepare("UPDATE users SET ref_society = :ref_society WHERE id_users = :id");
+            $req_update_join_student->execute([
+              ':ref_society' => $id_society,
+               ':id' => $student_id
+            ]);
+        }
+    }
+
+    public static function existJoinStudentSociety($id_society, $student_id)
+    {
+        $my_bdd = Bdd::my_bdd();
+        $reqExistJoinStudentSociety = $my_bdd->prepare("SELECT * FROM society_roles WHERE ref_society = :ref_society AND ref_user = :ref_user");
+        $reqExistJoinStudentSociety->execute([':ref_society' => $id_society, ':ref_user' => $student_id]);
+        $role = $reqExistJoinStudentSociety->fetch(PDO::FETCH_ASSOC);
+        if ($role)
+        {
+            set_flash_message("Cette utilisateur est déjà parmis vos employés", "error");
+            header('Location: ../../view/view_business/accueil_business.php');
+            exit();
+        }
+    }
+
+    public static function getAllSociety()
+    {
+        $my_bdd = Bdd::my_bdd();
+        $req_all_society = $my_bdd->query("SELECT * FROM society where accepted = 1");
+        return $req_all_society->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function getSocietyById($id)
+    {
+        $my_bdd = Bdd::my_bdd();
+        $req_society_id = $my_bdd->prepare("SELECT * FROM society WHERE id_society = ? and accepted = 1");
+        $req_society_id->execute([$id]);
+        return $req_society_id->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function deleteSocietyAdmin($id_society)
+    {
+        try {
+            $my_bdd = Bdd::my_bdd();
+
+            $delete_society = $my_bdd->prepare("DELETE FROM `society` WHERE id_society = :id");
+            $delete_society->execute(array(
+                'id' => $id_society
+            ));
+
+            if ($delete_society->rowCount() > 0) {
+                set_flash_message("L'entreprise a été supprimée avec succès.", "success");
+                header('Location: ../../view/view_admin/society_partner.php'); 
+                exit();
+            } else {
+                set_flash_message("Erreur lors de la suppression de l'entreprise. Cette société n'existe peut-être plus.", "error");
+                header('Location: ../../view/view_admin/society_partner.php');
+                exit();
+            }
+        } catch (PDOException $e) {
+            set_flash_message("Erreur lors de la suppression : " . $e->getMessage(), "error");
+            header('Location: ../../view/view_admin/society_partner.php');
+            exit();
+        }
+    }
+
+
+    public static function rejectOrAcceptedSociety($id, $response)
+    {
+        $my_bdd = Bdd::my_bdd();
+        $update = $my_bdd->prepare("UPDATE `society` SET `accepted`= :response WHERE id_society = :id");
+        $update->execute(array( 
+            'response' => $response,
+            'id' => $id
+        ));
+    }
+
+
+
 }

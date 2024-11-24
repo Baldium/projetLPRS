@@ -6,9 +6,9 @@ if (!isset($_SESSION['liked_posts'])) {
   $_SESSION['liked_posts'] = []; 
 }
 
-
 include_once __DIR__ . '/../../init.php'; 
 include_once '../../utils/Bdd.php';
+include_once '../../repository/repositorySchumanConnect/SocietyRepository.php';
 $my_bdd = Bdd::my_bdd();
 $my_bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -42,11 +42,13 @@ $pp_req = $my_bdd->prepare(" SELECT
 $pp_req->execute();
 $posts = $pp_req->fetchAll(PDO::FETCH_ASSOC);
 
-$adm = $my_bdd->prepare(" SELECT `accepted`, `type` FROM `users` WHERE id_users = :id_user ");
+$adm = $my_bdd->prepare("SELECT `accepted`, `type`, `role` FROM `users` WHERE id_users = :id_user ");
 $adm->execute(array(
   "id_user" => $_SESSION['id_users']
 ));
 $data_adm = $adm->fetch(PDO::FETCH_ASSOC);
+
+$userRole = SocietyRepository::getUserRoleInSociety($_SESSION['id_users'], $my_bdd);
 
 
 ?>
@@ -75,7 +77,8 @@ $data_adm = $adm->fetch(PDO::FETCH_ASSOC);
     </div>
     <div>
     <?php 
-        echo '<img src="data:image/jpeg;base64,' . base64_encode($_SESSION['profile_picture']) . '" alt="Avatar utilisateur" style="width: 30px; height: 30px; border-radius: 50%;">';
+      if (!$userRole) 
+          echo '<img src="data:image/jpeg;base64,' . base64_encode($_SESSION['profile_picture']) . '" alt="Avatar utilisateur" style="width: 30px; height: 30px; border-radius: 50%;">';
     ?>
     </div>
   </header>
@@ -83,13 +86,21 @@ $data_adm = $adm->fetch(PDO::FETCH_ASSOC);
   <div class="container">
     <div class="sidebar">
       <div class="menu-item" onclick="window.location.href='./accueil.php';" style="cursor: pointer;">Accueil</div>
-      <div class="menu-item" onclick="window.location.href='./reseau.php';" style="cursor: pointer;">Réseau</div>
-      <div class="menu-item" onclick="window.location.href='./offres_emplois.php';" style="cursor: pointer;">Offres d'Emploi</div>
-      <div class="menu-item" onclick="window.location.href='./forum.php';" style="cursor: pointer;">Forum ()</div>
+      <?php if($data_adm['role'] == "etudiant" || $data_adm['role'] == "alumni") :?>
+          <div class="menu-item" onclick="window.location.href='./reseau.php';" style="cursor: pointer;">Réseau</div>
+      <?php endif ?>
+      <?php if($data_adm['role'] == "etudiant" || $data_adm['role'] == "alumni") :?> 
+          <div class="menu-item" onclick="window.location.href='./offres_emplois.php';" style="cursor: pointer;">Offres d'Emploi</div>
+      <?php endif ?>
+      <?php if($data_adm['role'] == "etudiant" || $data_adm['role'] == "alumni") :?> 
+          <div class="menu-item" onclick="window.location.href='./forum.php';" style="cursor: pointer;">Forum ()</div>
+      <?php endif ?>
       <div class="menu-item" onclick="window.location.href='./profil.php';" style="cursor: pointer;">Mon Profil ()</div>
-      <div class="menu-item" onclick="window.location.href='./mes_favoris.php';" style="cursor: pointer;">Mes Offres Favorites</div>
-      <div class="menu-item" onclick="window.location.href='../viewEvent/creer_evenement.php';" style="cursor: pointer;">Événements ()</div>
-      <div class="menu-item" onclick="window.location.href='../view_post/gestion.html';" style="cursor: pointer;">Post</div> 
+      <?php if($data_adm['role'] == "etudiant" || $data_adm['role'] == "alumni") :?> 
+          <div class="menu-item" onclick="window.location.href='./mes_favoris.php';" style="cursor: pointer;">Mes Offres Favorites</div>
+          <div class="menu-item" onclick="window.location.href='../viewEvent/creer_evenement.php';" style="cursor: pointer;">Événements ()</div>
+          <div class="menu-item" onclick="window.location.href='../view_post/gestion.html';" style="cursor: pointer;">Post</div>
+      <?php endif ?>
       <div class="menu-item" onclick="window.location.href='../view_business/connexion_business.php';" style="cursor: pointer;">Pour Les Entreprises</div>
       <div class="menu-item" onclick="window.location.href='./entreprises_partenaire.php';" style="cursor: pointer;">Entreprises Partenaires ()</div>
       <?php 

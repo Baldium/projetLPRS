@@ -1,6 +1,12 @@
 <?php
 include_once '../../repository/repositorySchumanConnect/OffersRepository.php';
-//include_once '../../error.php';
+
+
+if (!isset($_SESSION['id_society'])) {
+    set_flash_message("Ne jouez pas au hackeur svp !", "error");
+    header("Location: ../connexion.php");
+    exit;
+}
 
 if (isset($_GET['user_id']) && is_numeric($_GET['user_id']) && isset($_GET['offer_id']) && is_numeric($_GET['offer_id'])) 
 {

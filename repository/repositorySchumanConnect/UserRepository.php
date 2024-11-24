@@ -2,6 +2,7 @@
 
 include '../../models/Users.php';
 include '../../utils/Bdd.php';
+include '../../utils/flash.php';
 
 class UserRepository
 {
@@ -49,6 +50,7 @@ class UserRepository
 
         if (isset($response_data['mail'])) 
         {
+            set_flash_message("Email déjà utilisé.", "error");
             header('Location: ../../view/inscription.php');
             exit();
         } 
@@ -99,7 +101,7 @@ class UserRepository
                     'levele' => $user->getLevel(),
                 ]);
 
-                // Flash message en cas de succès
+                set_flash_message("Compte crée avec succes.", "success");
                 header('Location: ../../view/connexion.php');
                 exit();
             } catch (PDOException $e) {

@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<?php 
+require_once '../utils/flash.php';
+display_flash_message();
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

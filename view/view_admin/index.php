@@ -128,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              </li>
              <li class="nav-item">
                <a data-bs-toggle="collapse" href="#base">
-                 <i class="fas fa-layer-group"></i>
+                 <i class="fas fa-users"></i>
                  <p>Utilisateurs</p>
                  <span class="caret"></span>
                </a>
@@ -184,7 +184,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              </li>
              <li class="nav-item">
                <a data-bs-toggle="collapse" href="#sidebarLayouts">
-                 <i class="fas fa-th-list"></i>
+                 <i class="fas fa-briefcase"></i>
                  <p>Offres</p>
                  <span class="caret"></span>
                </a>
@@ -210,7 +210,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              </li>
              <li class="nav-item">
                <a data-bs-toggle="collapse" href="#forms">
-                 <i class="fas fa-pen-square"></i>
+                 <i class="fas fa-calendar-alt"></i>
                  <p>Evénements</p>
                  <span class="caret"></span>
                </a>
@@ -229,6 +229,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                    <li>
                      <a href="forms/forms.html">
                        <span class="sub-item">Supprimer un événement</span>
+                     </a>
+                   </li>
+                 </ul>
+               </div>
+             </li>
+             <li class="nav-item">
+               <a data-bs-toggle="collapse" href="#entreprise">
+                 <i class="fas fa-building"></i>
+                 <p>Entreprises</p>
+                 <span class="caret"></span>
+               </a>
+               <div class="collapse" id="entreprise">
+                 <ul class="nav nav-collapse">
+                   <li>
+                     <a href="./society_partner.php">
+                       <span class="sub-item">Entreprises Partenaires</span>
+                     </a>
+                   </li>
+                   <li>
+                     <a href="./messagerie.php">
+                       <span class="sub-item">Mes Messages</span>
                      </a>
                    </li>
                  </ul>

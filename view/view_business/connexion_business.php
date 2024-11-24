@@ -1,7 +1,12 @@
 <?php session_start();
-require_once '../../utils/flash.php'; // Inclure le fichier flash.php
-// Afficher le message flash (s'il y en a un)
+require_once '../../utils/flash.php';
 display_flash_message();
+
+if (!isset($_SESSION['id_users'])) {
+    header('Location: ../connexion.php');
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>

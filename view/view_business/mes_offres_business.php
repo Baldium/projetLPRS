@@ -2,6 +2,12 @@
 include '../../repository/repositorySchumanConnect/OffersRepository.php';
 require_once '../../utils/flash.php';
 display_flash_message();
+
+if (!isset($_SESSION['id_society'])) {
+    set_flash_message("Ne jouez pas au hackeur svp !", "error");
+    header("Location: ../connexion.php");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
