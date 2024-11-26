@@ -1,10 +1,16 @@
 <?php
 include '../../repository/repositorySchumanConnect/OffersRepository.php';
 
+
+if (!isset($_SESSION['id_society'])) {
+    set_flash_message("Ne jouez pas au hackeur svp !", "error");
+    header("Location: ../connexion.php");
+    exit;
+}
+
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id_offer = (int)$_GET['id']; 
 
-    // Récupérer les candidats pour l'offre spécifique
     $candidats = OffersRepository::find_all_candidates_by_offer($id_offer);
 
     if ($candidats) {
@@ -26,7 +32,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             echo '<div class="candidate-info">';
             echo '<h3>' . htmlspecialchars($candidate['prenom']) . ' ' . htmlspecialchars($candidate['nom']) . '</h3>';
             
-            // Photo de profil
             if (!empty($candidate['profile_picture'])) 
             {
                 $imageSrc = "data:image/png;base64," . base64_encode($candidate['profile_picture']);
@@ -70,6 +75,16 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             } else 
             {
                 echo '<p>Aucun CV disponible.</p>';
+            }
+            echo '<br>';
+            echo '<h2>Lettre de motivation</h2>';
+            if (!empty($candidate['cover_letter'])) 
+            {
+                $cvSrc = "data:image/png;base64," . base64_encode($candidate['cover_letter']);
+                echo '<img src="' . $cvSrc . '" alt="CV de ' . htmlspecialchars($candidate['prenom']) . '" class="cv-img" onclick="openModal(\'' . $cvSrc . '\')">';
+            } else 
+            {
+                echo '<p>Aucune lettre de motivation disponible.</p>';
             }
             echo '</div>'; 
             echo '</div>'; 

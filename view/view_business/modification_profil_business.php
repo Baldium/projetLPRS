@@ -3,6 +3,13 @@ include '../../repository/repositorySchumanConnect/SocietyRepository.php';
 require_once '../../utils/flash.php';
 display_flash_message();
 
+
+if (!isset($_SESSION['id_society'])) {
+  set_flash_message("Ne jouez pas au hackeur svp !", "error");
+  header("Location: ../connexion.php");
+  exit;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -40,8 +47,8 @@ display_flash_message();
         </div>
 
         <div class="form-group">
-          <a href="../view/mot-de-passe_oublie.php">Mot de passe oublié ou vous voulez tout simplement le changer ?</a>
-          <input type="text" id="website" name="website" placeholder="Pour des raisons de sécurité nous n'afficherons pas votre mot de passe mais vous pouvez le modfier en cliquant sur le bouton.">
+        <label>Pour des raisons de sécurité nous n'afficherons pas votre mot de passe !</label>
+          <a href="#" style="text-decoration: none; color: red">Mot de passe oublié ou vous voulez tout simplement le changer ?</a>
         </div>
 
         <div class="form-actions">

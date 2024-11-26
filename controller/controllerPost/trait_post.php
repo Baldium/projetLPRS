@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         session_start();
         $_SESSION['errors'] = $errors;
 
-        header('Location: ../view/view_post/creation.php');
+        header('Location: ../../view/view_post/creation.php');
         exit;
     }
 } else {

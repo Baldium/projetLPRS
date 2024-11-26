@@ -1,5 +1,7 @@
 <?php
 include_once '../../init.php';
+require_once __DIR__ . '/../../utils/flash.php';
+display_flash_message();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -8,6 +10,7 @@ include_once '../../init.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../public/css/recherche.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KE6AwQCZZ+ZlUJAIaeAPuqZqkCVSu7Z9KfVo5Qp4RRIpKqtVJX8nWKNvhLfnHau8" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <title>Recherche | SchumanConnect</title>
     <style>
         .student-photo 
@@ -59,6 +62,8 @@ include_once '../../init.php';
                 <ul>
                     <li><a href="./offres_emplois.php" class="nav-active">Recherche Emploi</a></li>
                     <li><a href="./faq_recrutement.html">FAQ</a></li>
+                    <li><a href="../view_etudiants/accueil.php" class="nav-active">Accueil</a></li>
+
                 </ul>
             </nav>
             <div class="search-bar">
@@ -172,6 +177,8 @@ include_once '../../init.php';
                         }
                         echo '<div class="view-profile">';
                         echo '<a href="offers.php?id=' . htmlspecialchars($student['id_offers']) . '" class="profile-button">Voir l\'offre</a>';
+                        echo '<br>';
+                        echo '<a href="favorite.php?id=' . htmlspecialchars($student['id_offers']) . '" class="favorite-button" title="Ajouter aux favoris"><i class="fas fa-heart"></i></a>';
                         echo '</div>';
                         echo '</div>';                       
                         echo '<p class="student-school">' . htmlspecialchars($student['type_offers']). '</p>';

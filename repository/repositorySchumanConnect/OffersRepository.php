@@ -221,6 +221,41 @@ class OffersRepository
         }
     }
 
+    public static function update_offers_admin($id_offers_update, $new_title_offers, $new_describe_offers, $new_mission, $new_type_offers, $new_salary, $new_degrees, $new_disponible)
+    {
+        $my_bdd = Bdd::my_bdd();
+
+        $req_update = $my_bdd->prepare('UPDATE offers SET title_offers = :new_title_offers,
+        describe_offers = :new_describe_offers , mission = :new_mission ,type_offers = :new_type_offers ,
+        salary = :new_salary, degrees = :new_degrees , disponible = :new_disponible
+        WHERE id_offers = :id_offers_update');
+        $req_update->execute(array(
+            'new_title_offers' => $new_title_offers,
+            'new_describe_offers' => $new_describe_offers,
+            'new_mission' => $new_mission,
+            'new_type_offers' => $new_type_offers,
+            'new_salary' => $new_salary,
+            'new_degrees' => $new_degrees,
+            'new_disponible' => $new_disponible,
+            'id_offers_update' => $id_offers_update
+        ));
+        $perfet_update = $req_update;
+
+        if($perfet_update)
+        {
+            set_flash_message("L'offre a été mise à jour avec succès.", "success");
+            header('Location: ../../view/view_admin/offers.php');
+            exit();
+
+        }
+        else
+        {
+            set_flash_message("Une erreur est survenue lors de la mise à jour de l'offre.", "error");
+            header('Location: ../../view/view_admin/offers.php');
+            exit();
+        }
+    }
+
     // Fonction pour supprimer une offre
     public static function delete_offers($id_offers)
     {
@@ -243,6 +278,31 @@ class OffersRepository
         {
             set_flash_message("Une erreur est survenue lors de la suppression de l'offre.", "error");
             header('Location: ../../view/view_business/mes_offres_business.php');
+            exit();
+        }
+    }
+
+    public static function delete_offers_admin($id_offers)
+    {
+        $my_bdd = Bdd::my_bdd();
+
+        $req_delete = $my_bdd->prepare('DELETE FROM `offers` WHERE id_offers = :this_id');
+        $req_delete->execute(array(
+            "this_id" => $id_offers
+        ));
+        $perfet_delete = $req_delete;
+
+        if($perfet_delete)
+        {
+            set_flash_message("L'offre a été supprimée avec succès.", "success");
+            header('Location: ../../view/view_admin/offers.php');
+            exit();
+
+        }
+        else
+        {
+            set_flash_message("Une erreur est survenue lors de la suppression de l'offre.", "error");
+            header('Location: ../../view/view_admin/offers.php');
             exit();
         }
     }
@@ -430,7 +490,7 @@ class OffersRepository
           
           $my_bdd = Bdd::my_bdd();
 
-          $sql = $my_bdd->prepare("SELECT * FROM offers");
+          $sql = $my_bdd->prepare("SELECT * FROM offers WHERE disponible = 1");
           $sql->execute();
           return $sql->fetchAll(PDO::FETCH_ASSOC);
     }

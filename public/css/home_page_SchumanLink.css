@@ -13,7 +13,8 @@ body, html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap; /* Permet de passer à plusieurs lignes si nécessaire */
   }
   
   .logo {
@@ -34,7 +35,7 @@ body, html {
   
   .search-bar {
     flex-grow: 1;
-    margin: 0 20px;
+    margin: 10px 20px;
   }
   
   .search-bar input {
@@ -190,19 +191,15 @@ body, html {
   .footer {
     background-color: #f0f0f0;
     color: #333;
-    text-align: left;
-    padding: 10px 20px;
-    font-size: 0.8em;
-    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    padding: 15px 4px;
+    font-size: 0.9em;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap; /* Permet un ajustement dynamique */
   }
-  
   .footer-content {
     display: flex;
     justify-content: space-between;

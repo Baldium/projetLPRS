@@ -1,0 +1,129 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Offer Card */
+.offer-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.offer-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Header Section */
+.card-header {
+    background: linear-gradient(135deg, #4CAF50, #2A9D8F);
+    color: white;
+    padding: 20px;
+}
+
+.offer-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Body Section */
+.card-body {
+    padding: 20px;
+    text-align: left;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.card-body p {
+    margin-bottom: 10px;
+}
+
+.card-body strong {
+    color: #2A9D8F;
+}
+
+/* Footer Section */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #eee;
+}
+
+.card-footer .btn {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.modify-btn {
+    background-color: #FFD700;
+    color: #333;
+}
+
+.modify-btn:hover {
+    background-color: #FFC107;
+}
+
+.delete-btn {
+    background-color: #FF6347;
+    color: #fff;
+}
+
+.delete-btn:hover {
+    background-color: #FF4500;
+}
+
+.view-btn {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.view-btn:hover {
+    background-color: #3E8E41;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+    .offer-card {
+        width: 90%;
+    }
+
+    .card-body p {
+        font-size: 14px;
+    }
+
+    .card-footer .btn {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+}

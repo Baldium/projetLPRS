@@ -1,15 +1,36 @@
-<?php
+<!DOCTYPE html>
+<?php 
 require_once '../utils/flash.php';
 display_flash_message();
-
 ?>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/css/connexion_business.css">
-    <title>Connexion_Aumni | SchumanConnect</title>
+    <title>Connexion | SchumanConnect</title>
+    <!-- Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        .password-container {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+            color: #007BFF;
+        }
+        .password-toggle:hover {
+            color: #0056b3;
+        }
+        input[type="password"], input[type="text"] {
+            flex: 1;
+            padding-right: 35px; /* Leave space for the icon */
+        }
+    </style>
 </head>
 
 <body>
@@ -18,13 +39,18 @@ display_flash_message();
         <div class="logo">
             <img src="../public/assets/image/Logo_Schuman_Connect.png" alt="SchumanLink Logo">
         </div>
-        <h1>Connexion | Etudiants</h1>
+        <h1>Connexion | SchumanConnect</h1>
         <p>C'est un plaisir de vous voir aujourd'hui !</p>
         <form method="post" action='../controller/controllerAlumis/LoginUserController.php'>
             <label for="email">Email</label>
             <input name="email" type="email" id="email" placeholder="exemple_eleves@lprs.com" required>
+
             <label for="password">Mot de passe</label>
-            <input name="password" type="password" id="password" required>
+            <div class="password-container">
+                <input name="password" type="password" id="password" required>
+                <i class="fas fa-eye password-toggle" onclick="togglePasswordVisibility()" id="toggleIcon"></i>
+            </div>
+
             <div class="forgot" onclick="window.location.href='mot-de-passe-oublie.html';" style="cursor: pointer;">
                 Mot de passe oublié ?
             </div>
@@ -36,4 +62,5 @@ display_flash_message();
     </div>
 </div>
 </body>
+<script src="../public/js/view_mdp.js"></script>
 </html>

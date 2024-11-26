@@ -7,9 +7,9 @@ if (!isset($_SESSION['liked_posts'])) {
   $_SESSION['liked_posts'] = []; 
 }
 
-
 include_once __DIR__ . '/../../init.php'; 
 include_once '../../utils/Bdd.php';
+include_once '../../repository/repositorySchumanConnect/SocietyRepository.php';
 $my_bdd = Bdd::my_bdd();
 $my_bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -44,6 +44,15 @@ $posts = $pp_req->fetchAll(PDO::FETCH_ASSOC);
 // Récupérer tous les événements triés par date
 $events = EventRepository::getAllEventSortedByDate();
 
+$adm = $my_bdd->prepare("SELECT `accepted`, `type`, `role` FROM `users` WHERE id_users = :id_user ");
+$adm->execute(array(
+  "id_user" => $_SESSION['id_users']
+));
+$data_adm = $adm->fetch(PDO::FETCH_ASSOC);
+
+$userRole = SocietyRepository::getUserRoleInSociety($_SESSION['id_users'], $my_bdd);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -57,16 +66,21 @@ $events = EventRepository::getAllEventSortedByDate();
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+  <?php
+  if($data_adm['accepted'] != 1)
+      header('Location: ./notAccepted.html');
+  ?>
   <header class="header">
     <div class="logo">
       <img src="../../public/assets/image/Logo_Schuman_Connect.png" alt="SchumanLink Logo">
     </div>
       <div class="search-bar">
-      <input type="text" placeholder="Rechercher... (Ayoub doit le faire)">
+      <input type="text" placeholder="Rechercher... ()">
     </div>
     <div>
     <?php 
-        echo '<img src="data:image/jpeg;base64,' . base64_encode($_SESSION['profile_picture']) . '" alt="Avatar utilisateur" style="width: 30px; height: 30px; border-radius: 50%;">';
+      if (!$userRole)
+          echo '<img src="data:image/jpeg;base64,' . base64_encode($_SESSION['profile_picture']) . '" alt="Avatar utilisateur" style="width: 30px; height: 30px; border-radius: 50%;">';
     ?>
     </div>
   </header>
@@ -74,16 +88,27 @@ $events = EventRepository::getAllEventSortedByDate();
   <div class="container">
     <div class="sidebar">
       <div class="menu-item" onclick="window.location.href='./accueil.php';" style="cursor: pointer;">Accueil</div>
-      <div class="menu-item" onclick="window.location.href='./reseau.php';" style="cursor: pointer;">Réseau</div>
-      <div class="menu-item" onclick="window.location.href='./offres_emplois.php';" style="cursor: pointer;">Offres d'Emploi</div>
-      <div class="menu-item" onclick="window.location.href='./forum.php';" style="cursor: pointer;">Forum ()</div>
-      <div class="menu-item" onclick="window.location.href='../view_prof/profil_prof.php';" style="cursor: pointer;">Mon Profil ()</div>
-      <div class="menu-item" onclick="window.location.href='./mes_favoris.php';" style="cursor: pointer;">Mes Offres Favorites</div>
-      <div class="menu-item" onclick="window.location.href='./actualites.php';" style="cursor: pointer;">Actualités ()</div>
-      <div class="menu-item" onclick="window.location.href='../viewEvent/mes_evenement.php';" style="cursor: pointer;">Événements ()</div>
-      <div class="menu-item" onclick="window.location.href='../../view/view_post/gestion.html';" style="cursor: pointer;">Post</div>
+      <?php if($data_adm['role'] == "etudiant" || $data_adm['role'] == "alumni") :?>
+          <div class="menu-item" onclick="window.location.href='./reseau.php';" style="cursor: pointer;">Réseau</div>
+      <?php endif ?>
+      <?php if($data_adm['role'] == "etudiant" || $data_adm['role'] == "alumni") :?>
+          <div class="menu-item" onclick="window.location.href='./offres_emplois.php';" style="cursor: pointer;">Offres d'Emploi</div>
+      <?php endif ?>
+      <?php if($data_adm['role'] == "etudiant" || $data_adm['role'] == "alumni") :?>
+          <div class="menu-item" onclick="window.location.href='./forum.php';" style="cursor: pointer;">Forum ()</div>
+      <?php endif ?>
+      <div class="menu-item" onclick="window.location.href='./profil.php';" style="cursor: pointer;">Mon Profil ()</div>
+      <?php if($data_adm['role'] == "etudiant" || $data_adm['role'] == "alumni") :?>
+          <div class="menu-item" onclick="window.location.href='./mes_favoris.php';" style="cursor: pointer;">Mes Offres Favorites</div>
+          <div class="menu-item" onclick="window.location.href='../viewEvent/creer_evenement.php';" style="cursor: pointer;">Événements ()</div>
+          <div class="menu-item" onclick="window.location.href='../view_post/gestion.html';" style="cursor: pointer;">Post</div>
+      <?php endif ?>
       <div class="menu-item" onclick="window.location.href='../view_business/connexion_business.php';" style="cursor: pointer;">Pour Les Entreprises</div>
       <div class="menu-item" onclick="window.location.href='./entreprises_partenaire.php';" style="cursor: pointer;">Entreprises Partenaires ()</div>
+      <?php
+      if ($data_adm['type'] == 1)
+        echo "<div class='menu-item' onclick='window.location.href=\"../view_admin\";' style='cursor: pointer;'>Panel Admin</div>";
+      ?>
       <div class="menu-item" onclick="window.location.href='./qui-sommes-nous.html';" style="cursor: pointer;">Qui sommes-nous ?</div>
       <div class="menu-item" onclick="window.location.href='../connexion.php';" style="cursor: pointer;">Se Déconnecter</div>
 
@@ -169,32 +194,6 @@ $events = EventRepository::getAllEventSortedByDate();
 
     
     <div class="right-sidebar">
-      <h3>Nos dernieres actualités</h3>
-      <ul class="event-list">
-        <li class="event-item">
-          <div class="event-icon"></div>
-          <div>
-            <strong> </strong>
-            <div>Ven, 3 août à 15:30</div>
-          </div>
-        </li>
-        <li class="event-item">
-          <div class="event-icon"></div>
-          <div>
-            <strong> </strong>
-            <div>Sam, 4 août à 11:00</div>
-          </div>
-        </li>
-        <li class="event-item">
-          <div class="event-icon"></div>
-          <div>
-            <strong>
-            </strong>
-            <div>Dim, 5 août à 15:00</div>
-          </div>
-        </li>
-      </ul>
-      
       <h3>Événements à venir</h3>
         <ul class="event-list">
             <?php foreach ($events as $event): ?>
@@ -232,7 +231,7 @@ $events = EventRepository::getAllEventSortedByDate();
         const isLiked = button.hasClass('liked'); // Vérifier si le bouton est déjà liké
 
         $.ajax({
-            url: '../../controller/controllerAlumnis/like_post.php',
+            url: '../../controller/controllerAlumis/like_post.php',
             method: 'POST',
             data: {
                 postId: postId,

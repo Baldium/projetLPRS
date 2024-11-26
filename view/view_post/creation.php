@@ -44,7 +44,7 @@ if (isset($_SESSION['errors'])): ?>
     <input type="hidden" name="ref_society" value="...">
     <input type="hidden" name="ref_prof" value="...">
 
-    <button type="submit">Publier</button>
+    <input type="submit" value="Publier" >
     <a href="../../view/view_post/gestion.html" class="button">Retour</a>
 </form>
 
