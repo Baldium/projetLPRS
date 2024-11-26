@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../../utils/flash.php';
+require_once '../../repository/repositorySchumanConnect/EventRepository.php';
 display_flash_message();
 setlocale(LC_TIME, 'fr_FR.UTF-8');
 if (!isset($_SESSION['liked_posts'])) {
@@ -40,6 +41,9 @@ $pp_req = $my_bdd->prepare("
 $pp_req->execute();
 $posts = $pp_req->fetchAll(PDO::FETCH_ASSOC);
 
+// Récupérer tous les événements triés par date
+$events = EventRepository::getAllEventSortedByDate();
+
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +77,7 @@ $posts = $pp_req->fetchAll(PDO::FETCH_ASSOC);
       <div class="menu-item" onclick="window.location.href='./reseau.php';" style="cursor: pointer;">Réseau</div>
       <div class="menu-item" onclick="window.location.href='./offres_emplois.php';" style="cursor: pointer;">Offres d'Emploi</div>
       <div class="menu-item" onclick="window.location.href='./forum.php';" style="cursor: pointer;">Forum ()</div>
-      <div class="menu-item" onclick="window.location.href='./profil.php';" style="cursor: pointer;">Mon Profil ()</div>
+      <div class="menu-item" onclick="window.location.href='../view_prof/profil_prof.php';" style="cursor: pointer;">Mon Profil ()</div>
       <div class="menu-item" onclick="window.location.href='./mes_favoris.php';" style="cursor: pointer;">Mes Offres Favorites</div>
       <div class="menu-item" onclick="window.location.href='./actualites.php';" style="cursor: pointer;">Actualités ()</div>
       <div class="menu-item" onclick="window.location.href='../viewEvent/mes_evenement.php';" style="cursor: pointer;">Événements ()</div>
@@ -192,29 +196,17 @@ $posts = $pp_req->fetchAll(PDO::FETCH_ASSOC);
       </ul>
       
       <h3>Événements à venir</h3>
-      <ul class="event-list">
-        <li class="event-item">
-          <div class="event-icon"></div>
-          <div>
-            <strong> </strong>
-            <div>Ven, 3 août à 15:30</div>
-          </div>
-        </li>
-        <li class="event-item">
-          <div class="event-icon"></div>
-          <div>
-            <strong> </strong>
-            <div>Sam, 4 août à 11:00</div>
-          </div>
-        </li>
-        <li class="event-item">
-          <div class="event-icon"></div>
-          <div>
-            <strong> </strong>
-            <div>Dim, 5 août à 15:00</div>
-          </div>
-        </li>
-      </ul>
+        <ul class="event-list">
+            <?php foreach ($events as $event): ?>
+                <li class="event-item">
+                    <div class="event-icon"></div>
+                    <div>
+                        <strong><?php echo htmlspecialchars($event['title']); ?></strong>
+                        <div><?php echo htmlspecialchars($event['date_event']); ?></div>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ul>
     </div>
   </div>
 
