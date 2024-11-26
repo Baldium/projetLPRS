@@ -49,6 +49,10 @@ $event = EventRepository::getEventById($event_id);
                     <label for="nombre-place">Nombre de places</label>
                     <input type="number" id="nombre-place" name="nombre_place" value="<?php echo htmlspecialchars($event['nb_place']); ?>" placeholder="Nombre de places disponibles">
                 </div>
+                <div class="form-group">
+                    <label for="date">Date de l'événement</label>
+                    <input type="date" id="date" name="date" value="<?php echo htmlspecialchars($event['date_event']); ?>" placeholder="Date de l'événement">
+                </div>
                 <button type="submit" class="btn btn-primary">Modifier l'événement</button>
             </form>
         </section>

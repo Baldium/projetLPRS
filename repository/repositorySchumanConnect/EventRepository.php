@@ -6,18 +6,19 @@ include '../../init.php';
 
 class EventRepository {
 
-    public function createEvent($type, $titre, $description, $lieu, $nombre_place, $admins) {
+    public function createEvent($type, $titre, $description, $lieu, $nombre_place, $date, $admins) {
         $bdd = Bdd::my_bdd();
 
         try {
 
-            $req = $bdd->prepare('INSERT INTO event (type_event, title, description, adress, nb_place, disponible) VALUES (:type, :titre, :description, :lieu, :nombre_place, :disponible)');
+            $req = $bdd->prepare('INSERT INTO event (type_event, title, description, adress, nb_place, date_created, date_event, disponible) VALUES (:type, :titre, :description, :lieu, :nombre_place, current_date, :date_event, :disponible)');
             $req->execute([
                 'type' => $type,
                 'titre' => $titre,
                 'description' => $description,
                 'lieu' => $lieu,
                 'nombre_place' => $nombre_place,
+                'date_event' => $date,
                 'disponible' => 1
             ]);
             $id_event =$bdd->lastInsertId();
@@ -44,6 +45,13 @@ class EventRepository {
         }
     }
 
+    public static function getAllEventSortedByDate(){
+
+        $bdd = Bdd::my_bdd();
+        $req = $bdd->prepare("SELECT * FROM event ORDER BY date_event ASC");
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public static function getEventsByUser($idUsers)
     {

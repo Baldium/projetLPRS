@@ -34,6 +34,7 @@ $events = EventRepository::getEventsByUser($_SESSION['id_users']);
                     <li class="event-item">
                         <h2><?php echo htmlspecialchars($event['title']); ?></h2>
                         <p><?php echo htmlspecialchars($event['description']); ?></p>
+                        <p><?php echo htmlspecialchars($event['date_event']); ?></p>
                         <button class="btn btn-primary" onclick="location.href='modifier_evenement.php?id=<?php echo $event['id_event']; ?>'">Modifier</button>
                     </li>
                 <?php endforeach; ?>

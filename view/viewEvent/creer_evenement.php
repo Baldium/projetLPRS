@@ -49,6 +49,10 @@ $admins = EventRepository::getAdmins();
                     <input type="number" id="nombre-place" name="nombre_place" placeholder="Nombre de places disponibles">
                 </div>
                 <div class="form-group">
+                    <label for="date">Date de l'événement</label>
+                    <input type="date" id="date" name="date" placeholder="Date de l'événement">
+                </div>
+                <div class="form-group">
                     <label for="admin">Ajouter des admin pour l'événement</label>
                     <select id="admin" name="admins[]" multiple>
                         <?php foreach ($admins as $admin): ?>
