@@ -36,12 +36,12 @@ class ProfRepository
             header('Location: ../../view/view_etudiants/accueil.php');
             exit();
         }
-        else {
+         /*else {
             // Flash message en cas d'erreur
             set_flash_message("Email ou mot de passe incorrect.", "error");
             header('Location: ../../view/view_prof/connexion_prof.php');
             exit();
-        }
+        }   */
     }
 
     public function inscriptionProf($last_name, $first_name, $mail, $password, $matiere)
@@ -63,6 +63,20 @@ class ProfRepository
         } catch (PDOException $e) {
             echo "Erreur PDO : " . $e->getMessage();
         }
-
     }
+
+    public static function getProfById ($id) {
+        try {
+            $bdd = Bdd::my_bdd();
+            $req = $bdd->prepare("SELECT nom, prenom, mail, profile_picture FROM users WHERE id_users = :id");
+            $req->execute(['id' => $id]);
+            $prof = $req->fetch(PDO::FETCH_ASSOC);
+
+
+        } catch (PDOException $e) {
+            echo "Erreur PDO : " . $e->getMessage();
+        }
+    }
+
+
 }
