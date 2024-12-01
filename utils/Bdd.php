@@ -1,15 +1,11 @@
 <?php
-
 require __DIR__ . '/../vendor/autoload.php';
-//include '../error.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
 class Bdd
 {
-    private static $pdo = null; 
-
     public static function my_bdd()
     {
         try {

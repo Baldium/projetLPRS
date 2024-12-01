@@ -29,7 +29,7 @@ class Users
         $this->level = $level;
     }
 
-    // Getters and setters for each attribute
+    // Getters et setters 
     public function getId()
     {
         return $this->id;

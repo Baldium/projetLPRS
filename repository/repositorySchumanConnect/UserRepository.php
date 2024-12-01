@@ -150,7 +150,6 @@ class UserRepository
     public static function register_users()
     {
 
-        //En cours
     }
 
     // Fonction statique pour modifier un utilisateur

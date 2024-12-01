@@ -1,6 +1,8 @@
 <?php
 include_once '../../repository/repositorySchumanConnect/SocietyRepository.php';
 
+
+// Pour supprimer une society
 if (isset($_GET['id'])) 
 {
     $id_society = $_GET['id']; 

@@ -3,6 +3,8 @@ include_once '../../init.php';
 include_once '../../utils/Bdd.php';
 include_once '../../repository/repositorySchumanConnect/ForumRepository.php';
 
+
+// Pour supp un commentaire
 $commentId = isset($_GET['comment_id']) ? (int)$_GET['comment_id'] : 0;
 $postId = isset($_GET['post_id']) ? (int)$_GET['post_id'] : 0;
 $userId = $_SESSION['id_users'];

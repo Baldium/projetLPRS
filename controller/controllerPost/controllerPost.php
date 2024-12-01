@@ -17,7 +17,7 @@ class ControllerPost
     // Méthode pour afficher la liste des posts
     public function liste()
     {
-        $posts = $this->postModel->getTous();
+        $posts = $this->postModel;
         require_once __DIR__ . '/../../view/view_post/liste.php';
     }
 

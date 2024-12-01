@@ -3,15 +3,12 @@ include '../../error.php';
 
 include_once '../../repository/repositorySchumanConnect/UserRepository.php';
 include_once '../../../projetLPRS/models/Users.php';
-
-
-
-
 include_once '../../init.php';
 
+
+// Inscrire un user
 if(isset($_POST['register_user'])) 
 {
-    //$password_confirm = $_POST['confirm_password'];
     // Creation d'une instance de Society
     $the_user_register = new Users(
         $_POST['role'],

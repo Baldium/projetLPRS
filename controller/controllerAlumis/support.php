@@ -4,7 +4,7 @@ require __DIR__ . '../../../utils/mailjet.php';
 include_once '../../utils/flash.php';
 include_once '../../init.php';
 
-// Récupération des données du formulaire
+// Récupération des données du formulaire 
 $name = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
 $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
 $message = isset($_POST['message']) ? htmlspecialchars($_POST['message']) : '';

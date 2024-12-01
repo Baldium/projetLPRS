@@ -3,7 +3,7 @@ include '../../init.php';
 include_once '../../repository/repositorySchumanConnect/UserRepository.php';
 include_once '../../utils/flash.php';
 
-
+// Login user
 if (isset($_POST['login_user'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
