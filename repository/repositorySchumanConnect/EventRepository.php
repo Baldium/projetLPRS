@@ -45,6 +45,14 @@ class EventRepository {
         }
     }
 
+
+    public static function getCountEvents() {
+    $bdd = Bdd::my_bdd();
+    $req = $bdd->prepare("SELECT COUNT(*) as total FROM event");
+    $req->execute();
+    return $req->fetch(PDO::FETCH_ASSOC)['total'];
+}
+
     public static function getAllEventSortedByDate(){
 
         $bdd = Bdd::my_bdd();
@@ -52,6 +60,47 @@ class EventRepository {
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public static function getAllEventSortedBy($sort) {
+        $bdd = Bdd::my_bdd();
+        $req = $bdd->prepare("SELECT * FROM event ORDER BY $sort ASC");
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public static function getEventsByUserRegistration($userId) {
+    $bdd = Bdd::my_bdd();
+    $req = $bdd->prepare("SELECT e.* FROM event AS e
+                          INNER JOIN inscription_event AS ie ON e.id_event = ie.ref_id_event
+                          WHERE ie.ref_id_users = :user_id");
+    $req->execute([':user_id' => $userId]);
+    return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public static function deleteEvent($eventId) {
+    $bdd = Bdd::my_bdd();
+    $req = $bdd->prepare("DELETE FROM event WHERE id_event = :id");
+    $req->execute([':id' => $eventId]);
+    }
+
+public static function updateEvent($eventId, $type, $title, $description, $address, $nb_place, $date_event) {
+    $bdd = Bdd::my_bdd();
+    $req = $bdd->prepare("UPDATE event SET type_event = :type, title = :title, description = :description, adress = :address, nb_place = :nb_place, date_event = :date_event WHERE id_event = :id");
+    $req->execute([
+        ':type' => $type,
+        ':title' => $title,
+        ':description' => $description,
+        ':address' => $address,
+        ':nb_place' => $nb_place,
+        ':date_event' => $date_event,
+        ':id' => $eventId
+    ]);
+    }
+
+
+
 
     public static function getEventsByUser($idUsers)
     {
