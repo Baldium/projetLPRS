@@ -14,7 +14,7 @@ class ProfRepository
         $bdd = Bdd::my_bdd();
 
         // Préparer et exécuter la requête
-        $req = $bdd->prepare("SELECT * FROM users WHERE mail = :mail and role = 'prof'");
+        $req = $bdd->prepare("SELECT * FROM users WHERE mail = :mail and role = 'professeur'");
         $req->execute(array(
             ':mail' => $mail
         ));
@@ -50,7 +50,7 @@ class ProfRepository
         try {
 
             $bdd = Bdd::my_bdd();
-            $req = $bdd->prepare("INSERT INTO users (role, nom, prenom, mail, password, matiere) VALUES ('prof',:last_name, :first_name, :mail, :password, :matiere)");
+            $req = $bdd->prepare("INSERT INTO users (role, nom, prenom, mail, password, matiere) VALUES ('professeur',:last_name, :first_name, :mail, :password, :matiere)");
             $req->execute([
                 'last_name' => $last_name,
                 'first_name' => $first_name,
@@ -71,7 +71,7 @@ class ProfRepository
             $req = $bdd->prepare("SELECT nom, prenom, mail, profile_picture FROM users WHERE id_users = :id");
             $req->execute(['id' => $id]);
             $prof = $req->fetch(PDO::FETCH_ASSOC);
-
+            return $prof;
 
         } catch (PDOException $e) {
             echo "Erreur PDO : " . $e->getMessage();
