@@ -1,5 +1,7 @@
 <?php
 
+// Ayoub
+
 require_once __DIR__ . '/../models/EntreprisePartenaires.php';
 require_once __DIR__ . '/../utils/Bdd.php';
 class EntrepriseP

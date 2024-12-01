@@ -72,18 +72,9 @@ else
     </style>
 </head>
 <body>
+<?php include_once '../../public/layouts/accueil_base.php'; ?>
     <div class="container">
-        <header>
-            <div class="logo">
-                <img class="logo-icon" src="../../public/assets/image/Logo_Schuman_Connect.png" alt="Logo SchumanConnect">
-            </div>            
-            <nav>
-                <ul>
-                    <li><a href="./reseau.php" class="nav-active">Recherche Étudiants</a></li>
-                </ul>
-            </nav>
-        </header>
-
+       
         <main>
             <div class="profile-details">
                 <div class="profile-info">
@@ -119,7 +110,6 @@ else
                 </div>
             </div>
 
-            <a href="./reseau.php" class="profile-button">Retour à la recherche</a>
         </main>
         <div id="myModal" class="modal">
             <span class="close" onclick="closeModal()">&times;</span>

@@ -2,6 +2,7 @@
 
 class EntreprisePartenaires
 {
+    // Ayoub
     private $id_society;
     private $nom_society;
     private $adress_society;

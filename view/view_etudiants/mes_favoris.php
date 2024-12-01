@@ -34,20 +34,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']) 
     <title>Mes Favoris | SchumanConnect</title>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <img class="logo-icon" src="../../public/assets/image/Logo_Schuman_Connect.png" alt="Logo SchumanConnect">
-            </div>            
-            <nav>
-                <ul>
-                    <li><a href="./offres_emplois.php">Recherche Offres</a></li>
-                    <li><a href="./mes_favoris.php" class="nav-active">Mes Favoris</a></li>
-                </ul>
-            </nav>
-        </header>
-
+    
+      
         <main>
+        <?php include_once '../../public/layouts/accueil_base.php';?>
+
             <h1>Mes Offres Favorites</h1>
             
             <?php if (empty($favorites)): ?>
@@ -66,8 +57,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']) 
                 </div>
             <?php endif; ?>
 
-            <a href="./accueil.php" class="back-button">Retour à l'accueil</a>
         </main>
-    </div>
 </body>
 </html>

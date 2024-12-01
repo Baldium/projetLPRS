@@ -73,6 +73,7 @@ display_flash_message();
                     <option value="etudiant">Etudiant actuel</option>
                     <option value="alumni">Ancien Etudiant</option>
                     <option value="pdg_entreprise">Entreprise</option>
+                    <option value="professeur">Professeur</option>
                     <option value="autre">Autre</option>
                 </select>
                 
@@ -87,6 +88,9 @@ display_flash_message();
                     </optgroup>
                     <optgroup label="BTS SIO">
                         <option value="BTS SIO">BTS SIO</option>
+                    </optgroup>
+                    <optgroup label="Autre">
+                        <option value="BTS SIO">Autre</option>
                     </optgroup>
                 </select>
 
@@ -106,6 +110,9 @@ display_flash_message();
                     </optgroup>
                     <optgroup label="Bac+5">
                         <option value="Bac+5">Bac+5</option>
+                    </optgroup>
+                    <optgroup label="Autre">
+                        <option value="Bac+5">Autre</option>
                     </optgroup>
                 </select>
 

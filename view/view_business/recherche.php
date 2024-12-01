@@ -159,7 +159,7 @@ if (!isset($_SESSION['id_society'])) {
                     echo '<p>Étudiants trouvés : ' . $student_accepted . '</p><br>';
                     foreach ($students as $student) 
                     {
-                        if ($student['role'] != "pdg_entreprise" && !empty($student['role']) && !empty($student['promo'])) 
+                        if ($student['role'] != "pdg_entreprise"  && $student['role'] != "professeur" && !empty($student['role']) && !empty($student['promo'])) 
                         {
                             echo '<div class="student-card">';
                             echo '<div class="student-card-header">';
