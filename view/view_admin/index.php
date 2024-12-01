@@ -3,7 +3,8 @@
 <?php
 include_once '../../init.php';
 include_once '../../utils/Bdd.php';
-include_once '../../repository/repositoryAdmin/UsersRepository.php'; 
+include_once '../../repository/repositoryAdmin/UsersRepository.php';
+include_once '../../repository/repositorySchumanConnect/EventRepository.php';
 include_once '../../repository/repositoryAdmin/OffersRepository.php';
 require_once '../../utils/flash.php';
 display_flash_message();
@@ -22,6 +23,7 @@ if($data_adm['type'] != 1)
 $users = UsersRespository::getAllUsersNotAccepted();
 $offers = OffersRepository::getAllOffers();
 $nbOffres = OffersRepository::getCountOffers();
+$nbEvents = EventRepository::getCountEvents();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (isset($_POST['id_user'], $_POST['action'])) {
@@ -217,7 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                <div class="collapse" id="forms">
                  <ul class="nav nav-collapse">
                    <li>
-                     <a href="forms/forms.html">
+                     <a href="evenements_admin.php">
                        <span class="sub-item">Voir tout les événements</span>
                      </a>
                    </li>
@@ -470,7 +472,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                      <div class="col col-stats ms-3 ms-sm-0">
                        <div class="numbers">
                          <p class="card-category">Evénements</p>
-                         <h4 class="card-title">Nb event</h4>
+                         <h4 class="card-title"><?php echo $nbEvents; ?></h4>
                        </div>
                      </div>
                    </div>
