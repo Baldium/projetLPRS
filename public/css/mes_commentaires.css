@@ -1,0 +1,130 @@
+/* styles.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Tabs Styling */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #3b82f6;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.tab-button.active,
+.tab-button:hover {
+    background-color: #2563eb;
+}
+
+.content-section {
+    display: none;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.content-section.active {
+    display: block;
+}
+
+/* Dual Column Layout */
+.columns {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.column {
+    width: 48%;
+}
+
+/* Common Styling for Comments/Responses */
+.card {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+.card p {
+    margin: 5px 0;
+}
+
+.card .actions {
+    margin-top: 10px;
+}
+
+.action-button {
+    text-decoration: none;
+    background-color: #3b82f6;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.action-button:hover {
+    background-color: #2563eb;
+}
+
+.card .date {
+    font-size: 14px;
+    color: #888;
+    margin-top: 5px;
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .columns {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .column {
+        width: 100%;
+    }
+
+    .tab-button {
+        width: 45%;
+    }
+}

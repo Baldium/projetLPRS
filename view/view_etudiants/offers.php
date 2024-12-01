@@ -26,18 +26,11 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <title>Détails de l'offre - <?= htmlspecialchars($offer['title_offers']) ?> | SchumanConnect</title>
 </head>
 <body>
+<?php include_once '../../public/layouts/accueil_base.php'; ?>
+
     <div class="container">
-        <header>
-            <div class="logo">
-                <img class="logo-icon" src="../../public/assets/image/Logo_Schuman_Connect.png" alt="Logo SchumanConnect">
-            </div>            
-            <nav>
-                <ul>
-                    <li><a href="./recherche.php" class="nav-active">Recherche Offres</a></li>
-                    <li><a href="./faq_offres.html">FAQ</a></li>
-                </ul>
-            </nav>
-        </header>
+     
+
 
         <main>
             <div class="offer-details">

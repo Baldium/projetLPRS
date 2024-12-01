@@ -4,6 +4,9 @@
         "vlucas/phpdotenv": "^5.6",
         "mailjet/mailjet-apiv3-php": "^1.6",
         "cboden/ratchet": "^0.4.4",
-        "react/socket": "^0.8" 
+        "react/socket": "^0.8",
+        "consoletvs/profanity": "^3.5",
+        "illuminate/support": "^11.34"
     }
+
 }

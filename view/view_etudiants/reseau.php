@@ -54,7 +54,7 @@
             </div>            
             <nav>
                 <ul>
-                    <li><a href="./recherche.php" class="nav-active">Recherche Étudiants</a></li>
+                    <li><a href="./reseau.php" class="nav-active">Recherche Étudiants</a></li>
                     <li><a href="./accueil.php" class="nav-active">Accueil</a></li>
 
                 </ul>
@@ -147,7 +147,7 @@
                     echo '<p>Étudiants trouvés : ' . $student_accepted . '</p><br>';
                     foreach ($students as $student) 
                     {
-                        if ($student['role'] != "pdg_entreprise" && !empty($student['role']) && !empty($student['promo'])) 
+                        if ($student['role'] != "pdg_entreprise" && $student['role'] != "professeur" && !empty($student['role']) && !empty($student['promo'] )) 
                         {
                             echo '<div class="student-card">';
                             echo '<div class="student-card-header">';

@@ -360,7 +360,7 @@ class SocietyRepository
     public static function getAllSociety()
     {
         $my_bdd = Bdd::my_bdd();
-        $req_all_society = $my_bdd->query("SELECT * FROM society where accepted = 1");
+        $req_all_society = $my_bdd->query("SELECT * FROM society where accepted = 1 OR accepted is null");
         return $req_all_society->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -408,6 +408,21 @@ class SocietyRepository
             'id' => $id
         ));
     }
+
+    public static function getAllSocietyForUser()
+    {
+        $my_bdd = Bdd::my_bdd();
+        $req_all_society = $my_bdd->query("SELECT * FROM society where accepted = 1");
+        return $req_all_society->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function addViewSociety($id_society)
+    {
+        $my_bdd = Bdd::my_bdd();
+        $req = $my_bdd->prepare("UPDATE `society` SET `nb_view_company` = nb_view_company + 1 WHERE id_society = :id_society");
+        $req->execute(['id_society' => $id_society]);
+    }
+
 
 
 

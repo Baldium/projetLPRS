@@ -7,12 +7,7 @@
     <title>Contactez le Support</title>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Contactez notre Support</h1>
-            <p>Nous sommes là pour vous aider en cas de problème.</p>
-        </div>
-    </header>
+<?php  include_once '../../public/layouts/accueil_base.php'; ?>
 
     <main class="container">
         <section class="contact-info">
@@ -46,8 +41,6 @@
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 SchumanConnect. Tous droits réservés.</p>
-    </footer>
+  
 </body>
 </html>
