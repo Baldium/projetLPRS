@@ -14,7 +14,7 @@
     </div>
     <h1>Inscription | Prof</h1>
     <p>Nous sommes ravis de vous accueillir sur notre plateforme !</p>
-    <form action="../../controller/controllerProf/registerProfController.php" method="post" id="registration-form">
+    <form action="../../controller/controllerProf/registerProfController.php" method="post" enctype="multipart/form-data" id="registration-form">
 
         <label for="first-name">Prénom</label>
       <input type="text" id="first-name" name="first_name" placeholder="Votre prénom" required>
@@ -31,6 +31,9 @@
         <label for="confirm-password">Confirmer le mot de passe</label>
       <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmer le mot de passe" required>
 
+        <label for="profile_picture">Photo de profil (optionnel)</label>
+        <input name="profile_picture" type="file" id="profile_picture">
+
         <label for="matiere">Matière</label>
         <div id="matiere">
             <label><input type="radio" name="matiere" value="maths"> Mathématiques</label><br>
@@ -40,6 +43,17 @@
             <label><input type="radio" name="matiere" value="literature"> Littérature</label><br>
             <label><input type="radio" name="matiere" value="literature"> Littérature</label><br>
         </div>
+        <br> <br>
+        <label for="classe">Classe</label>
+        <div id="matiere">
+            <label><input type="radio" name="classe" value="maths"> Mathématiques</label><br>
+            <label><input type="radio" name="classe" value="cybersecurité"> cybersecurité</label><br>
+            <label><input type="radio" name="classe" value="biologie"> Biologie</label><br>
+            <label><input type="radio" name="classe" value="literature"> Littérature</label><br>
+            <label><input type="radio" name="classe" value="literature"> Littérature</label><br>
+            <label><input type="radio" name="classe" value="literature"> Littérature</label><br>
+        </div>
+
       <button type="submit">S'inscrire</button>
     </form>
   </div>

@@ -21,7 +21,7 @@ include_once '../../init.php';
             <label for="email">Email</label>
             <input type="email" id="email" name="mail" placeholder="exemple_business@schumanconnect.com" required>
             <label for="password">Mot de passe</label>
-            <input type="password" id="password" name="mdp" required>
+            <input type="password" id="password" name="password" required>
             <div class="forgot" onclick="window.location.href='mot-de-passe-oublie.html';" style="cursor: pointer;">
                 Mot de passe oublié ?
             </div>

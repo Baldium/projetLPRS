@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
 require_once __DIR__ . '/../../utils/flash.php';
+require_once '../../repository/repositorySchumanConnect/EventRepository.php';
 display_flash_message();
 setlocale(LC_TIME, 'fr_FR.UTF-8');
 if (!isset($_SESSION['liked_posts'])) {
@@ -52,6 +53,9 @@ if (empty($posts)) {
   header("Location: " . $_SERVER['PHP_SELF']);
   exit;
   }
+
+// Récupérer tous les événements triés par date
+$events = EventRepository::getAllEventSortedByDate();
 
 $adm = $my_bdd->prepare("SELECT `accepted`, `type`, `role` FROM `users` WHERE id_users = :id_user ");
 $adm->execute(array(
@@ -108,7 +112,8 @@ $userRole = SocietyRepository::getUserRoleInSociety($_SESSION['id_users'], $my_b
       <?php endif ?>
       <div class="menu-item" onclick="window.location.href='./profil.php';" style="cursor: pointer;">Mon Profil ()</div>
       <?php if($data_adm['role'] == "etudiant" || $data_adm['role'] == "alumni" || $data_adm['role'] == "professeur") :?> 
-          <div class="menu-item" onclick="window.location.href='../viewEvent/creer_evenement.php';" style="cursor: pointer;">Événements ()</div>
+          <div class="menu-item" onclick="window.location.href='../viewEvent/events.php';" style="cursor: pointer;">Événements</div>
+          <div class="menu-item" onclick="window.location.href='../viewEvent/mes_evenement.php';" style="cursor: pointer;">Mes événements</div>
           <div class="menu-item" onclick="window.location.href='../view_post/gestion.html';" style="cursor: pointer;">Post</div>
       <?php endif ?>
       <div class="menu-item" onclick="window.location.href='../view_business/connexion_business.php';" style="cursor: pointer;">Pour Les Entreprises</div>
@@ -226,7 +231,7 @@ $userRole = SocietyRepository::getUserRoleInSociety($_SESSION['id_users'], $my_b
                                 <div>
                                     <strong><?php echo htmlspecialchars($response['user_name']); ?></strong>
                                     <p><?php echo htmlspecialchars($response['text']); ?></p>
-                                    <?php 
+                                    <?php
                                     // Conversion de la date et ajout d'une heure
                                     $responseDate = new DateTime($response['date_created']);
                                     $responseDate->modify('+1 hour');
@@ -251,7 +256,7 @@ $userRole = SocietyRepository::getUserRoleInSociety($_SESSION['id_users'], $my_b
       </div>
 
           </div>
-        <?php endforeach; 
+        <?php endforeach;
         ?>
     </div>
 
@@ -259,29 +264,17 @@ $userRole = SocietyRepository::getUserRoleInSociety($_SESSION['id_users'], $my_b
     
     <div class="right-sidebar">
       <h3>Événements à venir</h3>
-      <ul class="event-list">
-        <li class="event-item">
-          <div class="event-icon"></div>
-          <div>
-            <strong>()</strong>
-            <div>Ven, 3 août à 15:30</div>
-          </div>
-        </li>
-        <li class="event-item">
-          <div class="event-icon"></div>
-          <div>
-            <strong>()</strong>
-            <div>Sam, 4 août à 11:00</div>
-          </div>
-        </li>
-        <li class="event-item">
-          <div class="event-icon"></div>
-          <div>
-            <strong>()</strong>
-            <div>Dim, 5 août à 15:00</div>
-          </div>
-        </li>
-      </ul>
+        <ul class="event-list">
+            <?php foreach ($events as $event): ?>
+                <li class="event-item">
+                    <div class="event-icon"></div>
+                    <div>
+                        <strong><?php echo htmlspecialchars($event['title']); ?></strong>
+                        <div><?php echo htmlspecialchars($event['date_event']); ?></div>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ul>
     </div>
   </div>
 

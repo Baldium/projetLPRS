@@ -27,7 +27,7 @@ $admins = EventRepository::getAdmins();
             <h1>Créer un événement</h1>
             <p>Remplissez les informations ci-dessous pour créer un nouvel événement</p>
 
-            <form action="../../controller/controllerEvent/CreateEventController.php" method="post">
+            <form action="../../controller/controllerEvent/createEventController.php" method="post">
                 <div class="form-group">
                     <label for="type">Type d'événement</label>
                     <input type="text" id="type" name="type" placeholder="Type d'événement">
@@ -49,11 +49,15 @@ $admins = EventRepository::getAdmins();
                     <input type="number" id="nombre-place" name="nombre_place" placeholder="Nombre de places disponibles">
                 </div>
                 <div class="form-group">
+                    <label for="date">Date de l'événement</label>
+                    <input type="date" id="date" name="date" placeholder="Date de l'événement">
+                </div>
+                <div class="form-group">
                     <label for="admin">Ajouter des admin pour l'événement</label>
-                    <select id="admin" name="admin">
+                    <select id="admin" name="admins[]" multiple>
                         <?php foreach ($admins as $admin): ?>
-                            <option value="<?php echo htmlspecialchars($admin['id']); ?>">
-                                <?php echo htmlspecialchars($admin['nom']); ?>
+                            <option value="<?php echo htmlspecialchars($admin['id_users']);?>">
+                                <?php echo htmlspecialchars($admin['nom']);?>   <?php echo htmlspecialchars($admin['prenom']);?>
                             </option>
                         <?php endforeach; ?>
                     </select>
