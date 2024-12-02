@@ -5,6 +5,8 @@ include_once '../../init.php';
 include_once '../../utils/Bdd.php';
 include_once '../../repository/repositoryAdmin/UsersRepository.php'; 
 include_once '../../repository/repositoryAdmin/OffersRepository.php';
+include_once '../../repository/repositoryAdmin/PostsRepository.php';
+include_once '../../repository/repositoryAdmin/EventsRepository.php';
 require_once '../../utils/flash.php';
 display_flash_message();
 
@@ -19,16 +21,21 @@ if($data_adm['type'] != 1)
   header('Location: ../view_etudiants/notAccepted.html');
 
 
-$users = UsersRespository::getAllUsersNotAccepted();
+$users = UsersRepository::getAllUsersNotAccepted();
 $offers = OffersRepository::getAllOffers();
 $nbOffres = OffersRepository::getCountOffers();
+$nbUsers = UsersRepository::getUsersNumber();
+$nbPosts = PostsRepository::getPostsNumber();
+$nbEvents = EventsRepository::getEventsNumber();
+
+$users = UsersRepository::getUsers();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (isset($_POST['id_user'], $_POST['action'])) {
       $idUser = intval($_POST['id_user']);
       $action = ($_POST['action'] === 'accept') ? 1 : 0; // ternaire pris d'internet et j'ai readapter pour moi
 
-      UsersRespository::rejectOrAcceptedCandidat($idUser, $action);
+      UsersRepository::rejectOrAcceptedCandidat($idUser, $action);
 
       header("Location: " . $_SERVER['PHP_SELF']);
       exit;
@@ -127,112 +134,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                <h4 class="text-section">Actions</h4>
              </li>
              <li class="nav-item">
-               <a data-bs-toggle="collapse" href="#base">
+               <a href="./users.php">
                  <i class="fas fa-users"></i>
                  <p>Utilisateurs</p>
                  <span class="caret"></span>
                </a>
-               <div class="collapse" id="base">
-                 <ul class="nav nav-collapse">
-                   <li>
-                     <a href="#">
-                       <span class="sub-item">//</span>
-                     </a>
-                   </li>
-                   <li>
-                     <a href="#">
-                       <span class="sub-item">//</span>
-                     </a>
-                   </li>
-                   <li>
-                     <a href="#">
-                       <span class="sub-item">//</span>
-                     </a>
-                   </li>
-                   <li>
-                     <a href="#">
-                       <span class="sub-item">//</span>
-                     </a>
-                   </li>
-                   <li>
-                     <a href="#">
-                       <span class="sub-item">//</span>
-                     </a>
-                   </li>
-                   <li>
-                     <a href="#">
-                       <span class="sub-item">//</span>
-                     </a>
-                   </li>
-                   <li>
-                     <a href="#">
-                       <span class="sub-item">//</span>
-                     </a>
-                   </li>
-                   <li>
-                     <a href="#">
-                       <span class="sub-item">//</span>
-                     </a>
-                   </li>
-                   <li>
-                     <a href="#">
-                       <span class="sub-item">//</span>
-                     </a>
-                   </li>
-                 </ul>
-               </div>
              </li>
              <li class="nav-item">
-               <a data-bs-toggle="collapse" href="#sidebarLayouts">
+               <a href="./offers.php">
                  <i class="fas fa-briefcase"></i>
                  <p>Offres</p>
                  <span class="caret"></span>
                </a>
-               <div class="collapse" id="sidebarLayouts">
-                 <ul class="nav nav-collapse">
-                   <li>
-                     <a href="./offers.php">
-                       <span class="sub-item">Voir toutes les offres</span>
-                     </a>
-                   </li>
-                   <li>
-                     <a href="./offers.php">
-                       <span class="sub-item">Modifier un offre</span>
-                     </a>
-                   </li>
-                   <li>
-                     <a href="./offers.php">
-                       <span class="sub-item">Supprimer une offre</span>
-                     </a>
-                   </li>
-                 </ul>
-               </div>
              </li>
              <li class="nav-item">
-               <a data-bs-toggle="collapse" href="#forms">
+               <a href="./events.php">
                  <i class="fas fa-calendar-alt"></i>
                  <p>Evénements</p>
                  <span class="caret"></span>
                </a>
-               <div class="collapse" id="forms">
-                 <ul class="nav nav-collapse">
-                   <li>
-                     <a href="forms/forms.html">
-                       <span class="sub-item">Voir tout les événements</span>
-                     </a>
-                   </li>
-                   <li>
-                     <a href="forms/forms.html">
-                       <span class="sub-item">Modifier un événement</span>
-                     </a>
-                   </li>
-                   <li>
-                     <a href="forms/forms.html">
-                       <span class="sub-item">Supprimer un événement</span>
-                     </a>
-                   </li>
-                 </ul>
-               </div>
              </li>
              <li class="nav-item">
                <a data-bs-toggle="collapse" href="#entreprise">
@@ -254,6 +174,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                    </li>
                  </ul>
                </div>
+             </li>
+             <li class="nav-item">
+               <a href="./posts.php">
+                 <i class="fas fa-building"></i>
+                 <p>Posts</p>
+                 <span class="caret"></span>
+               </a>
              </li>
            </ul>
          </div>
@@ -410,7 +337,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                <h3 class="fw-bold mb-3">Panel Admin</h3>
              </div>
              <div class="ms-md-auto py-2 py-md-0">
-               <a href="#" class="btn btn-primary btn-round">Ajouter un utilisateur</a>
+               <a href="./add_user.php" class="btn btn-primary btn-round">Ajouter un utilisateur</a>
+               <a href="./add_admin.php" class="btn btn-primary btn-round">Ajouter un admin</a>
              </div>
            </div>
            <div class="row">
@@ -428,7 +356,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                      <div class="col col-stats ms-3 ms-sm-0">
                        <div class="numbers">
                          <p class="card-category">Utilisateurs</p>
-                         <h4 class="card-title">nb utilisateur</h4>
+                         <h4 class="card-title"><?php echo $nbUsers; ?></h4>
                        </div>
                      </div>
                    </div>
@@ -470,7 +398,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                      <div class="col col-stats ms-3 ms-sm-0">
                        <div class="numbers">
                          <p class="card-category">Evénements</p>
-                         <h4 class="card-title">Nb event</h4>
+                         <h4 class="card-title"><?php echo $nbEvents; ?></h4>
                        </div>
                      </div>
                    </div>
@@ -491,7 +419,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                      <div class="col col-stats ms-3 ms-sm-0">
                        <div class="numbers">
                          <p class="card-category">Postes</p>
-                         <h4 class="card-title">Nb postes</h4>
+                         <h4 class="card-title"><?php echo $nbPosts; ?></h4>
                        </div>
                      </div>
                    </div>
@@ -514,20 +442,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   </div>
                 </div>
                 <div class="card-list py-4">
-                  <?php if (is_array($users) && count($users) > 0): ?>
+                  <?php if(is_array($users) && count($users) > 0): ?>
                     <?php foreach ($users as $user): ?>
                       <div class="item-list">
                         <div class="avatar">
-                        <?php if (!empty($user['profile_picture'])): ?>
+                        <?php if(!empty($user['profile_picture'])): ?>
                             <img 
                               src="data:image/jpeg;base64,<?= base64_encode($user['profile_picture']); ?>" 
                               alt="..." 
                               class="avatar-img rounded-circle" 
                             />
                           <?php else: ?>
-                            <span class="avatar-title rounded-circle border border-white bg-secondary">
-                              <?= strtoupper(substr(htmlspecialchars($user['name']), 0, 1)); ?>
-                            </span>
                             <span class="avatar-title rounded-circle border border-white bg-secondary">
                               <?= strtoupper(substr(htmlspecialchars($user['nom']), 0, 1)); ?>
                             </span>
