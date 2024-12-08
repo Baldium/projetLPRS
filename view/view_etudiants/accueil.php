@@ -39,7 +39,8 @@ $sql = "SELECT
       FROM post p
       LEFT JOIN users u ON p.ref_users = u.id_users
       LEFT JOIN society s ON p.ref_society = s.id_society
-      WHERE p.title LIKE ? OR p.description LIKE ?
+     WHERE (p.title LIKE ? OR p.description LIKE ?)
+      AND p.canal = 'general'
       ORDER BY p.date_created DESC";
 
 $posts = $my_bdd->prepare($sql);
@@ -114,7 +115,8 @@ $userRole = SocietyRepository::getUserRoleInSociety($_SESSION['id_users'], $my_b
       <?php if($data_adm['role'] == "etudiant" || $data_adm['role'] == "alumni" || $data_adm['role'] == "professeur") :?> 
           <div class="menu-item" onclick="window.location.href='../viewEvent/events.php';" style="cursor: pointer;">Événements</div>
           <div class="menu-item" onclick="window.location.href='../viewEvent/mes_evenement.php';" style="cursor: pointer;">Mes événements</div>
-          <div class="menu-item" onclick="window.location.href='../view_post/gestion.html';" style="cursor: pointer;">Post</div>
+          <div class="menu-item" onclick="window.location.href='../view_etudiants/post_detail.php?id=38';" style="cursor: pointer;">Forum</div>
+          <div class="menu-item" onclick="window.location.href='../view_post/gestion.php';" style="cursor: pointer;">Post</div>
       <?php endif ?>
       <div class="menu-item" onclick="window.location.href='../view_business/connexion_business.php';" style="cursor: pointer;">Pour Les Entreprises</div>
       <div class="menu-item" onclick="window.location.href='./society_partener.php';" style="cursor: pointer;">Entreprises Partenaires</div>

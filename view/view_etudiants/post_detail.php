@@ -92,8 +92,8 @@ $userRole = SocietyRepository::getUserRoleInSociety($_SESSION['id_users'], $my_b
       <div class="menu-section">
         <h3>Sections</h3>
         <div class="menu-item" onclick="window.location.href='./accueil.php';" style="cursor: pointer;">Général</div>
-        <div class="menu-item" onclick="window.location.href='./alumnis_et_entreprises.php';" style="cursor: pointer;">Alumni & Entreprises</div>
-        <div class="menu-item" onclick="window.location.href='./etudiants.php';" style="cursor: pointer;">Étudiants</div>
+        <div class="menu-item" onclick="window.location.href='../view_post/forum_entreprise_alumni.php';" style="cursor: pointer;">Alumni & Entreprises</div>
+        <div class="menu-item" onclick="window.location.href='../view_post/forum_etudiant_prof.php';" style="cursor: pointer;">Forum etudiants et profs</div>
       </div>
 
       <div class="menu-item" onclick="window.location.href='./accueil.php';" style="cursor: pointer;">Accueil</div>
@@ -107,7 +107,7 @@ $userRole = SocietyRepository::getUserRoleInSociety($_SESSION['id_users'], $my_b
       <div class="menu-item" onclick="window.location.href='./profil.php';" style="cursor: pointer;">Mon Profil ()</div>
       <?php if($data_adm['role'] == "etudiant" || $data_adm['role'] == "alumni" || $data_adm['role'] == "professeur") :?> 
           <div class="menu-item" onclick="window.location.href='../viewEvent/creer_evenement.php';" style="cursor: pointer;">Événements ()</div>
-          <div class="menu-item" onclick="window.location.href='../view_post/gestion.html';" style="cursor: pointer;">Post</div>
+          <div class="menu-item" onclick="window.location.href='../view_post/gestion.php';" style="cursor: pointer;">Post</div>
       <?php endif ?>
       <div class="menu-item" onclick="window.location.href='../view_business/connexion_business.php';" style="cursor: pointer;">Pour Les Entreprises</div>
       <div class="menu-item" onclick="window.location.href='./society_partener.php';" style="cursor: pointer;">Entreprises Partenaires</div>

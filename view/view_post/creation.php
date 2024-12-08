@@ -33,6 +33,7 @@ if (isset($_SESSION['errors'])): ?>
 <?php endif; ?>
 
 <form action="../../controller/controllerPost/trait_post.php" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="<? $_GET['canal'] ?> value="<? $_GET['canal'] ?>">
     <div>
         <label for="title">Titre :</label>
         <input type="text" id="title" name="title" required>
@@ -50,7 +51,7 @@ if (isset($_SESSION['errors'])): ?>
     <input type="hidden" name="ref_users" value="<?= $_SESSION['id_users']; ?>">
 
     <input name="insert_post_submit" type="submit" value="Publier">
-    <a href="../../view/view_post/gestion.html" class="button">Retour</a>
+    <a href="gestion.php" class="button">Retour</a>
 </form>
 
 </body>
