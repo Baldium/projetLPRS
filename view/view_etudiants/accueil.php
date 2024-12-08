@@ -110,7 +110,7 @@ $userRole = SocietyRepository::getUserRoleInSociety($_SESSION['id_users'], $my_b
           <div class="menu-item" onclick="window.location.href='./offres_emplois.php';" style="cursor: pointer;">Offres d'Emploi</div>
           <div class="menu-item" onclick="window.location.href='./mes_favoris.php';" style="cursor: pointer;">Mes Offres Favorites</div>
       <?php endif ?>
-      <div class="menu-item" onclick="window.location.href='./profil.php';" style="cursor: pointer;">Mon Profil ()</div>
+      <div class="menu-item" onclick="window.location.href='./profil.php';" style="cursor: pointer;">Mon Profil </div>
       <?php if($data_adm['role'] == "etudiant" || $data_adm['role'] == "alumni" || $data_adm['role'] == "professeur") :?> 
           <div class="menu-item" onclick="window.location.href='../viewEvent/events.php';" style="cursor: pointer;">Événements</div>
           <div class="menu-item" onclick="window.location.href='../viewEvent/mes_evenement.php';" style="cursor: pointer;">Mes événements</div>
@@ -178,9 +178,7 @@ $userRole = SocietyRepository::getUserRoleInSociety($_SESSION['id_users'], $my_b
                     <i class="fas fa-heart"></i>
                     <span><?php echo $post['like_post']; ?></span>
                 </button>
-                    <button class="comment-button">
-                        <i class="fas fa-comment"></i> Commenter ()
-                    </button>
+
                     <span><i class="fas fa-eye"></i> <?php echo $post['view_post']; ?></span>
                 </div>
                 <div class="comment-section">

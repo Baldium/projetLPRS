@@ -11,9 +11,16 @@
 
 <h1>Créer un nouveau post</h1>
 
-<!-- afficher les erreurs -->
+<!-- Afficher les messages flash -->
 <?php
 session_start();
+if (isset($_SESSION['flash_message'])) {
+    display_flash_message(); // Afficher le message flash (succès/erreur)
+}
+?>
+
+<!-- Afficher les erreurs -->
+<?php
 if (isset($_SESSION['errors'])): ?>
     <div class="errors">
         <ul>
@@ -35,16 +42,14 @@ if (isset($_SESSION['errors'])): ?>
         <textarea id="description" name="description" required></textarea>
     </div>
     <div>
-        <label for="image_video">Image/Vidéo :</label>
-        <input type="file" id="image_video" name="image_video" accept="image/*,video/*">
+        <label for="file_business">Image :</label>
+        <input type="file" name="file_business" accept="image/*"> <!-- Le type accepte seulement les images -->
     </div>
 
-    <!-- Champs cachés pour ref_users, ref_society, ref_prof -->
-    <input type="hidden" name="ref_users" value="...">
-    <input type="hidden" name="ref_society" value="...">
-    <input type="hidden" name="ref_prof" value="...">
+    <!-- Champs cachés pour ref_users -->
+    <input type="hidden" name="ref_users" value="<?= $_SESSION['id_users']; ?>">
 
-    <input type="submit" value="Publier" >
+    <input name="insert_post_submit" type="submit" value="Publier">
     <a href="../../view/view_post/gestion.html" class="button">Retour</a>
 </form>
 

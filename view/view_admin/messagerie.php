@@ -119,7 +119,7 @@ if (isset($_GET['contact_id'])) {
             messageContent.scrollTop = messageContent.scrollHeight;
         };  
 
-        const ws = new WebSocket('ws://localhost:8080/chat');
+        const ws = new WebSocket('ws://127.0.0.1:8080/chat');
 
         ws.onopen = () => {
             console.log('Connecté au serveur WebSocket');
@@ -146,13 +146,13 @@ if (isset($_GET['contact_id'])) {
             messageContent.scrollTop = messageContent.scrollHeight;
         };
 
-        // Envoyer un message à l'autre utilisateur via WebSocket
+       // Fonction pour envoyer un message à l'autre utilisateur via WebSocket
         function sendMessage() {
             const messageInput = document.querySelector('textarea[name="message"]');
             const message = messageInput.value.trim();
 
-            if (message) {
-                // Envoi du message au serveur via WebSocket
+
+                // Envoi du message au serveur WebSocket
                 ws.send(JSON.stringify({
                     sender_id: <?= $user_id ?>,
                     receiver_id: <?= $contact_id ?>,
@@ -162,7 +162,8 @@ if (isset($_GET['contact_id'])) {
 
                 messageInput.value = ''; // Réinitialisation du champ de texte après envoi
             }
-        }
+
+
     </script>
 
 </body>

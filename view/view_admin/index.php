@@ -21,7 +21,7 @@ if($data_adm['type'] != 1)
   header('Location: ../view_etudiants/notAccepted.html');
 
 
-$users = UsersRepository::getAllUsersNotAccepted();
+$usersNotAccepted = UsersRepository::getAllUsersNotAccepted();
 $offers = OffersRepository::getAllOffers();
 $nbOffres = OffersRepository::getCountOffers();
 $nbUsers = UsersRepository::getUsersNumber();
@@ -172,6 +172,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                        <span class="sub-item">Mes Messages</span>
                      </a>
                    </li>
+                   <li>
+                     <a href="./messages.php">
+                       <span class="sub-item">Messages</span>
+                     </a>
+                   </li>
                  </ul>
                </div>
              </li>
@@ -222,18 +227,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              <nav
                class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex"
              >
-               <div class="input-group">
-                 <div class="input-group-prepend">
-                   <button type="submit" class="btn btn-search pe-1">
-                     <i class="fa fa-search search-icon"></i>
-                   </button>
-                 </div>
-                 <input
-                   type="text"
-                   placeholder="Faites votre recherche ... <?= $_SESSION['prenom']?> "
-                   class="form-control"
-                />
-               </div>
+
+
              </nav>
 
 
@@ -442,8 +437,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   </div>
                 </div>
                 <div class="card-list py-4">
-                  <?php if(is_array($users) && count($users) > 0): ?>
-                    <?php foreach ($users as $user): ?>
+                  <?php if(is_array($usersNotAccepted) && count($usersNotAccepted) > 0): ?>
+                    <?php foreach ($usersNotAccepted as $user): ?>
                       <div class="item-list">
                         <div class="avatar">
                         <?php if(!empty($user['profile_picture'])): ?>
