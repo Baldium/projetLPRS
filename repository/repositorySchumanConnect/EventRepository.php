@@ -46,12 +46,41 @@ class EventRepository {
     }
 
 
-    public static function getCountEvents() {
-    $bdd = Bdd::my_bdd();
-    $req = $bdd->prepare("SELECT COUNT(*) as total FROM event");
-    $req->execute();
-    return $req->fetch(PDO::FETCH_ASSOC)['total'];
-}
+ public static function inscriptionEventLibre($userId, $eventId) {
+     $bdd = Bdd::my_bdd();
+     $req = $bdd->prepare('INSERT INTO inscription_event (ref_id_users, ref_id_event, date_created, accepted) VALUES (:ref_user, :ref_event, :date_created, :accepted)');
+     $req->execute([
+         'ref_user' => $userId,
+         'ref_event' => $eventId,
+         'date_created' => date('Y-m-d H:i:s'),
+         'accepted' => 1
+     ]);
+    }
+
+
+    public static function inscriptionEventStrict($userId, $eventId)
+    {
+        $bdd = Bdd::my_bdd();
+        $req = $bdd->prepare('INSERT INTO inscription_event (ref_id_users, ref_id_event, date_created) VALUES (:ref_user, :ref_event, :date_created)');
+        $req->execute([
+            'ref_user' => $userId,
+            'ref_event' => $eventId,
+            'date_created' => date('Y-m-d H:i:s')
+        ]);
+    }
+
+    public static function getPlaceRestante($eventId) {
+        $bdd = Bdd::my_bdd();
+        $req = $bdd->prepare('SELECT nb_place FROM event WHERE id_event = :id');
+        $req->execute([':id' => $eventId]);
+        $place = $req->fetch(PDO::FETCH_ASSOC);
+
+        $req2 = $bdd->prepare('SELECT COUNT(*) as inscrit FROM inscription_event WHERE ref_id_event = :id');
+        $req2->execute([':id' => $eventId]);
+        $inscrits = $req2->fetch(PDO::FETCH_ASSOC);
+        $placeRestante = $place['nb_place'] - $inscrits['inscrit'];
+        return $placeRestante;
+    }
 
     public static function getAllEventSortedByDate(){
 

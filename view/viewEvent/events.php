@@ -43,7 +43,7 @@ $events = EventRepository::getAllEventSortedBy($sort);
                         <h2><a href="event.php?id=<?php echo $event['id_event']; ?>"><?php echo htmlspecialchars($event['title']); ?></a></h2>
                         <p><?php echo htmlspecialchars($event['description']); ?></p>
                         <p><?php echo htmlspecialchars($event['date_event']); ?></p>
-                        <p>Places disponibles: <?php echo htmlspecialchars($event['nb_place']); ?></p>
+                        <p>Places disponibles: <?php echo htmlspecialchars(EventRepository::getPlaceRestante($event['id_event'])); ?></p>
                     </li>
                 <?php endforeach; ?>
             </ul>

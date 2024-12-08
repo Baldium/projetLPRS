@@ -32,6 +32,7 @@ $event = EventRepository::getEventById($_GET['id']);
 
             <form action="../../controller/controllerEvent/inscriptionEventController.php" method="POST">
                 <input type="hidden" name="event_id" value="<?php echo $event['id_event']; ?>">
+                <input type="hidden" name="type_event" value="<?php echo $event['type_event']; ?>">
                 <button type="submit" class="btn btn-primary">S'inscrire</button>
             </form>
         </section>
