@@ -9,57 +9,35 @@ class Post {
         $this->db = Bdd::my_bdd(); // Établir la connexion à la base de données
     }
 
-    // Création d'un nouveau post
-    public function create($title, $description, $image_video, $ref_users, $ref_society, $ref_prof) {
-        // Vérifiez si ref_users existe dans la table users
-        $checkUserSql = "SELECT * FROM users WHERE id_users = :ref_users";
-        $req = $this->db->prepare($checkUserSql);
-        $req->bindParam(':ref_users', $ref_users, PDO::PARAM_INT);
-        $req->execute();
-
-        if ($req->rowCount() === 0) {
-            throw new Exception("L'utilisateur avec l'ID $ref_users n'existe pas.");
-        }
-
-        // Vérifiez si ref_society existe dans la table society
-        $checkSocietySql = "SELECT * FROM society WHERE id_society = :ref_society";
-        $req = $this->db->prepare($checkSocietySql);
-        $req->bindParam(':ref_society', $ref_society, PDO::PARAM_INT);
-        $req->execute();
-
-        if ($req->rowCount() === 0) {
-            throw new Exception("La société avec l'ID $ref_society n'existe pas.");
-        }
-
-        // Vérifiez si ref_prof existe dans la table prof
-        $checkProfSql = "SELECT * FROM prof WHERE id_prof = :ref_prof";
-        $req = $this->db->prepare($checkProfSql);
-        $req->bindParam(':ref_prof', $ref_prof, PDO::PARAM_INT);
-        $req->execute();
-
-        if ($req->rowCount() === 0) {
-            throw new Exception("Le professionnel avec l'ID $ref_prof n'existe pas.");
-        }
-
-        // Si toutes les vérifications sont passées, procédez à l'insertion
-        $sql = "INSERT INTO posts (title, description, image_video, date_created, ref_users, ref_society, ref_prof) 
-                VALUES (?, ?, ?, NOW(), ?, ?, ?)";
+    public function create($title, $description, $image_video, $ref_users) {
+        $view = 0; // Par défaut, la vue du post est à 0
+    
+        // Insertion du post dans la base de données
+        $sql = "INSERT INTO posts (title, description, image_video, date_created, ref_users, view_post) 
+                VALUES (:title, :description, :image_video, NOW(), :ref_users, :view)";
+        
         $req = $this->db->prepare($sql);
-
-
-
-
-
+        
         try {
-            $req->execute([$title, $description, $image_video, $ref_users, $ref_society, $ref_prof]);
+            // Exécution de la requête
+            $req->execute([
+                ':title' => $title,
+                ':description' => $description,
+                ':image_video' => $image_video, // Le contenu du fichier
+                ':ref_users' => $ref_users,
+                ':view' => $view
+            ]);
         } catch (PDOException $e) {
+            // En cas d'erreur, on retourne false
             echo "Erreur lors de l'insertion : " . $e->getMessage();
-            return false; // Retourne false en cas d'erreur
+            return false;
         }
-
-        return $this->db->lastInsertId(); // Retourne l'ID du post créé
+    
+        // Retourner l'ID du post inséré
+        return $this->db->lastInsertId();
     }
-
+    
+    
     // Récupérer un post avec son ID
     public function getById($id_post) {
         $sql = "SELECT * FROM posts WHERE id_post = :id_post";

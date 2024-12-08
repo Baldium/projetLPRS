@@ -25,7 +25,6 @@ $sql = "SELECT
           p.id_post, 
           p.title, 
           p.description, 
-          p.image_video, 
           p.date_created, 
           p.ref_users, 
           p.ref_society, 

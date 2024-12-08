@@ -7,6 +7,6 @@ include_once '../../repository/repositoryAdmin/UsersRepository.php';
 $id = $_GET["id"];
 UsersRepository::deleteUser($id);
 
-header("location: ./../../view/view_admin/posts.php");
+header("location: ./../../view/view_admin/users.php");
 
 ?>

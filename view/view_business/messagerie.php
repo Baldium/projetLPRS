@@ -124,6 +124,7 @@ if (isset($_GET['contact_id'])) {
     </div>
     
 
+   
     <script>
         // GPT
         window.onload = function() {
@@ -131,7 +132,7 @@ if (isset($_GET['contact_id'])) {
             messageContent.scrollTop = messageContent.scrollHeight;
         };  
 
-        const ws = new WebSocket('ws://localhost:8080/chat');
+        const ws = new WebSocket('ws://127.0.0.1:8080/chat');
 
         ws.onopen = () => {
             console.log('Connecté au serveur WebSocket');
@@ -154,26 +155,27 @@ if (isset($_GET['contact_id'])) {
             // Ajout du message dans le contenu des messages
             messageContent.appendChild(messageElement);
             
+            // Assurez-vous que l'élément défile vers le bas pour voir le dernier message
             messageContent.scrollTop = messageContent.scrollHeight;
         };
 
         // Envoyer un message à l'autre utilisateur via WebSocket
         function sendMessage() {
-            const messageInput = document.querySelector('textarea[name="message"]');
-            const message = messageInput.value.trim();
+        const messageInput = document.querySelector('textarea[name="message"]');
+        const message = messageInput.value.trim();
 
-            if (message) {
-                // Envoi du message au serveur via WebSocket
-                ws.send(JSON.stringify({
-                    sender_id: <?= $user_id ?>,
-                    receiver_id: <?= $contact_id ?>,
-                    message: message,
-                    time: new Date().toLocaleTimeString()
-                }));
 
-                messageInput.value = ''; // Réinitialisation du champ de texte après envoi
-            }
+            // Envoi du message au serveur via WebSocket
+            ws.send(JSON.stringify({
+                sender_id: <?= $user_id ?>,
+                receiver_id: <?= $contact_id ?>,
+                message: message,
+                time: new Date().toLocaleTimeString()
+            }));
+
+            messageInput.value = ''; // Réinitialisation du champ de texte après envoi
         }
+
     </script>
 
 </body>

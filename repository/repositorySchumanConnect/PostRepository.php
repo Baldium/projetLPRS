@@ -60,6 +60,34 @@ class PostRepository
             header('Location: ../../view/view_business/post_business.html');
         }
     }
+
+    public static function insert_post_societyEtudiant($title, $description, $image_video = null)
+    {
+        $my_bdd = Bdd::my_bdd();
+    
+        $req_insert_post_society = $my_bdd->prepare('
+            INSERT INTO `post` (`title`, `description`, `image_video`, `date_created`, `ref_users`, view_post) 
+            VALUES (:title, :descri, :img, :date_created, :ref_users, :view_initial)
+        ');
+        $result = $req_insert_post_society->execute(array(
+            'title' => $title,
+            'descri' => $description,
+            'img' => $image_video, 
+            'date_created' => date('Y-m-d'), // Format ISO 8601
+            'ref_users' => $_SESSION['id_users'],
+            'view_initial' => 0
+        ));
+        
+        if ($result)
+        {
+            set_flash_message('Le post a bien été inséré.', 'success');
+            header('Location: ../../view/view_etudiants/accueil.php');
+        } else 
+        {
+            set_flash_message('Erreur lors de l\'insertion du post.', 'error');
+            header('Location: ../../view/view_etudiants/accueil.php');
+        }
+    }
     
 
     

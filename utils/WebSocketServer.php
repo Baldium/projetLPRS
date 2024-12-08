@@ -3,6 +3,8 @@ require __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../utils/Bdd.php'; 
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
+use Ratchet\Server\IoServer;
+use Ratchet\WebSocket\WsServer;
 use Ratchet\App;
 
 
@@ -36,7 +38,7 @@ class ChatServer implements MessageComponentInterface
         try {
             $my_bdd = Bdd::my_bdd();
 
-            $sql_insert_mess = "INSERT INTO message (sender_id, receiver_id, contenu, date_time) VALUES (?, ?, ?, NOW())";
+            $sql_insert_mess = "INSERT INTO `message` (sender_id, receiver_id, contenu, date_time) VALUES (?, ?, ?, NOW())";
             $req_mess = $my_bdd->prepare($sql_insert_mess);
             $req_mess->execute([$data['sender_id'], $data['receiver_id'], $data['message']]);
 
@@ -72,7 +74,7 @@ class ChatServer implements MessageComponentInterface
 
 // Lancer le serveur WebSocket
 echo "Démarrage du serveur WebSocket...\n";
-$server = new App('localhost', 8080);
+$server = new App('127.0.0.1', 8080); 
 $server->route('/{path}', new ChatServer, ['*']); // accepte toutes les connexions à n'importe quelle route
 $server->run();
 
