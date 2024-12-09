@@ -31,7 +31,7 @@ include_once __DIR__ . '/../../init.php';
         ?>
 
 
-        <a href="../../view/view_post/post.php" class="button">Voir Mes Posts</a>
+        <a href="../../view/view_post/post.php?user_id=<?= $_SESSION['id_users'] ?>" class="button">Voir Mes Posts</a>
     </div>
 </div>
 </body>
