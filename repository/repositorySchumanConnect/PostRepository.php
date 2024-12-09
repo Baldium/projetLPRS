@@ -67,7 +67,7 @@ class PostRepository
     
         $req_insert_post_society = $my_bdd->prepare('
             INSERT INTO `post` (`canal`, `title`, `description`, `image_video`, `date_created`, `ref_users`, view_post) 
-            VALUES (:title, :descri, :img, :date_created, :ref_users, :view_initial)
+            VALUES (:canal, :title, :descri, :img, :date_created, :ref_users, :view_initial)
         ');
         $result = $req_insert_post_society->execute(array(
             'canal' => $canal,
