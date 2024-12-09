@@ -36,6 +36,10 @@ $events = EventRepository::getEventsByUser($_SESSION['id_users']);
                         <p><?php echo htmlspecialchars($event['description']); ?></p>
                         <p><?php echo htmlspecialchars($event['date_event']); ?></p>
                         <button class="btn btn-primary" onclick="location.href='modifier_evenement.php?id=<?php echo $event['id_event']; ?>'">Modifier</button>
+                        <form action="../../controller/controllerEvent/deleteEventController.php" method="POST" style="display:inline;">
+                            <input type="hidden" name="id_event" value="<?php echo $event['id_event']; ?>">
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </form>
                     </li>
                 <?php endforeach; ?>
             </ul>
