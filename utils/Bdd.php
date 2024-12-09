@@ -11,7 +11,7 @@ class Bdd
     {
         try {
             // 3306 pour le vps
-            $port = '3306';
+            $port = '8889';
             $dsn = "mysql:host=" . $_ENV['DB_HOST'] . ";port=$port;dbname=" . $_ENV['DB_NAME'] . ";charset=utf8mb4";
             $username = $_ENV['DB_USER'];
             $password = $_ENV['DB_PASSWORD'];

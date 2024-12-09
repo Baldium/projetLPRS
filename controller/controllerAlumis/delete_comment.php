@@ -9,6 +9,8 @@ $commentId = isset($_GET['comment_id']) ? (int)$_GET['comment_id'] : 0;
 $postId = isset($_GET['post_id']) ? (int)$_GET['post_id'] : 0;
 $userId = $_SESSION['id_users'];
 
+
+
 if ($commentId <= 0 || $postId <= 0) {
     set_flash_message("Commentaire ou post introuvable.", "warning");
     header("Location: ../../view/view_etudiants/mes_commentaires.php");    
