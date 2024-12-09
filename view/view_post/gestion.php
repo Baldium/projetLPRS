@@ -20,7 +20,7 @@ include_once __DIR__ . '/../../init.php';
 <div class="container">
     <h1>Gestion des Posts</h1>
     <div class="button-container">
-        <a href="../../view/view_post/creation.php" class="button">Créer un Post</a>
+        <a href="../../view/view_post/creation.php?canal=general" class="button">Créer un Post</a>
         <?php
         if ($_SESSION['role'] === 'etudiant') {
             echo '<a href="../../view/view_post/creation.php?canal=etudiant_prof" class="button">Créer un post dans le canal etudiant prof</a>';

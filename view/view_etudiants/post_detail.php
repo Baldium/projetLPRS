@@ -92,8 +92,14 @@ $userRole = SocietyRepository::getUserRoleInSociety($_SESSION['id_users'], $my_b
       <div class="menu-section">
         <h3>Sections</h3>
         <div class="menu-item" onclick="window.location.href='./accueil.php';" style="cursor: pointer;">Général</div>
+          <?php if($data_adm['role'] == "pdg_entreprise" || $data_adm['role'] == "alumni" ) :?>
         <div class="menu-item" onclick="window.location.href='../view_post/forum_entreprise_alumni.php';" style="cursor: pointer;">Alumni & Entreprises</div>
+          <?php endif ?>
+
+          <?php if($data_adm['role'] == "etudiant" || $data_adm['role'] == "professeur" ) :?>
         <div class="menu-item" onclick="window.location.href='../view_post/forum_etudiant_prof.php';" style="cursor: pointer;">Forum etudiants et profs</div>
+          <?php endif ?>
+
       </div>
 
       <div class="menu-item" onclick="window.location.href='./accueil.php';" style="cursor: pointer;">Accueil</div>

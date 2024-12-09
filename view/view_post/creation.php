@@ -33,7 +33,7 @@ if (isset($_SESSION['errors'])): ?>
 <?php endif; ?>
 
 <form action="../../controller/controllerPost/trait_post.php" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="canal" value="<?php $_GET['canal'] ?>" >
+    <input type="hidden" name="canal" value="<?php echo $_GET['canal'] ?>" >
     <div>
         <label for="title">Titre :</label>
         <input type="text" id="title" name="title" required>

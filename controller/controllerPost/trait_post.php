@@ -12,7 +12,7 @@ if (isset($_POST['insert_post_submit']))
     $file_content = file_get_contents($file_tmp); 
  
     // Appel static de la methode insert_post_society
-    PostRepository::insert_post_societyEtudiant($_POST['title'], $_POST['canal'], $_POST['description'], $file_content);
+    PostRepository::insert_post_societyEtudiant($_POST['canal'], $_POST['title'],  $_POST['description'], $file_content);
 } else 
 {
     set_flash_message('Erreur : Aucune soumission détectée.', 'error');

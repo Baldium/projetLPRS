@@ -61,7 +61,7 @@ class PostRepository
         }
     }
 
-    public static function insert_post_societyEtudiant($title, $canal, $description, $image_video = null)
+    public static function insert_post_societyEtudiant($canal, $title, $description, $image_video = null)
     {
         $my_bdd = Bdd::my_bdd();
     
