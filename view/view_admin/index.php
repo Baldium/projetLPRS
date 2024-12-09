@@ -304,7 +304,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                            <h4><?= $_SESSION['prenom'] ?></h4>
                            <p class="text-muted"><?= $_SESSION['mail']; ?></p>
                            <a
-                             href="profile.html"
+                             href="../view_etudiants/profil.php"
                              class="btn btn-xs btn-secondary btn-sm"
                              >Gérer mon Profil</a
                            >
