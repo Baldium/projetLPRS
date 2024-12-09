@@ -61,15 +61,16 @@ class PostRepository
         }
     }
 
-    public static function insert_post_societyEtudiant($title, $description, $image_video = null)
+    public static function insert_post_societyEtudiant($title, $canal, $description, $image_video = null)
     {
         $my_bdd = Bdd::my_bdd();
     
         $req_insert_post_society = $my_bdd->prepare('
-            INSERT INTO `post` (`title`, `description`, `image_video`, `date_created`, `ref_users`, view_post) 
+            INSERT INTO `post` (`canal`, `title`, `description`, `image_video`, `date_created`, `ref_users`, view_post) 
             VALUES (:title, :descri, :img, :date_created, :ref_users, :view_initial)
         ');
         $result = $req_insert_post_society->execute(array(
+            'canal' => $canal,
             'title' => $title,
             'descri' => $description,
             'img' => $image_video, 

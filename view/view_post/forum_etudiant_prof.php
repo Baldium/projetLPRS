@@ -164,7 +164,7 @@ if($data_adm['accepted'] != 1)
                     }
                     ?>
                     <div>
-                        <a href="post_detail.php?id=<?php echo $post['id_post']; ?>" style="text-decoration: none; color: inherit;">
+                        <a href="../view_etudiants/post_detail.php?id=<?php echo $post['id_post']; ?>" style="text-decoration: none; color: inherit;">
                             <strong><?php echo $post['title'] .' - '. $authorName; ?></strong>
                         </a>
                         <div><?php  $date = new DateTime($post['date_created']);
