@@ -146,6 +146,21 @@ class UserRepository
         ));   
     }
 
+    public static function findByMail($mail) {
+        $my_bdd = Bdd::my_bdd();
+        $req = $my_bdd->prepare("SELECT * FROM users WHERE mail = :mail");
+        $req->execute(['mail' => $mail]);
+        return $req->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function storeResetToken($userId, $token) {
+        $my_bdd = Bdd::my_bdd();
+        $req = $my_bdd->prepare("UPDATE users SET reset_token = :token WHERE id = :id");
+        $req->execute(array(
+            'token' => $token,
+            'id' => $userId));
+    }
+
     // Fonction statique pour inserer un utilisateurs
     public static function register_users()
     {

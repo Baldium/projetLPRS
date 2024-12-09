@@ -4,6 +4,18 @@ include_once '../../repository/repositorySchumanConnect/EventRepository.php';
 
 $event_id = $_GET['id'];
 $event = EventRepository::getEventById($event_id);
+
+
+
+
+if (isset($_POST['id_event'], $_POST['type'], $_POST['titre'], $_POST['description'], $_POST['lieu'], $_POST['nombre_place'])) {
+    $event = new EventRepository();
+    $event->modifierEvenement($_POST['id_event'], $_POST['type'], $_POST['titre'], $_POST['description'], $_POST['lieu'], $_POST['nombre_place']);
+} else {
+
+    echo "tout les champs sont obligatoire";
+}
+
  ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -27,7 +39,7 @@ $event = EventRepository::getEventById($event_id);
             <h1>Modifier un événement</h1>
             <p>Modifiez les informations ci-dessous pour mettre à jour l'événement</p>
 
-            <form action="../../controller/controllerEvent/modifierEventController.php" method="post">
+            <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
                 <input type="hidden" name="id_event" value="<?php echo htmlspecialchars($event['id_event']); ?>">
                 <div class="form-group">
                     <label for="type">Type d'événement</label>

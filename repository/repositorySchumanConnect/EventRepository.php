@@ -166,8 +166,6 @@ public static function updateEvent($eventId, $type, $title, $description, $addre
                 'nombre_place' => $nombre_place,
                 'id' => $id
             ]);
-            header('Location: ../../view/viewEvent/mes_evenement.php');
-            exit();
 
         } catch (PDOException $e) {
             echo "Erreur PDO : " . $e->getMessage();

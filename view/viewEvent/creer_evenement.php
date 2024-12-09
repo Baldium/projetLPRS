@@ -30,7 +30,10 @@ $admins = EventRepository::getAdmins();
             <form action="../../controller/controllerEvent/createEventController.php" method="post">
                 <div class="form-group">
                     <label for="type">Type d'événement</label>
-                    <input type="text" id="type" name="type" placeholder="Type d'événement">
+                    <select id="type" name="type">
+                        <option value="privée">Privée</option>
+                        <option value="libre">Libre</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="titre">Titre</label>
