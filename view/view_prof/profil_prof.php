@@ -11,16 +11,11 @@ $prof = ProfRepository::getProfById($_SESSION['id_users']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon profil - Éditeur de profil</title>
     <link rel="stylesheet" href="../../public/css/profil_prof.css">
+    <link rel="stylesheet" href="../../public/css/base_twig_accueil.css"> 
 </head>
 <body>
-<div class="container">
-    <aside class="sidebar">
-        <h2>Paramètres</h2>
-        <ul>
-            <li><a href="#">Organisation</a></li>
-            <li><a href="#">Mon compte</a></li>
-        </ul>
-    </aside>
+<?php include_once '../../public/layouts/accueil_base.php'; ?>
+
     <main class="main-content">
         <section class="profile-section">
             <h1>Mon profil</h1>

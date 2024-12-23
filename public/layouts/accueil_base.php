@@ -40,29 +40,29 @@ $userRole = SocietyRepository::getUserRoleInSociety($_SESSION['id_users'], $my_b
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <div class="menu-item" onclick="window.location.href='./accueil.php';" style="cursor: pointer;">Accueil</div>
+        <div class="menu-item" onclick="window.location.href='../../view/view_etudiants/accueil.php';" style="cursor: pointer;">Accueil</div>
         <?php if($data_adm['role'] == "etudiant" || $data_adm['role'] == "alumni" || $data_adm['role'] == "professeur" ) :?>
-            <div class="menu-item" onclick="window.location.href='./reseau.php';" style="cursor: pointer;">Réseau</div>
+            <div class="menu-item" onclick="window.location.href='../../view/view_etudiants/reseau.php';" style="cursor: pointer;">Réseau</div>
         <?php endif ?>
         <?php if($data_adm['role'] == "etudiant" || $data_adm['role'] == "alumni") :?> 
-            <div class="menu-item" onclick="window.location.href='./offres_emplois.php';" style="cursor: pointer;">Offres d'Emploi</div>
-            <div class="menu-item" onclick="window.location.href='./mes_favoris.php';" style="cursor: pointer;">Mes Offres Favorites</div>
+            <div class="menu-item" onclick="window.location.href='../../view/view_etudiants/offres_emplois.php';" style="cursor: pointer;">Offres d'Emploi</div>
+            <div class="menu-item" onclick="window.location.href='../../view/view_etudiants/mes_favoris.php';" style="cursor: pointer;">Mes Offres Favorites</div>
         <?php endif ?>
-        <div class="menu-item" onclick="window.location.href='./profil.php';" style="cursor: pointer;">Mon Profil</div>
+        <div class="menu-item" onclick="window.location.href='../../view/view_etudiants/profil.php';" style="cursor: pointer;">Mon Profil</div>
         <?php if($data_adm['role'] == "etudiant" || $data_adm['role'] == "alumni" || $data_adm['role'] == "professeur") :?> 
-            <div class="menu-item" onclick="window.location.href='../viewEvent/events.php';" style="cursor: pointer;">Événements</div>
-            <div class="menu-item" onclick="window.location.href='../viewEvent/mes_evenement.php';" style="cursor: pointer;">Mes événements</div>
-            <div class="menu-item" onclick="window.location.href='../view_post/gestion.php';" style="cursor: pointer;">Post</div>
+            <div class="menu-item" onclick="window.location.href='../../view/viewEvent/events.php';" style="cursor: pointer;">Événements</div>
+            <div class="menu-item" onclick="window.location.href='../../view/viewEvent/mes_evenement.php';" style="cursor: pointer;">Mes événements</div>
+            <div class="menu-item" onclick="window.location.href='../../view/view_post/gestion.php';" style="cursor: pointer;">Post</div>
         <?php endif ?>
-        <div class="menu-item" onclick="window.location.href='../view_business/connexion_business.php';" style="cursor: pointer;">Pour Les Entreprises</div>
-        <div class="menu-item" onclick="window.location.href='./society_partener.php';" style="cursor: pointer;">Entreprises Partenaires</div>
-        <div class="menu-item" onclick="window.location.href='./mes_commentaires.php';" style="cursor: pointer;">Mes Commentaires</div>
+        <div class="menu-item" onclick="window.location.href='../../view/view_business/connexion_business.php';" style="cursor: pointer;">Pour Les Entreprises</div>
+        <div class="menu-item" onclick="window.location.href='../../view/view_etudiants/society_partener.php';" style="cursor: pointer;">Entreprises Partenaires</div>
+        <div class="menu-item" onclick="window.location.href='../../view/view_etudiants/mes_commentaires.php';" style="cursor: pointer;">Mes Commentaires</div>
         <?php 
             if ($data_adm['type'] == 1)
-                echo "<div class='menu-item' onclick='window.location.href=\"../view_admin\";' style='cursor: pointer;'>Panel Admin</div>";
+                echo "<div class='menu-item' onclick='window.location.href=\"../../view/view_admin\";' style='cursor: pointer;'>Panel Admin</div>";
         ?>
-        <div class="menu-item" onclick="window.location.href='./qui-sommes-nous.html';" style="cursor: pointer;">Qui sommes-nous ?</div>
-        <div class="menu-item" onclick="window.location.href='../connexion.php';" style="cursor: pointer;">Se Déconnecter</div>
+        <div class="menu-item" onclick="window.location.href='../../view/view_etudiants/qui-sommes-nous.html';" style="cursor: pointer;">Qui sommes-nous ?</div>
+        <div class="menu-item" onclick="window.location.href='../../view/connexion.php';" style="cursor: pointer;">Se Déconnecter</div>
     </div>
 
 

@@ -13,8 +13,7 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#" class="nav-active">Recherche Étudiants</a></li>
-                <li><a href="#">FAQ</a></li>
+                <li><a href="../view_etudiants/accueil.php" class="nav-active">Accueil</a></li>
             </ul>
         </nav>
         <div class="search-bar">
