@@ -31,6 +31,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id']) 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../public/css/mes_favoris.css">
+    <link rel="stylesheet" href="../../public/css/base_twig_accueil.css"> 
+
     <title>Mes Favoris | SchumanConnect</title>
 </head>
 <body>

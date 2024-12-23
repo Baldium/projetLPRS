@@ -23,6 +23,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../public/css/offer-dettails.css">
+    <link rel="stylesheet" href="../../public/css/base_twig_accueil.css"> 
     <title>Détails de l'offre - <?= htmlspecialchars($offer['title_offers']) ?> | SchumanConnect</title>
 </head>
 <body>

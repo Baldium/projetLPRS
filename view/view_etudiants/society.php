@@ -17,9 +17,12 @@ $logo_img = "https://logo.clearbit.com/" . $website;
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../public/css/view_society.css">
+  <link rel="stylesheet" href="../../public/css/base_twig_accueil.css"> 
   <title><?= htmlspecialchars($society['nom_society']) ?> - Détails</title>
 </head>
 <body>
+<?php include_once '../../public/layouts/accueil_base.php'; ?>
+<main class="main-content">
   <div class="container">
     <div class="company-details">
       <div class="logo-container">
@@ -45,5 +48,6 @@ $logo_img = "https://logo.clearbit.com/" . $website;
       </div>
     </div>
   </div>
+</main>
 </body>
 </html>

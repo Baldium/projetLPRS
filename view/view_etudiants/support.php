@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../public/css/contact_support.css">
+    <link rel="stylesheet" href="../../public/css/base_twig_accueil.css"> 
     <title>Contactez le Support</title>
 </head>
 <body>
 <?php  include_once '../../public/layouts/accueil_base.php'; ?>
+<main class="main-content">
 
-    <main class="container">
+
         <section class="contact-info">
             <h2>Informations de Contact</h2>
             <p>Vous pouvez nous joindre par les moyens suivants :</p>
@@ -39,8 +41,8 @@
             </form>
 
         </section>
-    </main>
 
+</main>
   
 </body>
 </html>

@@ -17,19 +17,20 @@ $responses = $data['responses'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Panel de Commentaires</title>
     <link rel="stylesheet" href="../../public/css/mes_commentaires.css"> 
+    <link rel="stylesheet" href="../../public/css/base_twig_accueil.css"> 
+
 </head>
 
 <body>
-<div class="container">
-    <h1>Mon Panel de Commentaires</h1>
+<?php include_once '../../public/layouts/accueil_base.php' ?>
+<main class="main-content">
 
     <div class="tabs">
         <button class="tab-button">Mes Commentaires</button>
-        <button class="tab-button">Mes Réponses</button>
+        <a class="tab-button">Mes Réponses</a>
         <a href="./accueil.php"><button class="tab-button">Retour</button></a>
 
     </div>
-
     <!-- Section des commentaires -->
     <div class="content-section">
         <div class="column">
@@ -85,7 +86,7 @@ $responses = $data['responses'];
         </div>
     </div>
 </div>
-
+</main>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelectorAll('.tab-button');

@@ -28,6 +28,8 @@ else
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../public/css/profile.css">
+    <link rel="stylesheet" href="../../public/css/base_twig_accueil.css"> 
+
     <title>Profil de <?= htmlspecialchars($student['prenom']) . ' ' . htmlspecialchars($student['nom']) ?> | SchumanConnect</title>
     <style>
         /* ChatGPT */

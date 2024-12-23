@@ -106,8 +106,8 @@ if($data_adm['accepted'] != 1)
         <div class="menu-section">
             <h3>Sections</h3>
             <div class="menu-item" onclick="window.location.href='../view_etudiants/accueil.php';" style="cursor: pointer;">Général</div>
-            <div class="menu-item" onclick="window.location.href='../view_etudiants/forum_entreprise_alumni.php';" style="cursor: pointer;">Alumni & Entreprises</div>
-            <div class="menu-item" onclick="window.location.href='../view_etudiants/forum_etudiant_prof.php';" style="cursor: pointer;">Forum etudiants et profs</div>
+            <div class="menu-item" onclick="window.location.href='../view_post/forum_entreprise_alumni.php';" style="cursor: pointer;">Alumni & Entreprises</div>
+            <div class="menu-item" onclick="window.location.href='../view_post/forum_etudiant_prof.php';" style="cursor: pointer;">Forum etudiants et profs</div>
         </div>
 
         <div class="menu-item" onclick="window.location.href='../view_etudiants/accueil.php';" style="cursor: pointer;">Accueil</div>
