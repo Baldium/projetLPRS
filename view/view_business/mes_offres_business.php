@@ -20,11 +20,10 @@ if (!isset($_SESSION['id_society'])) {
     
 </head>
 <body>
+<?php include_once '../../public/layouts/accueil_business_base.php'; ?> 
 
-    <h1>Mes Offres d'Emplois</h1>
-
-    <a href="./accueil_business.php" class="btn-return">Retour à l'accueil</a>
-
+    <h2>Mes Offres d'Emplois</h2>
+    <br>
     <?php OffersRepository::find_all_offers_by_company(); ?>
 </body>
 </html>

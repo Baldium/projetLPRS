@@ -22,11 +22,10 @@ if (!isset($_SESSION['id_society'])) {
     
 </head>
 <body>
+<?php include_once '../../public/layouts/accueil_business_base.php'; ?> 
 
-    <h1>Mes Posts</h1>
-
-    <a href="./accueil_business.php" class="btn-return">Retour à l'accueil</a>
-
-        <?php PostRepository::find_all_posts_by_company(); ?>
+    <h2>Mes Posts</h2>
+    <br>
+    <?php PostRepository::find_all_posts_by_company(); ?>
 </body>
 </html>

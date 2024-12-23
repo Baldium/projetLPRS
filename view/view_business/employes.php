@@ -147,13 +147,12 @@ function generate_random_password($length = 12) {
     <title>Gestion des Employés</title>
 </head>
 <body>
-    <header class="header">
-        <div class="logo">
-            <img src="../../public/assets/image/Logo_Schuman_Connect.png" alt="SchumanLink Logo">
-        </div>
-    </header>
+<?php include_once '../../public/layouts/accueil_business_base.php'; ?> 
 
-    <div class="container">
+
+
+
+
         <h2>Gestion des Employés</h2>
         <a href="../../view/view_business/accueil_business.php" class="back-home">Accueil</a>
 

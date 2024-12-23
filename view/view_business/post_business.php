@@ -21,7 +21,7 @@ if (!isset($_SESSION['id_society'])) {
 </head>
 
 <body>
-  <div class="container">
+<?php include_once '../../public/layouts/accueil_business_base.php'; ?> 
     <h1>Publier un Post</h1>
     <div class="card">
       <div class="card-header">

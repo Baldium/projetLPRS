@@ -13,18 +13,14 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
     $candidats = OffersRepository::find_all_candidates_by_offer($id_offer);
 
+    include_once '../../public/layouts/accueil_business_base.php';
+    
+
     if ($candidats) {
         echo '<div class="container">';
-        echo '<header>
-                <div class="logo">
-                    <img class="logo-icon" src="../../public/assets/image/Logo_Schuman_Connect.png" alt="Logo SchumanConnect">
-                </div>            
-              </header>';
         
         echo '<main>';
         OffersRepository::nb_candidats_await($id_offer);
-
-        echo '<div class="candidates-container">'; 
 
         foreach ($candidats as $candidate) 
         {
