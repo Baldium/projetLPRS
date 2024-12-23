@@ -137,21 +137,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                <a href="./users.php">
                  <i class="fas fa-users"></i>
                  <p>Utilisateurs</p>
-                 <span class="caret"></span>
                </a>
              </li>
              <li class="nav-item">
                <a href="./offers.php">
                  <i class="fas fa-briefcase"></i>
                  <p>Offres</p>
-                 <span class="caret"></span>
                </a>
              </li>
              <li class="nav-item">
                <a href="./events.php">
                  <i class="fas fa-calendar-alt"></i>
                  <p>Evénements</p>
-                 <span class="caret"></span>
                </a>
              </li>
              <li class="nav-item">
@@ -184,7 +181,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                <a href="./posts.php">
                  <i class="fas fa-building"></i>
                  <p>Posts</p>
-                 <span class="caret"></span>
                </a>
              </li>
            </ul>

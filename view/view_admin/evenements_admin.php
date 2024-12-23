@@ -33,15 +33,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="../../public/css/mes_evenement.css">
 </head>
 <body>
-<div class="container">
-    <aside class="sidebar">
-        <h2>Paramètres</h2>
-        <ul>
-            <li><a href="#">Organisation</a></li>
-            <li><a href="#">Mon compte</a></li>
-        </ul>
-    </aside>
-    <main class="main-content">
+<?php include_once '../../public/layouts/accueil_admin_base.php'; ?>
+<br>
+<br>
+<br>
         <section class="profile-section">
             <h1>Gestion des événements</h1>
             <p>Voici la liste de tous les événements. Vous pouvez les modifier ou les supprimer.</p>

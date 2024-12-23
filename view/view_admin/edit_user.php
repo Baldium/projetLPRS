@@ -17,8 +17,10 @@ $user = UsersRepository::getUserById($id);
   <link rel="stylesheet" href="../../public/css/edit_user.css">
 </head>
 <body>
-  <div class="form-container">
-    <h2>Modifier Utilisateur</h2>
+<?php include_once '../../public/layouts/accueil_admin_base.php'; ?>
+<br>
+<br>
+<br>
     <form action="./../../controller/controllerAdmin/updateUser.php?id=<?php echo $user["id_users"]; ?>" method="POST" enctype="multipart/form-data">
       <div class="form-group">
         <label for="id_users">ID</label>

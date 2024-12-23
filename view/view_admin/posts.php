@@ -18,6 +18,11 @@ $posts = PostsRepository::getPosts();
   <link rel="stylesheet" href="../../public/css/posts_admin.css">
 </head>
 <body>
+<?php include_once '../../public/layouts/accueil_admin_base.php'; ?>
+<br>
+<br>
+<br>
+<br>
   <div class="dashboard-table-container">
     <h2>Admin Dashboard - Posts</h2>
     <div class="table-wrapper">
