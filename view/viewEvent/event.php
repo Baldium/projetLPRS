@@ -42,7 +42,7 @@ $event = EventRepository::getEventById($_GET['id']);
             <p><?php echo htmlspecialchars($event['description']); ?></p>
             <p>Date: <?php echo htmlspecialchars($event['date_event']); ?></p>
             <p>Lieu: <?php echo htmlspecialchars($event['adress']); ?></p>
-            <p>Places disponibles: <?php echo htmlspecialchars($event['nb_place']); ?></p>
+            <p>Places disponibles: <?php echo htmlspecialchars(EventRepository::getPlaceRestante($event['id_event'])); ?></p>
 
             <form action="../../controller/controllerEvent/inscriptionEventController.php" method="POST">
                 <input type="hidden" name="event_id" value="<?php echo $event['id_event']; ?>">
