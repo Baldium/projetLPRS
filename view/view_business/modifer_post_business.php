@@ -30,7 +30,7 @@ if (isset($_GET['id']))
 </head>
 
 <body>
-    <div class="container">
+<?php include_once '../../public/layouts/accueil_business_base.php'; ?> 
         <h1>Modifier le Post</h1>
         <div class="card">
 

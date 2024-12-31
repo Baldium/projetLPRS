@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="./../../public/css/add_user.css">
 </head>
 <body>
+<?php include_once '../../public/layouts/accueil_admin_base.php'; ?>
+
     <div class="form-container">
         <h2>Ajouter un utilisateur</h2>
         <form action="./../../controller/controllerAdmin/addUser.php" method="POST" enctype="multipart/form-data">

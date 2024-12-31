@@ -32,7 +32,7 @@ else
   <link rel="stylesheet" href="../../public/css/modifier_offre.css">
 </head>
 <body>
-  <div class="container">
+<?php include_once '../../public/layouts/accueil_business_base.php'; ?> 
     <div class="profile-header">
       <h1>Modifier l'Offre</h1>
       <p>Modifiez les détails de l'offre ci-dessous.</p>

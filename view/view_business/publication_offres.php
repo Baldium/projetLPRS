@@ -9,8 +9,8 @@
 </head>
 
 <body>
-  <div class="container">
-    <h1>Publier une Offre</h1>
+  <?php include_once '../../public/layouts/accueil_business_base.php'; ?> 
+  <h1>Publier une Offre</h1>
     <div class="card">
       <div class="card-header">
         Détails de l'Offre

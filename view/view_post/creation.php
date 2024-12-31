@@ -6,11 +6,9 @@
     <title>Créer un post</title>
     <link rel="stylesheet" href="../../public/css/post_creation.css">
     <link rel="stylesheet" href="../../public/css/erreur_post.css">
+    <link rel="stylesheet" href="../../public/css/base_twig_accueil.css"> 
 </head>
 <body>
-
-<h1>Créer un nouveau post</h1>
-
 <!-- Afficher les messages flash -->
 <?php
 session_start();
@@ -31,6 +29,9 @@ if (isset($_SESSION['errors'])): ?>
     </div>
     <?php unset($_SESSION['errors']); ?>
 <?php endif; ?>
+
+
+<?php include_once '../../public/layouts/accueil_base.php'; ?>
 
 <form action="../../controller/controllerPost/trait_post.php" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="canal" value="<?php echo $_GET['canal'] ?>" >

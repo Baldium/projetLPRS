@@ -63,12 +63,19 @@ if (!$posts) {
 <head>
     <title>Posts de l'utilisateur</title>
     <link rel="stylesheet" href="../../public/css/post.css">
+    <link rel="stylesheet" href="../../public/css/base_twig_accueil.css"> 
 </head>
 <body>
+<?php include_once '../../public/layouts/accueil_base.php'; ?>
 
-<h1>Posts de l'utilisateur</h1>
+<div class="main-center">
+
+
+<h2>Posts de l'utilisateur</h2>
 
 <?php foreach ($posts as $post): ?>
+    <?php include_once '../../public/layouts/accueil_base.php'; ?>
+
     <article>
         <h2><?= htmlspecialchars($post['title']) ?></h2>
         <p><?= nl2br(htmlspecialchars($post['description'])) ?></p>
@@ -106,5 +113,6 @@ if (!$posts) {
     <hr>
 <?php endforeach; ?>
 
+</div>
 </body>
 </html>

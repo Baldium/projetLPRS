@@ -8,16 +8,11 @@ include_once __DIR__ . '/../../init.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion des Posts</title>
     <link rel="stylesheet" href="../../public/css/gestion.css">
+    <link rel="stylesheet" href="../../public/css/base_twig_accueil.css"> 
 </head>
 <body>
-<nav>
-    <ul>
-        <li><a href="../../view/view_etudiants/accueil.php">Accueil</a></li>
-        <li><a href="../../view/view_etudiants/qui-sommes-nous.html">Qui sommes-nous ?</a></li>
-    </ul>
-</nav>
-
-<div class="container">
+<?php include_once '../../public/layouts/accueil_base.php'; ?>
+<div class="main-center">
     <h1>Gestion des Posts</h1>
     <div class="button-container">
         <a href="../../view/view_post/creation.php?canal=general" class="button">Créer un Post</a>

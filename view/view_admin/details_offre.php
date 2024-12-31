@@ -32,9 +32,12 @@ if (isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Offre - <?= htmlspecialchars($offer['title_offers']); ?></title>
-    <link rel="stylesheet" href="../../public/css/admin_offres.css">
 </head>
 <body>
+<?php include_once '../../public/layouts/accueil_admin_base.php'; ?>
+<br>
+<br>
+<br>
     <div class="offer-card">
         <div class="card-header">
             <h1 class="offer-title"><?= htmlspecialchars($offer['title_offers']); ?></h1>

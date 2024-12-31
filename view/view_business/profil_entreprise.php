@@ -183,7 +183,7 @@ if (!isset($_SESSION['id_society'])) {
 </head>
 
 <body>
-  <div class="container">
+<?php include_once '../../public/layouts/accueil_business_base.php'; ?> 
     <!-- Titre et description -->
     <div class="profile-header">
       <h1>Profil de l'Entreprise</h1>

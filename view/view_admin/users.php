@@ -16,6 +16,11 @@ $users = UsersRepository::getUsers();
   <link rel="stylesheet" href="../../public/css/users_admin.css">
 </head>
 <body>
+<?php include_once '../../public/layouts/accueil_admin_base.php'; ?>
+<br>
+<br>
+<br>
+<br>
   <div class="dashboard-table-container">
     <h2>Admin Dashboard - Users</h2>
     <div class="table-wrapper">

@@ -17,6 +17,10 @@ $post = PostsRepository::getPostById($id);
   <link rel="stylesheet" href="../../public/css/edit_post.css">
 </head>
 <body>
+<?php include_once '../../public/layouts/accueil_admin_base.php'; ?>
+<br>
+<br>
+<br>
   <div class="form-container">
     <h2>Modifier Post</h2>
     <form action="./../../controller/controllerAdmin/updatePost.php?id=<?php echo $post["id_post"]; ?>" method="POST" enctype="multipart/form-data">
@@ -49,7 +53,7 @@ $post = PostsRepository::getPostById($id);
       </div>
       <div class="form-actions">
         <button type="submit" class="btn save">Enregistrer</button>
-        <button type="reset" class="btn cancel">Annuler</button>
+        <a href="./index.php">Annuler</a>
       </div>
     </form>
   </div>

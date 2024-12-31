@@ -14,10 +14,12 @@ $event = EventsRepository::getEventById($id);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Modifier Événement</title>
-  <link rel="stylesheet" href="../../public/css/edit_event.css">
 </head>
 <body>
-  <div class="form-container">
+<?php include_once '../../public/layouts/accueil_admin_base.php'; ?>
+<br>
+<br>
+<br>
     <h2>Modifier Événement</h2>
     <form action="./../../controller/controllerAdmin/updateEvent.php?id=<?php echo $event["id_event"]; ?>" method="POST">
       <div class="form-group">

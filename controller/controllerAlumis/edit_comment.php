@@ -55,9 +55,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modifier le commentaire</title>
-    <link rel="stylesheet" href="../../public/css/edit_comment.css">
+
+    <link rel="stylesheet" href="../../public/css/base_twig_accueil.css"> 
 </head>
 <body>
+<?php include_once '../../public/layouts/accueil_base.php'; ?>
+
+<div class="main-center">
+
+
+
     <div class="edit-comment-container">
         <h1>Modifier votre commentaire</h1>
         <?php if (isset($error)): ?>
@@ -70,6 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <a href="../../view/view_etudiants/mes_commentaires.php" class="btn-cancel">Annuler</a>
             </div>
         </form>
+    </div>
     </div>
 </body>
 </html>

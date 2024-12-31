@@ -19,6 +19,9 @@ $logo_img = "https://logo.clearbit.com/" . $website;
   <title><?= htmlspecialchars($society['nom_society']) ?> - Détails</title>
 </head>
 <body>
+<?php include_once '../../public/layouts/accueil_admin_base.php'; ?>
+<br>
+<br>
   <div class="container">
     <div class="company-details">
       <div class="logo-container">

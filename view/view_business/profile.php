@@ -83,19 +83,7 @@ else
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <img class="logo-icon" src="../../public/assets/image/Logo_Schuman_Connect.png" alt="Logo SchumanConnect">
-            </div>            
-            <nav>
-                <ul>
-                    <li><a href="./recherche.php" class="nav-active">Recherche Étudiants</a></li>
-                    <li><a href="./faq_etudiant.html">FAQ</a></li>
-                </ul>
-            </nav>
-        </header>
-
+<?php include_once '../../public/layouts/accueil_business_base.php'; ?> 
         <main>
             <div class="profile-details">
                 <div class="profile-info">
